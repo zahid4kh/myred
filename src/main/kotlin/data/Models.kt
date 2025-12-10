@@ -61,5 +61,10 @@ data class ChildrenData(
     @SerialName("is_video")
     val isVideo: Boolean = false,
     @SerialName("created_utc")
-    val createdUtc: Double = 0.0
+    val createdUtc: Double = 0.0,
+    val url: String = "",
+    @SerialName("url_overridden_by_dest")
+    val urlOverridenByDest: String = "",
+    @SerialName("media_only")
+    val mediaOnly: Boolean = false
 )
