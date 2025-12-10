@@ -68,8 +68,20 @@ data class ChildrenData(
     @SerialName("media_only")
     val mediaOnly: Boolean = false,
     val thumbnail: String = "",
-    val preview: Preview? = null
+    val preview: Preview? = null,
+    @SerialName("gallery_data")
+    val galleryData: GalleryData? = null,
+    @SerialName("media_metadata")
+    val mediaMetadata: Map<String, MediaMeta>? = null
 )
+
+fun ChildrenData.galleryImageUrls(): List<String> {
+    if (galleryData == null || mediaMetadata == null) return emptyList()
+
+    return galleryData.items.mapNotNull { item ->
+        mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
+    }
+}
 
 
 
@@ -100,4 +112,42 @@ data class Source(
     val height: Int = 0,
     val url: String = "",
     val width: Int = 0
+)
+
+@Serializable
+data class GalleryData(
+    val items: List<GalleryItem> = emptyList()
+)
+
+@Serializable
+data class GalleryItem(
+    @SerialName("media_id")
+    val mediaId: String,
+    val id: Long
+)
+
+@Serializable
+data class MediaMeta(
+    val status: String,
+    val e: String,
+    val m: String,
+    val p: List<PreviewImage> = emptyList(),
+    val s: FullImage? = null,
+    val id: String
+)
+
+@Serializable
+data class PreviewImage(
+    val x: Int,
+    val y: Int,
+    @SerialName("u")
+    val url: String
+)
+
+@Serializable
+data class FullImage(
+    val x: Int,
+    val y: Int,
+    @SerialName("u")
+    val url: String
 )
