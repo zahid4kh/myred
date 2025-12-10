@@ -1,0 +1,1853 @@
+{
+  "kind": "Listing",
+  "data": {
+    "after": "t3_1pj1sx5",
+    "dist": 10,
+    "modhash": "",
+    "geo_filter": null,
+    "children": [
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "**Hi**!\n\nAs 2025 is quickly nearing to a close, and so that people can make the most of these changes over the December Holidays, we have revised our sub rules. These went live 2 weeks ago and the final touches to automod went live early this week.\n\nBelow is an in-depth explanation on the changes, if you still have questions after, please feel free to ask in the comments and I'll do my best to answer. \n\n**Original images / videos only**\n\n* **Current (now)**: If you didn\u2019t take the photo or video, don\u2019t post it. No stock, AI, stolen, or screenshots.\n* **Old (before)**: Original Images only (OC Only). - If you didn\u2019t take the photo, don\u2019t post it.\n* **Explanation**: Dropped the \"OC\" term as I feel like it's less relevant in current Reddit culture terminology. Added some specific examples in to make things clearer. Oh and we now allow videos of your own food uploaded to Reddit's own native hosting \ud83c\udf89\n\n**Title format**\n\n* **Current (now):** For Images and video, the majority of your title must specifically describe what the food is. We also allow locations, who made it and noting attempts. Any other post, keep it descriptive. A \\[TAG\\] is always needed.\n* **Old (before):** \u201cThe majority of your title (over 50%) must specifically describe the food. Avoid vague descriptions, excessive use of emojis, and include one \\[square-bracketed\\] tag. Do not use personal appeals or emotionally compelling details, like hardships, to influence votes. Posts are removed at moderators' discretion.\u201d\n* **Explanation**: We've still kept the 50% specific description of what the food is, this keeps Google happy as your posts will end up in Google searches about your foods (keeps your posts popular for the long run). I think we'll keep it at this level for the foreseeable. Slimmed the rest of the rule right down and flipped it more to mention what we do allow. Also we don't really have to care as much about Emoji's, All Caps and where our \\[Tags\\] are. We hadn't updated the rule regarding other types of posts now available here, but we're going to keep them pretty loosely moderated.\n\n**Title Tags**\n\n* **Current (now):**  **\\[I ate\\]** \\- Food you purchased and ate with no preparation of your own. (Restaurant / Food truck / Food Vendor).  -  **\\[Homemade\\]** \\- Food made at home by you or someone you know.  -  **\\[Pro/Chef\\]** \\- Made as part of your work in food.   -  **\\[Text\\]** \\- Text posts for help, feedback, long recipes.  -  **\\[Produce\\]** \\- Raw ingredients grown, foraged, butchered, or purchased, shown as ingredients.  -  **\\[Podcast\\]** \\- Food podcasts.  -  **\\[AMA\\]** \\- Food AMAs with special guests.\n* **Old (before):** Pretty much the same list.\n* **Explanation**: Food Podcasts can now be posted by anyone (not just approved users) but our self promotion rules still apply. If the domain gets blocked, modmail us about it (because podcast domains are kind of odd to track down). We've also changed the AMA wording to special guests instead of just arranged via the mod team.\n\n**Be nice**\n\n* **Current (now):** Respect others. Do not belittle or devalue users or their food.\n* **Old (before):** Please be respectful and do not belittle users or their food.\n* **Explanation**: Just a slight wording change, still pretty much the same meaning. \n\n**Blog and website links**\n\n* **Current (now):** All website links are filtered, except those listed on our domain Whitelist. Changes to the list is at moderator discretion via modmail. To have your own domain approved you need to meet the below: **\\[Same 3 points in old and new version\\]**\n* **Old (before):** All domains linked in posts and comments are filtered, except those listed on our domain Whitelist. Addition or Removal to the list is at moderator discretion.\n* **Explanation**: Dropped \"domains\" for \"website links\" as it's easier to understand (but obviously didn't change the second mention of it \"nice, well done\ud83d\ude05\", well it's 50% better at least). Stated that changes are made via modmail and details making it clearer that the three points where for your own websites (self promotion). \n\n**No excessively low quality media**\n\n* **Current (now)**: No excessively blurred, small, dark, or cropped media where the food is not visible.\n* **Old (before)**: No Low-Quality Posts or Comments.\n* **Explanation**: This is where the big changes start, this rule title we enforced for the quality of some really bad images. But, over **YEARS** we had slowly slapped other random rules under this title and the rule lost all meaning and was confusing. Most of these are now their own rules with descriptions. This rule now properly states that if we can't see the food because the images is too bad, we'll remove it.  \n\n**No unauthorised self\u2011promotion**\n\n* **Current (now):** No unauthorised self-promotion, off site social links/watermarks.\n* **Old (before):** Self\u2011promotion and off\u2011site social links lived inside the broad \u2018No Low\u2011Quality Posts or Comments\u2019 bucket with many other items.\n* **Explanation**: Simple small rule that still gives a nod towards the website/blog rule with \"unauthorised\", as we clearly do authorise some self promotion when it's been agreed with us. It's a bit more of a description than before, better than none at all and doesn't really need more than that. \n\n**No fast food chains or minimal\u2011effort pre\u2011packaged foods/snacks**\n\n* **Current (now):** No media from large fast food chains or minimal effort pre-packaged foods/snacks (sweets/frozen meals etc).\n* **Old (before):** Lived as a line item (\u201cChain/Pre\u2011Packaged Food\u201d) inside the big low\u2011quality list.\n* **Explanation**: Again, cleaned up the single line rule to have it's own description and also worded it to be more in-line with what we removed and actioned. Places like McDonalds have spent Millions (probably closer to billions) over generations making sure EVERYONE knows who they are, even using things like kids play areas to make sure kids grew up with the brand. We want zero part in adding to their advertising portfolio. As for packaged stuff, it's very very low effort and we only really ever see posts about special chips (crisps) or chocolate, which are mostly a marketing gimmick.\n\n  \n**No political comments or titles**\n\n* **Current (now):** Do not bring politics into comments or titles.\n* **Old (before):** \u201cPolitics\u201d appeared in the long low\u2011quality list and as part of general guidance.\n* **Explanation**: Pretty simple, doesn't need much description, but it did need one. No \"Vote\" pies are not politics, stop asking us to remove them, also go vote.\n\n**Video posts must use Reddit\u2019s own hosting**\n\n* **Current (now):** Links to YouTube, TicTok, Insta etc are automatically blocked.\n* **Old (before):** Lived inside the broad \u2018No Low\u2011Quality Posts or Comments\u2019 bucket with many other items as \"No Videos\". \n* **Explanation**: We now allow Reddit hosted videos, so this needed expanding. Posts that are just YouTube videos, TicTok's, Insta/Reels have a financial incentive and also have VERY strong shortform video traps in them. If you click out to one of those sites, you're most likely not going to click back into Reddit any time soon. YouTube comments are also filtered and checked by us as to their suitability, we didn't really need a rule about it, as it'll fall under a generic removal rule later on here. \n\n**No culture\u2011war comments**\n\n* **Current (now):** Reddit-born meme replies and culture war comments that target posters will be removed. They are off topic, unhelpful, and drive away real contributors. Examples include \u201cMelt\u201d on grilled cheese, \u201cNot a burger\u201d on chicken burgers, degrading TV show quotes or fights over international food differences.\n* **Old (before):** As an extension of the \"Be Nice\" rule, abusive circlejerks will be subject to removal and/or a ban. This can result in an immediate permanent ban depending on the severity: \\[Same kind of examples list\\].\n* **Explanation**: Big rework of this rule to use less Reddit \"in\" words and to use more plain English. Expanded on the \"why\" in the rule itself. Internally we're also looking to revise our ban procedure for this rule to be less instant perma bans and use removals first. Leave bans for those being especially mean or for users that do it a lot (trolls). \n\n**Moderator discretion**\n\n* **Current (now):** Mods may remove any post, comment, or user if deemed detrimental to the community.\n* **Old (before):** Mods may remove any post, comment or user, if the post, comment or user is deemed detrimental to the community.\n* **Explanation**: It's always been an end note under our old rules, this didn't fit Reddit's new rule structure, so it's now a full rule. Pretty simple but it'll be the catch all for edge cases and something to shut down users that like to \"Rule Lawyer\". \n\n**Additional mentions**: \n\n* You won't see the old \"Dietary activism\" rule anywhere in the list now. We didn't need to really expressly mention it, it all falls under \"Be Nice\" very easily, or being a user \"detrimental\" to the community. At the end of the day, we're a general food sub, not your soap box to virtue signal from the top of.\n* We're always looking at the long-game and the wider picture with our rules. \"What keeps users feeling \"safe\" to post here and enjoy the sub?\" is a question we will always look to answer over and over again. We also balance all changes to make sure post types, user skill, and levels of profession are balanced and work together.\n* We do value and protect posters above users that comment. Reddit can be VERY harsh and the vast majority of that negativity is from comments. We're first and foremost a food sub and those creating, making, purchasing or working with food and posting it here add huge value to the sub. A 10 year old, kinda' not \"okay\" in this day and age, Tv quote as a \"joke\" on a post ... not so much.\n\n\n\nAny other questions, again, let me know in the comments and I'll try to answer them. The wiki has also been updated with the new rules and has in-depth descriptions and examples for all the rules: [https://www.reddit.com/r/food/wiki/index](https://www.reddit.com/r/food/wiki/index)",
+          "author_fullname": "t2_o0wde",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "title": "r/Food Rules Update: 2025",
+          "link_flair_richtext": [{ "e": "text", "t": "Announcement" }],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": "Announcement",
+          "downs": 0,
+          "thumbnail_height": null,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "name": "t3_1oxa2fi",
+          "quarantine": false,
+          "link_flair_text_color": "light",
+          "upvote_ratio": 0.75,
+          "author_flair_background_color": "#94e044",
+          "subreddit_type": "public",
+          "ups": 36,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": null,
+          "author_flair_template_id": "7e96665e-47c8-11ec-b75a-6e00b6420682",
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": false,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "link_flair_text": "Announcement",
+          "can_mod_post": false,
+          "score": 36,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "self",
+          "edited": 1763158588.0,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [
+            { "e": "text", "t": "\ud83d\udc14Chicken on a boat = Seafood" }
+          ],
+          "gildings": {},
+          "content_categories": null,
+          "is_self": true,
+          "mod_note": null,
+          "created": 1763157952.0,
+          "link_flair_type": "richtext",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "richtext",
+          "domain": "self.food",
+          "allow_live_comments": false,
+          "selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;&lt;strong&gt;Hi&lt;/strong&gt;!&lt;/p&gt;\n\n&lt;p&gt;As 2025 is quickly nearing to a close, and so that people can make the most of these changes over the December Holidays, we have revised our sub rules. These went live 2 weeks ago and the final touches to automod went live early this week.&lt;/p&gt;\n\n&lt;p&gt;Below is an in-depth explanation on the changes, if you still have questions after, please feel free to ask in the comments and I&amp;#39;ll do my best to answer. &lt;/p&gt;\n\n&lt;p&gt;&lt;strong&gt;Original images / videos only&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now)&lt;/strong&gt;: If you didn\u2019t take the photo or video, don\u2019t post it. No stock, AI, stolen, or screenshots.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before)&lt;/strong&gt;: Original Images only (OC Only). - If you didn\u2019t take the photo, don\u2019t post it.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Dropped the &amp;quot;OC&amp;quot; term as I feel like it&amp;#39;s less relevant in current Reddit culture terminology. Added some specific examples in to make things clearer. Oh and we now allow videos of your own food uploaded to Reddit&amp;#39;s own native hosting \ud83c\udf89&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;Title format&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; For Images and video, the majority of your title must specifically describe what the food is. We also allow locations, who made it and noting attempts. Any other post, keep it descriptive. A [TAG] is always needed.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; \u201cThe majority of your title (over 50%) must specifically describe the food. Avoid vague descriptions, excessive use of emojis, and include one [square-bracketed] tag. Do not use personal appeals or emotionally compelling details, like hardships, to influence votes. Posts are removed at moderators&amp;#39; discretion.\u201d&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: We&amp;#39;ve still kept the 50% specific description of what the food is, this keeps Google happy as your posts will end up in Google searches about your foods (keeps your posts popular for the long run). I think we&amp;#39;ll keep it at this level for the foreseeable. Slimmed the rest of the rule right down and flipped it more to mention what we do allow. Also we don&amp;#39;t really have to care as much about Emoji&amp;#39;s, All Caps and where our [Tags] are. We hadn&amp;#39;t updated the rule regarding other types of posts now available here, but we&amp;#39;re going to keep them pretty loosely moderated.&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;Title Tags&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt;  &lt;strong&gt;[I ate]&lt;/strong&gt; - Food you purchased and ate with no preparation of your own. (Restaurant / Food truck / Food Vendor).  -  &lt;strong&gt;[Homemade]&lt;/strong&gt; - Food made at home by you or someone you know.  -  &lt;strong&gt;[Pro/Chef]&lt;/strong&gt; - Made as part of your work in food.   -  &lt;strong&gt;[Text]&lt;/strong&gt; - Text posts for help, feedback, long recipes.  -  &lt;strong&gt;[Produce]&lt;/strong&gt; - Raw ingredients grown, foraged, butchered, or purchased, shown as ingredients.  -  &lt;strong&gt;[Podcast]&lt;/strong&gt; - Food podcasts.  -  &lt;strong&gt;[AMA]&lt;/strong&gt; - Food AMAs with special guests.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; Pretty much the same list.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Food Podcasts can now be posted by anyone (not just approved users) but our self promotion rules still apply. If the domain gets blocked, modmail us about it (because podcast domains are kind of odd to track down). We&amp;#39;ve also changed the AMA wording to special guests instead of just arranged via the mod team.&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;Be nice&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; Respect others. Do not belittle or devalue users or their food.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; Please be respectful and do not belittle users or their food.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Just a slight wording change, still pretty much the same meaning. &lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;Blog and website links&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; All website links are filtered, except those listed on our domain Whitelist. Changes to the list is at moderator discretion via modmail. To have your own domain approved you need to meet the below: &lt;strong&gt;[Same 3 points in old and new version]&lt;/strong&gt;&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; All domains linked in posts and comments are filtered, except those listed on our domain Whitelist. Addition or Removal to the list is at moderator discretion.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Dropped &amp;quot;domains&amp;quot; for &amp;quot;website links&amp;quot; as it&amp;#39;s easier to understand (but obviously didn&amp;#39;t change the second mention of it &amp;quot;nice, well done\ud83d\ude05&amp;quot;, well it&amp;#39;s 50% better at least). Stated that changes are made via modmail and details making it clearer that the three points where for your own websites (self promotion). &lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;No excessively low quality media&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now)&lt;/strong&gt;: No excessively blurred, small, dark, or cropped media where the food is not visible.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before)&lt;/strong&gt;: No Low-Quality Posts or Comments.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: This is where the big changes start, this rule title we enforced for the quality of some really bad images. But, over &lt;strong&gt;YEARS&lt;/strong&gt; we had slowly slapped other random rules under this title and the rule lost all meaning and was confusing. Most of these are now their own rules with descriptions. This rule now properly states that if we can&amp;#39;t see the food because the images is too bad, we&amp;#39;ll remove it.&lt;br/&gt;&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;No unauthorised self\u2011promotion&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; No unauthorised self-promotion, off site social links/watermarks.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; Self\u2011promotion and off\u2011site social links lived inside the broad \u2018No Low\u2011Quality Posts or Comments\u2019 bucket with many other items.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Simple small rule that still gives a nod towards the website/blog rule with &amp;quot;unauthorised&amp;quot;, as we clearly do authorise some self promotion when it&amp;#39;s been agreed with us. It&amp;#39;s a bit more of a description than before, better than none at all and doesn&amp;#39;t really need more than that. &lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;No fast food chains or minimal\u2011effort pre\u2011packaged foods/snacks&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; No media from large fast food chains or minimal effort pre-packaged foods/snacks (sweets/frozen meals etc).&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; Lived as a line item (\u201cChain/Pre\u2011Packaged Food\u201d) inside the big low\u2011quality list.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Again, cleaned up the single line rule to have it&amp;#39;s own description and also worded it to be more in-line with what we removed and actioned. Places like McDonalds have spent Millions (probably closer to billions) over generations making sure EVERYONE knows who they are, even using things like kids play areas to make sure kids grew up with the brand. We want zero part in adding to their advertising portfolio. As for packaged stuff, it&amp;#39;s very very low effort and we only really ever see posts about special chips (crisps) or chocolate, which are mostly a marketing gimmick.&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;No political comments or titles&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; Do not bring politics into comments or titles.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; \u201cPolitics\u201d appeared in the long low\u2011quality list and as part of general guidance.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Pretty simple, doesn&amp;#39;t need much description, but it did need one. No &amp;quot;Vote&amp;quot; pies are not politics, stop asking us to remove them, also go vote.&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;Video posts must use Reddit\u2019s own hosting&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; Links to YouTube, TicTok, Insta etc are automatically blocked.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; Lived inside the broad \u2018No Low\u2011Quality Posts or Comments\u2019 bucket with many other items as &amp;quot;No Videos&amp;quot;. &lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: We now allow Reddit hosted videos, so this needed expanding. Posts that are just YouTube videos, TicTok&amp;#39;s, Insta/Reels have a financial incentive and also have VERY strong shortform video traps in them. If you click out to one of those sites, you&amp;#39;re most likely not going to click back into Reddit any time soon. YouTube comments are also filtered and checked by us as to their suitability, we didn&amp;#39;t really need a rule about it, as it&amp;#39;ll fall under a generic removal rule later on here. &lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;No culture\u2011war comments&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; Reddit-born meme replies and culture war comments that target posters will be removed. They are off topic, unhelpful, and drive away real contributors. Examples include \u201cMelt\u201d on grilled cheese, \u201cNot a burger\u201d on chicken burgers, degrading TV show quotes or fights over international food differences.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; As an extension of the &amp;quot;Be Nice&amp;quot; rule, abusive circlejerks will be subject to removal and/or a ban. This can result in an immediate permanent ban depending on the severity: [Same kind of examples list].&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: Big rework of this rule to use less Reddit &amp;quot;in&amp;quot; words and to use more plain English. Expanded on the &amp;quot;why&amp;quot; in the rule itself. Internally we&amp;#39;re also looking to revise our ban procedure for this rule to be less instant perma bans and use removals first. Leave bans for those being especially mean or for users that do it a lot (trolls). &lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;Moderator discretion&lt;/strong&gt;&lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Current (now):&lt;/strong&gt; Mods may remove any post, comment, or user if deemed detrimental to the community.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Old (before):&lt;/strong&gt; Mods may remove any post, comment or user, if the post, comment or user is deemed detrimental to the community.&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Explanation&lt;/strong&gt;: It&amp;#39;s always been an end note under our old rules, this didn&amp;#39;t fit Reddit&amp;#39;s new rule structure, so it&amp;#39;s now a full rule. Pretty simple but it&amp;#39;ll be the catch all for edge cases and something to shut down users that like to &amp;quot;Rule Lawyer&amp;quot;. &lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;&lt;strong&gt;Additional mentions&lt;/strong&gt;: &lt;/p&gt;\n\n&lt;ul&gt;\n&lt;li&gt;You won&amp;#39;t see the old &amp;quot;Dietary activism&amp;quot; rule anywhere in the list now. We didn&amp;#39;t need to really expressly mention it, it all falls under &amp;quot;Be Nice&amp;quot; very easily, or being a user &amp;quot;detrimental&amp;quot; to the community. At the end of the day, we&amp;#39;re a general food sub, not your soap box to virtue signal from the top of.&lt;/li&gt;\n&lt;li&gt;We&amp;#39;re always looking at the long-game and the wider picture with our rules. &amp;quot;What keeps users feeling &amp;quot;safe&amp;quot; to post here and enjoy the sub?&amp;quot; is a question we will always look to answer over and over again. We also balance all changes to make sure post types, user skill, and levels of profession are balanced and work together.&lt;/li&gt;\n&lt;li&gt;We do value and protect posters above users that comment. Reddit can be VERY harsh and the vast majority of that negativity is from comments. We&amp;#39;re first and foremost a food sub and those creating, making, purchasing or working with food and posting it here add huge value to the sub. A 10 year old, kinda&amp;#39; not &amp;quot;okay&amp;quot; in this day and age, Tv quote as a &amp;quot;joke&amp;quot; on a post ... not so much.&lt;/li&gt;\n&lt;/ul&gt;\n\n&lt;p&gt;Any other questions, again, let me know in the comments and I&amp;#39;ll try to answer them. The wiki has also been updated with the new rules and has in-depth descriptions and examples for all the rules: &lt;a href=\"https://www.reddit.com/r/food/wiki/index\"&gt;https://www.reddit.com/r/food/wiki/index&lt;/a&gt;&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "link_flair_template_id": "9f0561d8-a6b6-11ea-9d6b-0e21a226dae3",
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": "\ud83d\udc14Chicken on a boat = Seafood",
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "num_reports": null,
+          "distinguished": "moderator",
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "removal_reason": null,
+          "link_flair_background_color": "#3c8518",
+          "id": "1oxa2fi",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "Sun_Beams",
+          "discussion_type": null,
+          "num_comments": 42,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": "dark",
+          "permalink": "/r/food/comments/1oxa2fi/rfood_rules_update_2025/",
+          "stickied": true,
+          "url": "https://www.reddit.com/r/food/comments/1oxa2fi/rfood_rules_update_2025/",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1763157952.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_20cp8wlg6q",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "title": "Three-pepper miso mushroom penne and cheese [homemade]",
+          "link_flair_richtext": [{ "e": "text", "t": "Recipe In Comments" }],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": "recipe",
+          "downs": 0,
+          "thumbnail_height": 140,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "name": "t3_1pj1tq6",
+          "quarantine": false,
+          "link_flair_text_color": "light",
+          "upvote_ratio": 0.98,
+          "author_flair_background_color": null,
+          "ups": 962,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": true,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "link_flair_text": "Recipe In Comments",
+          "can_mod_post": false,
+          "score": 962,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/jHY24w5-zgd5hg4xGGDkrmhOOok13uKCOx7yBtbAQVU.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "post_hint": "image",
+          "content_categories": null,
+          "is_self": false,
+          "subreddit_type": "public",
+          "created": 1765371207.0,
+          "link_flair_type": "richtext",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "i.redd.it",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://i.redd.it/j2bscqsyid6g1.jpeg",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://preview.redd.it/j2bscqsyid6g1.jpeg?auto=webp&amp;s=1725f3ca3e4652cd2fbe4b59fda7a5ed3c6db02a",
+                  "width": 3000,
+                  "height": 4000
+                },
+                "resolutions": [
+                  {
+                    "url": "https://preview.redd.it/j2bscqsyid6g1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=9970baa563d17b39bd7b192918891ca9c55ad242",
+                    "width": 108,
+                    "height": 144
+                  },
+                  {
+                    "url": "https://preview.redd.it/j2bscqsyid6g1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=7df31bb9bc3b49d16a92af95a0ed5a2dbb599472",
+                    "width": 216,
+                    "height": 288
+                  },
+                  {
+                    "url": "https://preview.redd.it/j2bscqsyid6g1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=39f653b2f57c23368572e4f9517dd3a0ce94bd04",
+                    "width": 320,
+                    "height": 426
+                  },
+                  {
+                    "url": "https://preview.redd.it/j2bscqsyid6g1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=10dc412ab63da334c3d2a24ae7e3013f9c5adb73",
+                    "width": 640,
+                    "height": 853
+                  },
+                  {
+                    "url": "https://preview.redd.it/j2bscqsyid6g1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=592218182eff2a6dae4bee50f8721ec166f0f90d",
+                    "width": 960,
+                    "height": 1280
+                  },
+                  {
+                    "url": "https://preview.redd.it/j2bscqsyid6g1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=816046c91db2a6cc6d153c407e55e49ddd60808e",
+                    "width": 1080,
+                    "height": 1440
+                  }
+                ],
+                "variants": {},
+                "id": "pGZ1h_NnxUGLidStAAbcwSCWXNITP0P9OkwbiTn4dYo"
+              }
+            ],
+            "enabled": true
+          },
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "link_flair_template_id": "94746abc-bd8a-11e5-8c39-0e60379e52fd",
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "mod_note": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "num_reports": null,
+          "removal_reason": null,
+          "link_flair_background_color": "#014980",
+          "id": "1pj1tq6",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "realemotionaltrash98",
+          "discussion_type": null,
+          "num_comments": 25,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pj1tq6/threepepper_miso_mushroom_penne_and_cheese/",
+          "stickied": false,
+          "url": "https://i.redd.it/j2bscqsyid6g1.jpeg",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765371207.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_18dyja82fg",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "title": "[homemade] Shoyu Ramen",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 139,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "name": "t3_1pj9m4i",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 0.99,
+          "author_flair_background_color": null,
+          "subreddit_type": "public",
+          "ups": 265,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": true,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 265,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/MqkBFXcRwAweWy20KLWOj5CswVNw7PB8aqJQvuBFPCE.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "post_hint": "image",
+          "content_categories": null,
+          "is_self": false,
+          "mod_note": null,
+          "created": 1765389741.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "i.redd.it",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://i.redd.it/0ycsudu22f6g1.jpeg",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://preview.redd.it/0ycsudu22f6g1.jpeg?auto=webp&amp;s=3c32e15485c010dd0b8e1746aad4b3870e3151ee",
+                  "width": 3024,
+                  "height": 3023
+                },
+                "resolutions": [
+                  {
+                    "url": "https://preview.redd.it/0ycsudu22f6g1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=f4dfe2b5d648ca6ec14b72a177dd4c6213ff9158",
+                    "width": 108,
+                    "height": 107
+                  },
+                  {
+                    "url": "https://preview.redd.it/0ycsudu22f6g1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=6bb9c7161265b69249cecb9a116c3d86147926f9",
+                    "width": 216,
+                    "height": 215
+                  },
+                  {
+                    "url": "https://preview.redd.it/0ycsudu22f6g1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=f9e3f762c29a0ba687ca5bdc7f6bc8ca044813ce",
+                    "width": 320,
+                    "height": 319
+                  },
+                  {
+                    "url": "https://preview.redd.it/0ycsudu22f6g1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=1c2349c82bc52bfaab72bb619c2c12f7e909e135",
+                    "width": 640,
+                    "height": 639
+                  },
+                  {
+                    "url": "https://preview.redd.it/0ycsudu22f6g1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=818c2212496bef20da8e85ee10f36eb6ee57405f",
+                    "width": 960,
+                    "height": 959
+                  },
+                  {
+                    "url": "https://preview.redd.it/0ycsudu22f6g1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=c8139e7c5256ac5d0801b317201988839be6aef6",
+                    "width": 1080,
+                    "height": 1079
+                  }
+                ],
+                "variants": {},
+                "id": "EFdr1T4i0hHHBILdeg7k7Xkhqk9g8cvtbr669i5wvDg"
+              }
+            ],
+            "enabled": true
+          },
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "num_reports": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1pj9m4i",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "KT_Bites",
+          "discussion_type": null,
+          "num_comments": 7,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pj9m4i/homemade_shoyu_ramen/",
+          "stickied": false,
+          "url": "https://i.redd.it/0ycsudu22f6g1.jpeg",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765389741.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_mxly2fkn4",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "is_gallery": true,
+          "title": "[homemade] two onion dogs and another onion dog",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 105,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "media_metadata": {
+            "x55la41lxd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 81,
+                  "x": 108,
+                  "u": "https://preview.redd.it/x55la41lxd6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=863626cfe6e365b965e6329dc5b48f10f7f02e26"
+                },
+                {
+                  "y": 162,
+                  "x": 216,
+                  "u": "https://preview.redd.it/x55la41lxd6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=5bf13fa60e82871a8433a1cfd66c6c7e86107333"
+                },
+                {
+                  "y": 240,
+                  "x": 320,
+                  "u": "https://preview.redd.it/x55la41lxd6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=eafe6d0bad9f564fa3321a3a47618ac655b016c3"
+                },
+                {
+                  "y": 480,
+                  "x": 640,
+                  "u": "https://preview.redd.it/x55la41lxd6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=c4597d506687f7d8db40ae49775418f2302c5de5"
+                },
+                {
+                  "y": 720,
+                  "x": 960,
+                  "u": "https://preview.redd.it/x55la41lxd6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=f118f7de20450f04f0562e98da0280b57cb5db63"
+                },
+                {
+                  "y": 810,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/x55la41lxd6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=b4d92deb6d78d4ab6e8a21dd5a4b1b8dbc1c1827"
+                }
+              ],
+              "s": {
+                "y": 3024,
+                "x": 4032,
+                "u": "https://preview.redd.it/x55la41lxd6g1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=bf15b8dce6803d914ddd7f66f3831fcc997926d1"
+              },
+              "id": "x55la41lxd6g1"
+            },
+            "b3xh631lxd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 81,
+                  "x": 108,
+                  "u": "https://preview.redd.it/b3xh631lxd6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=45feb22e66a6e5eafe12dc96a3a1e8408ee53d67"
+                },
+                {
+                  "y": 162,
+                  "x": 216,
+                  "u": "https://preview.redd.it/b3xh631lxd6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=5ad170bd326c1f03e7714024a5564afde61308fc"
+                },
+                {
+                  "y": 240,
+                  "x": 320,
+                  "u": "https://preview.redd.it/b3xh631lxd6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=631b61985002abb2eeb6004b6b007fc640128fe3"
+                },
+                {
+                  "y": 480,
+                  "x": 640,
+                  "u": "https://preview.redd.it/b3xh631lxd6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=c3f3d962642c71e3b0dae88425d5c9b23116fc08"
+                },
+                {
+                  "y": 720,
+                  "x": 960,
+                  "u": "https://preview.redd.it/b3xh631lxd6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=e339a61998f93b8a2f654be86726cdd45f7f09e8"
+                },
+                {
+                  "y": 810,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/b3xh631lxd6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=c4e7bb95aedbac352b1ac0a001a586632fdd6b55"
+                }
+              ],
+              "s": {
+                "y": 2577,
+                "x": 3436,
+                "u": "https://preview.redd.it/b3xh631lxd6g1.jpg?width=3436&amp;format=pjpg&amp;auto=webp&amp;s=c77e5682b84205ef8b65116ede69d2e2ad2b94d8"
+              },
+              "id": "b3xh631lxd6g1"
+            },
+            "dlvchb1lxd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 81,
+                  "x": 108,
+                  "u": "https://preview.redd.it/dlvchb1lxd6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=8219b519455a54f4de0f53ac54e127b32beed4d0"
+                },
+                {
+                  "y": 162,
+                  "x": 216,
+                  "u": "https://preview.redd.it/dlvchb1lxd6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=51619f0ace60851b6a5d6ca3cb22ee28662bf1e7"
+                },
+                {
+                  "y": 240,
+                  "x": 320,
+                  "u": "https://preview.redd.it/dlvchb1lxd6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=08e30966a7749108854dd088db8e9237100c07c4"
+                },
+                {
+                  "y": 480,
+                  "x": 640,
+                  "u": "https://preview.redd.it/dlvchb1lxd6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=3db781ee80fdb2793e03c640fa1757c430153f62"
+                },
+                {
+                  "y": 720,
+                  "x": 960,
+                  "u": "https://preview.redd.it/dlvchb1lxd6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=b80bba4c23288d3d26d1b3c531c73f0101faec2e"
+                },
+                {
+                  "y": 810,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/dlvchb1lxd6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=24b1cd05a347daed179e9f93962d5473c23b9c8d"
+                }
+              ],
+              "s": {
+                "y": 3024,
+                "x": 4032,
+                "u": "https://preview.redd.it/dlvchb1lxd6g1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=bf06bc5045f09325caa06b572a118384eea2d325"
+              },
+              "id": "dlvchb1lxd6g1"
+            },
+            "qb76la1lxd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 81,
+                  "x": 108,
+                  "u": "https://preview.redd.it/qb76la1lxd6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=efc16a9895e4f53cecbcae03de13e74a3a709943"
+                },
+                {
+                  "y": 162,
+                  "x": 216,
+                  "u": "https://preview.redd.it/qb76la1lxd6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=a427c6ecd3e520a6dbfb88becd463f9bfc8acdbd"
+                },
+                {
+                  "y": 240,
+                  "x": 320,
+                  "u": "https://preview.redd.it/qb76la1lxd6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=47833e8257548f5d9222e36faa3d91f8444738ca"
+                },
+                {
+                  "y": 480,
+                  "x": 640,
+                  "u": "https://preview.redd.it/qb76la1lxd6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=9450967694212e5a22ce3bf6ef90c805a017b5c4"
+                },
+                {
+                  "y": 720,
+                  "x": 960,
+                  "u": "https://preview.redd.it/qb76la1lxd6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=b90defe5b5583d4cbb60c16f106d31a2c13137ec"
+                },
+                {
+                  "y": 810,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/qb76la1lxd6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=a0844874ab8d9f4e698512587e487eeaf4995ccf"
+                }
+              ],
+              "s": {
+                "y": 3024,
+                "x": 4032,
+                "u": "https://preview.redd.it/qb76la1lxd6g1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=63e066020ac0bce053317868bb2aad89f6f7fc97"
+              },
+              "id": "qb76la1lxd6g1"
+            },
+            "1h8kn11lxd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 81,
+                  "x": 108,
+                  "u": "https://preview.redd.it/1h8kn11lxd6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=3697493bc39267496df91513e6108a988346022f"
+                },
+                {
+                  "y": 162,
+                  "x": 216,
+                  "u": "https://preview.redd.it/1h8kn11lxd6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=b737aa5624a33cdf99d5c6ac496ef9df38394783"
+                },
+                {
+                  "y": 240,
+                  "x": 320,
+                  "u": "https://preview.redd.it/1h8kn11lxd6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=80792702455ecd663e16e96be7aa5fa6cf5a4ae0"
+                },
+                {
+                  "y": 480,
+                  "x": 640,
+                  "u": "https://preview.redd.it/1h8kn11lxd6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=e324da3c85c09fddbd7e857fb6df0e577ccf9abc"
+                },
+                {
+                  "y": 720,
+                  "x": 960,
+                  "u": "https://preview.redd.it/1h8kn11lxd6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=edbd97351b761a6075e9eae8244ac121544c0cb7"
+                },
+                {
+                  "y": 810,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/1h8kn11lxd6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=034984783a3385a6ace9ad2104c9053b68abbc7f"
+                }
+              ],
+              "s": {
+                "y": 3024,
+                "x": 4032,
+                "u": "https://preview.redd.it/1h8kn11lxd6g1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=644d88819f873925e4bded1a8bb5f8d1194e3aa3"
+              },
+              "id": "1h8kn11lxd6g1"
+            },
+            "xry8u11lxd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 81,
+                  "x": 108,
+                  "u": "https://preview.redd.it/xry8u11lxd6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=eef4e4e859d05dde94f7980ab078ffdf808f22fa"
+                },
+                {
+                  "y": 162,
+                  "x": 216,
+                  "u": "https://preview.redd.it/xry8u11lxd6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=ab9b5643c7adaeab81c3106462c0da2e5f9b3d69"
+                },
+                {
+                  "y": 240,
+                  "x": 320,
+                  "u": "https://preview.redd.it/xry8u11lxd6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=02867a0e9618d05c63c49034a619a818007d1329"
+                },
+                {
+                  "y": 480,
+                  "x": 640,
+                  "u": "https://preview.redd.it/xry8u11lxd6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=c1b894b0effad4a3190e8aa233b36097956bcd9f"
+                },
+                {
+                  "y": 720,
+                  "x": 960,
+                  "u": "https://preview.redd.it/xry8u11lxd6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=f37a9036434b4d83f01db221f954d5c1dfdec4df"
+                },
+                {
+                  "y": 810,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/xry8u11lxd6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=83d21d840a943e4db400156cd1e1df3ee86aa049"
+                }
+              ],
+              "s": {
+                "y": 3024,
+                "x": 4032,
+                "u": "https://preview.redd.it/xry8u11lxd6g1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=fda72cbe3e30c98cffa614876cb51a24fe7fde56"
+              },
+              "id": "xry8u11lxd6g1"
+            }
+          },
+          "name": "t3_1pj3mva",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 0.92,
+          "author_flair_background_color": null,
+          "ups": 353,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": false,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "gallery_data": {
+            "items": [
+              { "media_id": "dlvchb1lxd6g1", "id": 813121650 },
+              { "media_id": "qb76la1lxd6g1", "id": 813121651 },
+              { "media_id": "1h8kn11lxd6g1", "id": 813121652 },
+              { "media_id": "xry8u11lxd6g1", "id": 813121653 },
+              { "media_id": "x55la41lxd6g1", "id": 813121654 },
+              { "media_id": "b3xh631lxd6g1", "id": 813121655 }
+            ]
+          },
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 353,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/rvrSg0mYlRbiqBVAsO2d9S-fChg3yhpSkYl0krLviuk.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "content_categories": null,
+          "is_self": false,
+          "subreddit_type": "public",
+          "created": 1765376123.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "reddit.com",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://www.reddit.com/gallery/1pj3mva",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "mod_note": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "num_reports": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1pj3mva",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "callmestinkingwind",
+          "discussion_type": null,
+          "num_comments": 40,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pj3mva/homemade_two_onion_dogs_and_another_onion_dog/",
+          "stickied": false,
+          "url": "https://www.reddit.com/gallery/1pj3mva",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765376123.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_1fc2sj75",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "title": "[homemade] bacon, ham, egg, cheese, jalapeno on sourdough focaccia",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 140,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "name": "t3_1pj5u8q",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 0.98,
+          "author_flair_background_color": null,
+          "subreddit_type": "public",
+          "ups": 257,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": true,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 257,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/ll8vqEZv2HUyM7fM-jk5H6dTHX7CL8dNWi3JrboFpOA.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "post_hint": "image",
+          "content_categories": null,
+          "is_self": false,
+          "mod_note": null,
+          "created": 1765381432.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "i.redd.it",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://i.redd.it/vad3d8ddde6g1.jpeg",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://preview.redd.it/vad3d8ddde6g1.jpeg?auto=webp&amp;s=1ba619b8173f617fc2413da8c4a4cf7e569baf0d",
+                  "width": 1023,
+                  "height": 1024
+                },
+                "resolutions": [
+                  {
+                    "url": "https://preview.redd.it/vad3d8ddde6g1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=30f058da4794c4c88ab11513557b2faa5b32bfb4",
+                    "width": 108,
+                    "height": 108
+                  },
+                  {
+                    "url": "https://preview.redd.it/vad3d8ddde6g1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=bdfc69338c8c32a444954a895b41d63161cd41ff",
+                    "width": 216,
+                    "height": 216
+                  },
+                  {
+                    "url": "https://preview.redd.it/vad3d8ddde6g1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=366306f4e8e9c4d0e52ec96c27f79b2d0f6f1f09",
+                    "width": 320,
+                    "height": 320
+                  },
+                  {
+                    "url": "https://preview.redd.it/vad3d8ddde6g1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=d892ae77c052720f25e8c6684c3e03a74721406c",
+                    "width": 640,
+                    "height": 640
+                  },
+                  {
+                    "url": "https://preview.redd.it/vad3d8ddde6g1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=2416abc919f2cc0c36e7311fc4780f3dd58f7980",
+                    "width": 960,
+                    "height": 960
+                  }
+                ],
+                "variants": {},
+                "id": "1meOZEpjoi48bwTEhlWID_Mpijw9dNFrtzqo7_9dhuo"
+              }
+            ],
+            "enabled": true
+          },
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "num_reports": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1pj5u8q",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "ExpertRaccoon",
+          "discussion_type": null,
+          "num_comments": 3,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pj5u8q/homemade_bacon_ham_egg_cheese_jalapeno_on/",
+          "stickied": false,
+          "url": "https://i.redd.it/vad3d8ddde6g1.jpeg",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765381432.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_n49am",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "title": "[I ate] Gumbo in a Louisiana-Cajun-Creole restaurant in Tokyo, Japan",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 140,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "name": "t3_1piurfs",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 0.96,
+          "author_flair_background_color": null,
+          "subreddit_type": "public",
+          "ups": 831,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": true,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 831,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/hrwn9n1Z4Lb4CdRZ42t5iLvpsyIxSe80nFRe9ua2Vrg.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "post_hint": "image",
+          "content_categories": null,
+          "is_self": false,
+          "mod_note": null,
+          "created": 1765345508.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "i.redd.it",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://i.redd.it/ck4fbg8jeb6g1.jpeg",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://preview.redd.it/ck4fbg8jeb6g1.jpeg?auto=webp&amp;s=adef64f1fecc942570f9b3a8cf84c6187100df60",
+                  "width": 2604,
+                  "height": 4624
+                },
+                "resolutions": [
+                  {
+                    "url": "https://preview.redd.it/ck4fbg8jeb6g1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=476ce525aa851682749f0a0a0d3d530563cd0f01",
+                    "width": 108,
+                    "height": 191
+                  },
+                  {
+                    "url": "https://preview.redd.it/ck4fbg8jeb6g1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=70b398ffdaf37900f4182410269b1c347ed787a3",
+                    "width": 216,
+                    "height": 383
+                  },
+                  {
+                    "url": "https://preview.redd.it/ck4fbg8jeb6g1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=38f755d7928ac7647cb4d2719030900ff172bbd5",
+                    "width": 320,
+                    "height": 568
+                  },
+                  {
+                    "url": "https://preview.redd.it/ck4fbg8jeb6g1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=16f4e8216c8999ca25a15d8e591e24de7b196ec1",
+                    "width": 640,
+                    "height": 1136
+                  },
+                  {
+                    "url": "https://preview.redd.it/ck4fbg8jeb6g1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=21704b7792ca469008043a4d47b185dfa44e1a14",
+                    "width": 960,
+                    "height": 1704
+                  },
+                  {
+                    "url": "https://preview.redd.it/ck4fbg8jeb6g1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=504118cad799cc0e73db940b59bdc6074a3c07d2",
+                    "width": 1080,
+                    "height": 1917
+                  }
+                ],
+                "variants": {},
+                "id": "paf3rH5l8qUPLoNEOttMbITQi2JwggumaAJ82W89dBg"
+              }
+            ],
+            "enabled": true
+          },
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "num_reports": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1piurfs",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "mFachrizalr",
+          "discussion_type": null,
+          "num_comments": 57,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1piurfs/i_ate_gumbo_in_a_louisianacajuncreole_restaurant/",
+          "stickied": false,
+          "url": "https://i.redd.it/ck4fbg8jeb6g1.jpeg",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765345508.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_u6kra8hfv",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "is_gallery": true,
+          "title": "[Homemade] mushroom potato chicken onion pockets",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 140,
+          "top_awarded_type": null,
+          "hide_score": true,
+          "media_metadata": {
+            "ya3zq5qdef6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 144,
+                  "x": 108,
+                  "u": "https://preview.redd.it/ya3zq5qdef6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=5010ee9bed7bbcae6676041d99ddf31a954fadd6"
+                },
+                {
+                  "y": 288,
+                  "x": 216,
+                  "u": "https://preview.redd.it/ya3zq5qdef6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=9effa1f929db7dac21bab11d82cbd1c86baffe1e"
+                },
+                {
+                  "y": 426,
+                  "x": 320,
+                  "u": "https://preview.redd.it/ya3zq5qdef6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=9ee18bcda0ae14c96e31ebeb6a7822b344627e38"
+                },
+                {
+                  "y": 853,
+                  "x": 640,
+                  "u": "https://preview.redd.it/ya3zq5qdef6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=3241596d8387f98a2c6170d7c9063cdd087701bc"
+                },
+                {
+                  "y": 1280,
+                  "x": 960,
+                  "u": "https://preview.redd.it/ya3zq5qdef6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=b388881f48c5c380cf3f1ec9392ff009f3728cd0"
+                },
+                {
+                  "y": 1440,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/ya3zq5qdef6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=e9704b3f86900b4426204c9fd0c3551775740b7e"
+                }
+              ],
+              "s": {
+                "y": 4096,
+                "x": 3072,
+                "u": "https://preview.redd.it/ya3zq5qdef6g1.jpg?width=3072&amp;format=pjpg&amp;auto=webp&amp;s=29e3589d8c0bf96666171c2caf9ccc0e69315754"
+              },
+              "id": "ya3zq5qdef6g1"
+            },
+            "3e3se7xeef6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 144,
+                  "x": 108,
+                  "u": "https://preview.redd.it/3e3se7xeef6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=15dfb47b9e53baa9e5bd95c24c8e4b35aafbe90e"
+                },
+                {
+                  "y": 288,
+                  "x": 216,
+                  "u": "https://preview.redd.it/3e3se7xeef6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=2d9126a8171fd04750722b695d020d8350d812b5"
+                },
+                {
+                  "y": 426,
+                  "x": 320,
+                  "u": "https://preview.redd.it/3e3se7xeef6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=31d428d960627bc28e5dbb560c9c2da539ee6df4"
+                },
+                {
+                  "y": 853,
+                  "x": 640,
+                  "u": "https://preview.redd.it/3e3se7xeef6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=6cb27e000dbb6d6bbe9a0fda4cd4577f76aa9b83"
+                },
+                {
+                  "y": 1280,
+                  "x": 960,
+                  "u": "https://preview.redd.it/3e3se7xeef6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=c930a3589f5e8d406a6354b5bcb84a154971a9ae"
+                },
+                {
+                  "y": 1440,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/3e3se7xeef6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=d1a8af00793802a8cfbea015fe6fe8d51e06e645"
+                }
+              ],
+              "s": {
+                "y": 4096,
+                "x": 3072,
+                "u": "https://preview.redd.it/3e3se7xeef6g1.jpg?width=3072&amp;format=pjpg&amp;auto=webp&amp;s=358f4335a0c3999382e776bbcf061b2f117ef66c"
+              },
+              "id": "3e3se7xeef6g1"
+            }
+          },
+          "name": "t3_1pjbjh4",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 0.99,
+          "author_flair_background_color": null,
+          "ups": 50,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": false,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "gallery_data": {
+            "items": [
+              { "media_id": "ya3zq5qdef6g1", "id": 813313053 },
+              { "media_id": "3e3se7xeef6g1", "id": 813313054 }
+            ]
+          },
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 50,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/Kp3-JlRckJjfolA5oaZ8L0kolUjSCE8bV0IkiX36A0Q.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "content_categories": null,
+          "is_self": false,
+          "subreddit_type": "public",
+          "created": 1765393917.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "reddit.com",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://www.reddit.com/gallery/1pjbjh4",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "mod_note": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "num_reports": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1pjbjh4",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "MotorMusic8015",
+          "discussion_type": null,
+          "num_comments": 2,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pjbjh4/homemade_mushroom_potato_chicken_onion_pockets/",
+          "stickied": false,
+          "url": "https://www.reddit.com/gallery/1pjbjh4",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765393917.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "Made it to have sandwiches with not store bought bread, ending up constantly picking at it over the sink like a bird",
+          "author_fullname": "t2_3fb08u1x",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "is_gallery": true,
+          "title": "Sandwich bread [homemade]",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 140,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "media_metadata": {
+            "n7jhfv6srd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/jpg",
+              "p": [
+                {
+                  "y": 144,
+                  "x": 108,
+                  "u": "https://preview.redd.it/n7jhfv6srd6g1.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=c7d7ae51e1a603511f05af470ffc57878e56e076"
+                },
+                {
+                  "y": 288,
+                  "x": 216,
+                  "u": "https://preview.redd.it/n7jhfv6srd6g1.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=9f7dd1afb98ca0ce59c5ab0d8419ace2ebfe8af4"
+                },
+                {
+                  "y": 426,
+                  "x": 320,
+                  "u": "https://preview.redd.it/n7jhfv6srd6g1.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=346ce8739c22892979bd5e35d10b7313ff1fee40"
+                },
+                {
+                  "y": 853,
+                  "x": 640,
+                  "u": "https://preview.redd.it/n7jhfv6srd6g1.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=da1caffa4a72df72ec548e8a3e664bb9dc3bbbb1"
+                },
+                {
+                  "y": 1280,
+                  "x": 960,
+                  "u": "https://preview.redd.it/n7jhfv6srd6g1.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=7f50e6a3276a2d734e6eb636940180eb467c61de"
+                },
+                {
+                  "y": 1440,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/n7jhfv6srd6g1.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=a15d615191383bc57f0da42e967e0f691d8e8d82"
+                }
+              ],
+              "s": {
+                "y": 4000,
+                "x": 3000,
+                "u": "https://preview.redd.it/n7jhfv6srd6g1.jpg?width=3000&amp;format=pjpg&amp;auto=webp&amp;s=edb8d53f988bcc46935e0dce360e6e6a3477df7f"
+              },
+              "id": "n7jhfv6srd6g1"
+            },
+            "rgskis6srd6g1": {
+              "status": "valid",
+              "e": "Image",
+              "m": "image/png",
+              "p": [
+                {
+                  "y": 126,
+                  "x": 108,
+                  "u": "https://preview.redd.it/rgskis6srd6g1.png?width=108&amp;crop=smart&amp;auto=webp&amp;s=493c8f789421657eca951759cf1a6a74deb467b5"
+                },
+                {
+                  "y": 252,
+                  "x": 216,
+                  "u": "https://preview.redd.it/rgskis6srd6g1.png?width=216&amp;crop=smart&amp;auto=webp&amp;s=8ebe0c28ea26d5da08357489a85069db0a853372"
+                },
+                {
+                  "y": 373,
+                  "x": 320,
+                  "u": "https://preview.redd.it/rgskis6srd6g1.png?width=320&amp;crop=smart&amp;auto=webp&amp;s=f1822fecf5cfe1e3b08104bd86bb25575a5542f1"
+                },
+                {
+                  "y": 747,
+                  "x": 640,
+                  "u": "https://preview.redd.it/rgskis6srd6g1.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=d2fa43f077fed2710f09fcf009f8f7e5f6691f0f"
+                },
+                {
+                  "y": 1120,
+                  "x": 960,
+                  "u": "https://preview.redd.it/rgskis6srd6g1.png?width=960&amp;crop=smart&amp;auto=webp&amp;s=aef212b546292c2e008c0d6b74182005502a5c6f"
+                },
+                {
+                  "y": 1261,
+                  "x": 1080,
+                  "u": "https://preview.redd.it/rgskis6srd6g1.png?width=1080&amp;crop=smart&amp;auto=webp&amp;s=438588dfb3c12fc519a5f55365cc718e45c99f39"
+                }
+              ],
+              "s": {
+                "y": 1261,
+                "x": 1080,
+                "u": "https://preview.redd.it/rgskis6srd6g1.png?width=1080&amp;format=png&amp;auto=webp&amp;s=193fd1cf9eebe2618e394da3ed0d823249004b8f"
+              },
+              "id": "rgskis6srd6g1"
+            }
+          },
+          "name": "t3_1pj2vwe",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 0.97,
+          "author_flair_background_color": null,
+          "ups": 125,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": false,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "gallery_data": {
+            "items": [
+              { "caption": "", "media_id": "rgskis6srd6g1", "id": 813103784 },
+              { "caption": "", "media_id": "n7jhfv6srd6g1", "id": 813103785 }
+            ]
+          },
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 125,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/f3THBA7r5zlmgBZ-B7UyCe5kaYss6CIMGxD7JwSdgkQ.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "content_categories": null,
+          "is_self": false,
+          "subreddit_type": "public",
+          "created": 1765374173.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "reddit.com",
+          "allow_live_comments": false,
+          "selftext_html": "&lt;!-- SC_OFF --&gt;&lt;div class=\"md\"&gt;&lt;p&gt;Made it to have sandwiches with not store bought bread, ending up constantly picking at it over the sink like a bird&lt;/p&gt;\n&lt;/div&gt;&lt;!-- SC_ON --&gt;",
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://www.reddit.com/gallery/1pj2vwe",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "mod_note": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "num_reports": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1pj2vwe",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "justhereforswitch",
+          "discussion_type": null,
+          "num_comments": 4,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pj2vwe/sandwich_bread_homemade/",
+          "stickied": false,
+          "url": "https://www.reddit.com/gallery/1pj2vwe",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765374173.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_ipaym",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "title": "[I Ate] A Fish Taco",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 140,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "name": "t3_1pj61gk",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 0.99,
+          "author_flair_background_color": null,
+          "subreddit_type": "public",
+          "ups": 82,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": true,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 82,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://b.thumbs.redditmedia.com/zpG3s953fJjmUwQhC_mn6jOP4ATcGLbowL8Y0SAqs-U.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "post_hint": "image",
+          "content_categories": null,
+          "is_self": false,
+          "mod_note": null,
+          "created": 1765381898.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "i.redd.it",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://i.redd.it/3jjwuvaree6g1.jpeg",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://preview.redd.it/3jjwuvaree6g1.jpeg?auto=webp&amp;s=6db52b46ceef86b5afa01e6122d0370d35e3d179",
+                  "width": 3024,
+                  "height": 4032
+                },
+                "resolutions": [
+                  {
+                    "url": "https://preview.redd.it/3jjwuvaree6g1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=70b62514a4ed4e77b6ccf29a95ec3734fac3c09b",
+                    "width": 108,
+                    "height": 144
+                  },
+                  {
+                    "url": "https://preview.redd.it/3jjwuvaree6g1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=040c917ce6c00e36629113b230cea7372398d8ff",
+                    "width": 216,
+                    "height": 288
+                  },
+                  {
+                    "url": "https://preview.redd.it/3jjwuvaree6g1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=5e28c51f711dfdf8588c0a0f45287982c209ccb3",
+                    "width": 320,
+                    "height": 426
+                  },
+                  {
+                    "url": "https://preview.redd.it/3jjwuvaree6g1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=db0dc83af9b321f4f6b473af1b52cbca4de93501",
+                    "width": 640,
+                    "height": 853
+                  },
+                  {
+                    "url": "https://preview.redd.it/3jjwuvaree6g1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=fcfc3dd4090709badf445a42fa47e79dcbce5937",
+                    "width": 960,
+                    "height": 1280
+                  },
+                  {
+                    "url": "https://preview.redd.it/3jjwuvaree6g1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=7dd377d516a0d6e3837f4776a7f2e4a122d40813",
+                    "width": 1080,
+                    "height": 1440
+                  }
+                ],
+                "variants": {},
+                "id": "L6-tFyNqnlhyJTejnBBth7CPDNn8oMLHIsL2onw1jZg"
+              }
+            ],
+            "enabled": true
+          },
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "num_reports": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1pj61gk",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "PizzaDog33",
+          "discussion_type": null,
+          "num_comments": 2,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pj61gk/i_ate_a_fish_taco/",
+          "stickied": false,
+          "url": "https://i.redd.it/3jjwuvaree6g1.jpeg",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765381898.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "approved_at_utc": null,
+          "subreddit": "food",
+          "selftext": "",
+          "author_fullname": "t2_1oer3ra0zl",
+          "saved": false,
+          "mod_reason_title": null,
+          "gilded": 0,
+          "clicked": false,
+          "title": "[Homemade] Chocolate mousse cake",
+          "link_flair_richtext": [],
+          "subreddit_name_prefixed": "r/food",
+          "hidden": false,
+          "pwls": 6,
+          "link_flair_css_class": null,
+          "downs": 0,
+          "thumbnail_height": 140,
+          "top_awarded_type": null,
+          "hide_score": false,
+          "name": "t3_1pj1sx5",
+          "quarantine": false,
+          "link_flair_text_color": "dark",
+          "upvote_ratio": 1.0,
+          "author_flair_background_color": null,
+          "subreddit_type": "public",
+          "ups": 106,
+          "total_awards_received": 0,
+          "media_embed": {},
+          "thumbnail_width": 140,
+          "author_flair_template_id": null,
+          "is_original_content": true,
+          "user_reports": [],
+          "secure_media": null,
+          "is_reddit_media_domain": true,
+          "is_meta": false,
+          "category": null,
+          "secure_media_embed": {},
+          "link_flair_text": null,
+          "can_mod_post": false,
+          "score": 106,
+          "approved_by": null,
+          "is_created_from_ads_ui": false,
+          "author_premium": false,
+          "thumbnail": "https://a.thumbs.redditmedia.com/jbctp3vQlVyeusA3wt5x8Ww5oq-zKbiUYU7g8KgI730.jpg",
+          "edited": false,
+          "author_flair_css_class": null,
+          "author_flair_richtext": [],
+          "gildings": {},
+          "post_hint": "image",
+          "content_categories": null,
+          "is_self": false,
+          "mod_note": null,
+          "created": 1765371138.0,
+          "link_flair_type": "text",
+          "wls": 6,
+          "removed_by_category": null,
+          "banned_by": null,
+          "author_flair_type": "text",
+          "domain": "i.redd.it",
+          "allow_live_comments": false,
+          "selftext_html": null,
+          "likes": null,
+          "suggested_sort": "qa",
+          "banned_at_utc": null,
+          "url_overridden_by_dest": "https://i.redd.it/jojue9erid6g1.jpeg",
+          "view_count": null,
+          "archived": false,
+          "no_follow": false,
+          "is_crosspostable": false,
+          "pinned": false,
+          "over_18": false,
+          "preview": {
+            "images": [
+              {
+                "source": {
+                  "url": "https://preview.redd.it/jojue9erid6g1.jpeg?auto=webp&amp;s=7e329a9ab1d66816039f70710bbc455c3480d374",
+                  "width": 6912,
+                  "height": 9216
+                },
+                "resolutions": [
+                  {
+                    "url": "https://preview.redd.it/jojue9erid6g1.jpeg?width=108&amp;crop=smart&amp;auto=webp&amp;s=06e5983855e92f367f29952de9350c0bdcb75d06",
+                    "width": 108,
+                    "height": 144
+                  },
+                  {
+                    "url": "https://preview.redd.it/jojue9erid6g1.jpeg?width=216&amp;crop=smart&amp;auto=webp&amp;s=52e9eaf3f37409e0aa8db6d6647882190291a27a",
+                    "width": 216,
+                    "height": 288
+                  },
+                  {
+                    "url": "https://preview.redd.it/jojue9erid6g1.jpeg?width=320&amp;crop=smart&amp;auto=webp&amp;s=81f946e11c5b74568939d42d58ca6d71d43c58d3",
+                    "width": 320,
+                    "height": 426
+                  },
+                  {
+                    "url": "https://preview.redd.it/jojue9erid6g1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=9401d3159f91d6dfa2209f45c400b6ff8a4c7b53",
+                    "width": 640,
+                    "height": 853
+                  },
+                  {
+                    "url": "https://preview.redd.it/jojue9erid6g1.jpeg?width=960&amp;crop=smart&amp;auto=webp&amp;s=5cbe30416e299b57fb394dc239c4e6f7c5d1d464",
+                    "width": 960,
+                    "height": 1280
+                  },
+                  {
+                    "url": "https://preview.redd.it/jojue9erid6g1.jpeg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=f25afabbb31bbc4fe473a19dc5938b2966696ffe",
+                    "width": 1080,
+                    "height": 1440
+                  }
+                ],
+                "variants": {},
+                "id": "4mbFR9p7HqnupZlXJlOQHHdhiQdnHyNQ3jXqfMg3lAs"
+              }
+            ],
+            "enabled": true
+          },
+          "all_awardings": [],
+          "awarders": [],
+          "media_only": false,
+          "can_gild": false,
+          "spoiler": false,
+          "locked": false,
+          "author_flair_text": null,
+          "treatment_tags": [],
+          "visited": false,
+          "removed_by": null,
+          "num_reports": null,
+          "distinguished": null,
+          "subreddit_id": "t5_2qh55",
+          "author_is_blocked": false,
+          "mod_reason_by": null,
+          "removal_reason": null,
+          "link_flair_background_color": "",
+          "id": "1pj1sx5",
+          "is_robot_indexable": true,
+          "report_reasons": null,
+          "author": "Average96Guy",
+          "discussion_type": null,
+          "num_comments": 0,
+          "send_replies": true,
+          "contest_mode": false,
+          "mod_reports": [],
+          "author_patreon_flair": false,
+          "author_flair_text_color": null,
+          "permalink": "/r/food/comments/1pj1sx5/homemade_chocolate_mousse_cake/",
+          "stickied": false,
+          "url": "https://i.redd.it/jojue9erid6g1.jpeg",
+          "subreddit_subscribers": 24378335,
+          "created_utc": 1765371138.0,
+          "num_crossposts": 0,
+          "media": null,
+          "is_video": false
+        }
+      }
+    ],
+    "before": null
+  }
+}
