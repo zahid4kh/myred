@@ -66,5 +66,38 @@ data class ChildrenData(
     @SerialName("url_overridden_by_dest")
     val urlOverridenByDest: String = "",
     @SerialName("media_only")
-    val mediaOnly: Boolean = false
+    val mediaOnly: Boolean = false,
+    val thumbnail: String = "",
+    val preview: Preview? = null
+)
+
+
+
+@Serializable
+data class Preview(
+    val enabled: Boolean = false,
+    val images: List<Image> = emptyList()
+)
+
+@Serializable
+data class Image(
+    val id: String,
+    val resolutions: List<Resolution>,
+    val source: Source,
+)
+
+
+@Serializable
+data class Resolution(
+    val height: Int = 0,
+    val url: String = "",
+    val width: Int = 0
+)
+
+
+@Serializable
+data class Source(
+    val height: Int = 0,
+    val url: String = "",
+    val width: Int = 0
 )
