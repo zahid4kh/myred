@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -57,11 +58,17 @@ fun FetchedSubredditsDialog(
                             onClick = {
                                 viewModel.toggleShowPostBatches()
                                 viewModel.onSelectSubredditFolder(subredditFolder)
-                            }
+                            },
+                            colors = ButtonDefaults.textButtonColors(
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                            ),
+                            shape = MaterialTheme.shapes.medium,
+                            modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
                         ){
                             Text(
                                 text = subredditFolder.name,
-                                style = MaterialTheme.typography.bodyMedium
+                                style = MaterialTheme.typography.bodyLarge
                             )
                         }
                         AnimatedVisibility(
@@ -74,7 +81,7 @@ fun FetchedSubredditsDialog(
                                     .fillMaxWidth()
                                     .clip(MaterialTheme.shapes.medium)
                                     .background(MaterialTheme.colorScheme.tertiaryContainer)
-                                    .height(200.dp)
+                                    .heightIn(min = 100.dp, max = 200.dp)
                                     .animateContentSize()
                             ){
                                 items(items = uiState.fetchedPostBatches){ file ->
@@ -83,7 +90,7 @@ fun FetchedSubredditsDialog(
                                         modifier = Modifier
                                             .padding(5.dp)
                                             .clip(MaterialTheme.shapes.medium)
-                                            .clickable(onClick = {  })
+                                            .clickable(onClick = { viewModel.loadSelectedBatch(batch = file) })
                                             .padding(5.dp)
                                             .pointerHoverIcon(PointerIcon.Hand)
                                     )

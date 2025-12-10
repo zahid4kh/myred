@@ -108,7 +108,17 @@ class MainViewModel(
                 )
             }
         }
+    }
 
+    fun loadSelectedBatch(batch: File){
+        val fileContent = batch.readText()
+        val decodedContent = json.decodeFromString<RedditResponse>(fileContent)
+        _uiState.update {
+            it.copy(
+                selectedSubredditBatch = mapOf(batch to decodedContent),
+                availableSubredditsDialogShown = false
+            )
+        }
     }
 
     fun toggleShowPostBatches(){
@@ -169,6 +179,7 @@ class MainViewModel(
         val darkMode: Boolean = true,
         val loadedSubreddit: String = "",
         val selectedSubredditFolder: File? = null,
+        val selectedSubredditBatch: Map<File, RedditResponse>? = null,
         val fetchedSubreddits: List<File> = mutableListOf(),
         val fetchedPostBatches: List<File> = mutableListOf(),
         val availableSubredditsDialogShown: Boolean = false,
