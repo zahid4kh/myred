@@ -121,6 +121,18 @@ class MainViewModel(
         }
     }
 
+    fun loadTestBatch(){
+        val batch = File("test.json")
+        val fileContent = batch.readText()
+        val decodedContent = json.decodeFromString<RedditResponse>(fileContent)
+        _uiState.update {
+            it.copy(
+                selectedSubredditBatch = mapOf(batch to decodedContent),
+                availableSubredditsDialogShown = false
+            )
+        }
+    }
+
     fun toggleShowPostBatches(){
         _uiState.update {
             it.copy(showSubredditPostBatches = !it.showSubredditPostBatches)

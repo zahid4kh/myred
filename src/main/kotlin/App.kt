@@ -2,6 +2,7 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
@@ -12,6 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import jdk.internal.org.jline.utils.Colors.s
 import ui.components.FetchedSubredditsDialog
+import ui.components.TestBatch
 import vm.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,7 +29,15 @@ fun App(viewModel: MainViewModel) {
                     title = {},
                     actions = {
                         Button(
-                            onClick = { viewModel.getHotPosts() }
+                            onClick = {  }
+                        ){
+                            Text(
+                                text = "Load Test Batch"
+                            )
+                        }
+
+                        Button(
+                            onClick = {  }
                         ){
                             Text(
                                 text = "Fetch posts"
@@ -48,10 +58,11 @@ fun App(viewModel: MainViewModel) {
         ){innerPadding ->
             Box(
                 modifier = Modifier
+                    .fillMaxSize()
                     .padding(innerPadding)
                     .background(MaterialTheme.colorScheme.surfaceVariant)
             ){
-
+                TestBatch(viewModel, uiState)
             }
 
 
