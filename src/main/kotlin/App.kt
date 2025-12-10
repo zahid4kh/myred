@@ -32,14 +32,6 @@ fun App(viewModel: MainViewModel) {
                             onClick = {  }
                         ){
                             Text(
-                                text = "Load Test Batch"
-                            )
-                        }
-
-                        Button(
-                            onClick = {  }
-                        ){
-                            Text(
                                 text = "Fetch posts"
                             )
                         }

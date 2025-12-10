@@ -55,7 +55,7 @@ class MainViewModel(
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "kotlin"
+                subreddit = "food"
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -65,7 +65,7 @@ class MainViewModel(
 
             saveFetchedPosts(
                 subreddit = subreddit,
-                text = encodeDecoded
+                text = redditResponse
             )
         }
     }
