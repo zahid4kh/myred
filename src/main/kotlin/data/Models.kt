@@ -118,8 +118,27 @@ data class Image(
     val id: String = "",
     val resolutions: List<Resolution> = emptyList(),
     val source: Source? = null,
+    val variants: Variants? = null
 )
 
+
+@Serializable
+data class Variants(
+    val gif: GifVariant? = null,
+    val mp4: Mp4Variant? = null
+)
+
+@Serializable
+data class GifVariant(
+    val source: Source? = null,
+    val resolutions: List<Resolution> = emptyList()
+)
+
+@Serializable
+data class Mp4Variant(
+    val source: Source? = null,
+    val resolutions: List<Resolution> = emptyList()
+)
 
 @Serializable
 data class Resolution(
