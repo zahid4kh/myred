@@ -52,6 +52,7 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.4")
 
     implementation("io.github.panpf.sketch4:sketch-compose:4.0.0")
+    implementation("io.github.panpf.sketch4:sketch-http-okhttp:4.0.0")
     implementation("io.github.panpf.sketch4:sketch-animated-gif:4.0.0")
 
     implementation("uk.co.caprica:vlcj:4.8.2")
