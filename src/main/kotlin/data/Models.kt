@@ -93,9 +93,9 @@ data class Preview(
 
 @Serializable
 data class Image(
-    val id: String,
-    val resolutions: List<Resolution>,
-    val source: Source,
+    val id: String = "",
+    val resolutions: List<Resolution> = emptyList(),
+    val source: Source? = null,
 )
 
 
@@ -122,32 +122,32 @@ data class GalleryData(
 @Serializable
 data class GalleryItem(
     @SerialName("media_id")
-    val mediaId: String,
-    val id: Long
+    val mediaId: String = "",
+    val id: Long = 0L
 )
 
 @Serializable
 data class MediaMeta(
-    val status: String,
-    val e: String,
-    val m: String,
+    val status: String = "",
+    val e: String = "",
+    val m: String = "",
     val p: List<PreviewImage> = emptyList(),
     val s: FullImage? = null,
-    val id: String
+    val id: String = ""
 )
 
 @Serializable
 data class PreviewImage(
-    val x: Int,
-    val y: Int,
+    val x: Int = 0,
+    val y: Int = 0,
     @SerialName("u")
-    val url: String
+    val url: String = ""
 )
 
 @Serializable
 data class FullImage(
-    val x: Int,
-    val y: Int,
+    val x: Int = 0,
+    val y: Int = 0,
     @SerialName("u")
-    val url: String
+    val url: String = ""
 )
