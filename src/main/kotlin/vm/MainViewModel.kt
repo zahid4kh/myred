@@ -9,6 +9,7 @@ import com.github.panpf.sketch.fetch.Fetcher
 import com.github.panpf.sketch.fetch.OkHttpHttpUriFetcher
 import data.Auth
 import data.RedditResponse
+import data.allImageUrls
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -65,7 +66,7 @@ class MainViewModel(
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "gifsthatkeepongiving"
+                subreddit = "gifs"
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -108,18 +109,25 @@ class MainViewModel(
 
             urls.forEachIndexed { index, url ->
                 try {
-                    val sanitizedUrl = url.replace("&amp;", "&")
+                    var sanitizedUrl = url.replace("&amp;", "&")
+
+                    if (sanitizedUrl.contains("preview.redd.it") && sanitizedUrl.contains("format=")) {
+                        sanitizedUrl = sanitizedUrl.replace(Regex("[?&]format=[^&]*"), "")
+                        sanitizedUrl = sanitizedUrl.replace(Regex("[?&]$"), "")
+                    }
 
                     val extension = when {
-                        sanitizedUrl.contains(".jpg", ignoreCase = true) -> "jpg"
-                        sanitizedUrl.contains(".png", ignoreCase = true) -> "png"
-                        sanitizedUrl.contains(".jpeg", ignoreCase = true) -> "jpeg"
                         sanitizedUrl.contains(".gif", ignoreCase = true) -> "gif"
                         sanitizedUrl.contains(".webp", ignoreCase = true) -> "webp"
+                        sanitizedUrl.contains(".png", ignoreCase = true) -> "png"
+                        sanitizedUrl.contains(".jpg", ignoreCase = true) -> "jpg"
+                        sanitizedUrl.contains(".jpeg", ignoreCase = true) -> "jpeg"
                         else -> "jpg"
                     }
 
                     val file = File(saveDir, "image_${index + 1}.$extension")
+
+                    println("Downloading: $sanitizedUrl")
 
                     val request = Request.Builder()
                         .url(sanitizedUrl)

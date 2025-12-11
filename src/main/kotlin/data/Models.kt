@@ -74,38 +74,50 @@ data class ChildrenData(
     val galleryData: GalleryData? = null,
     @SerialName("media_metadata")
     val mediaMetadata: Map<String, MediaMeta>? = null
-){
-    fun galleryImageUrls(): List<String> {
-        if (galleryData == null || mediaMetadata == null) return emptyList()
+)
 
-        return galleryData.items.mapNotNull { item ->
-            mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
-        }
+fun ChildrenData.allImageUrls(): List<String> {
+    val result = mutableListOf<String>()
+
+    if (urlOverridenByDest.isNotEmpty() && isImageUrl(urlOverridenByDest)) {
+        result.add(urlOverridenByDest)
     }
 
-    fun allImageUrls(): List<String> {
-        val result = mutableListOf<String>()
+    if (url.isNotEmpty() && isImageUrl(url)) {
+        result.add(url)
+    }
 
-        if (galleryData != null && mediaMetadata != null) {
-            val galleryUrls = galleryData.items.mapNotNull { item ->
-                mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
-            }
-            result.addAll(galleryUrls)
+    if (galleryData != null && mediaMetadata != null) {
+        val galleryUrls = galleryData.items.mapNotNull { item ->
+            mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
         }
+        result.addAll(galleryUrls)
+    }
 
-        preview?.images?.forEach { img ->
+    preview?.images?.forEach { img ->
+        img.variants?.gif?.source?.url?.let { url ->
+            result.add(url.replace("&amp;", "&"))
+        } ?: run {
             img.source?.url?.let { url ->
                 result.add(url.replace("&amp;", "&"))
             }
         }
-        return result
     }
+
+    return result.distinct()
 }
 
+private fun isImageUrl(url: String): Boolean {
+    return url.contains(Regex("\\.(jpg|jpeg|png|gif|webp)($|\\?)", RegexOption.IGNORE_CASE))
+}
 
-
-
-
+fun ChildrenData.getLinkUrl(): String? {
+    return when {
+        urlOverridenByDest.isNotEmpty() && !isImageUrl(urlOverridenByDest) -> urlOverridenByDest
+        url.isNotEmpty() && !isImageUrl(url) -> url
+        else -> null
+    }
+}
 
 @Serializable
 data class Preview(

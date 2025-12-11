@@ -5,6 +5,11 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import api.RedditApi
+import com.github.panpf.sketch.LocalPlatformContext
+import com.github.panpf.sketch.SingletonSketch
+import com.github.panpf.sketch.Sketch
+import com.github.panpf.sketch.decode.supportGif
+import com.github.panpf.sketch.decode.supportSkiaGif
 import di.appModule
 import myred.resources.Res
 import myred.resources.appIcon
@@ -20,6 +25,17 @@ fun main() = application {
     startKoin {
         modules(appModule)
     }
+
+    val context = LocalPlatformContext.current
+    SingletonSketch.setUnsafe(
+        Sketch.Builder(context).apply {
+            components {
+                supportSkiaGif()
+                supportGif()
+            }
+        }.build()
+    )
+
     val api = RedditApi()
     val viewModel = getKoin().get<MainViewModel>()
 
