@@ -60,6 +60,24 @@ class MainViewModel(
         }
     }
 
+    private fun isDownloadableImageUrl(url: String): Boolean {
+        if (url.contains("i.redd.it")) return true
+
+        if (url.contains("preview.redd.it")) {
+            val hasImageExtension = url.contains(Regex("\\.(jpg|jpeg|png|gif|webp)($|\\?)", RegexOption.IGNORE_CASE))
+            val hasImageFormat = url.contains("format=pjpg") || url.contains("format=png") || url.contains("format=jpg")
+            return hasImageExtension || hasImageFormat
+        }
+
+        if (url.contains("i.imgur.com")) return true
+
+        if (url.contains(Regex("\\.(jpg|jpeg|png|gif|webp)($|\\?)", RegexOption.IGNORE_CASE))) {
+            return true
+        }
+
+        return false
+    }
+
     private fun getAccessToken() : String {
         val tokenFile = File(appDir, "token.json")
         val token = json.decodeFromString<Auth>(tokenFile.readText()).accessToken
@@ -71,7 +89,7 @@ class MainViewModel(
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "boxingcirclejerk"
+                subreddit = "food"
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -112,13 +130,17 @@ class MainViewModel(
             val saveDir = File("$appDir/$subreddit/images/$postId")
             if (!saveDir.exists()) saveDir.mkdirs()
 
-            urls.forEachIndexed { index, url ->
-                try {
-                    var sanitizedUrl = url.replace("&amp;", "&")
+            val downloadableUrls = urls.filter { url ->
+                isDownloadableImageUrl(url)
+            }
 
-                    if (sanitizedUrl.contains("preview.redd.it") && sanitizedUrl.contains("format=")) {
-                        sanitizedUrl = sanitizedUrl.replace(Regex("[?&]format=[^&]*"), "")
-                        sanitizedUrl = sanitizedUrl.replace(Regex("[?&]$"), "")
+            downloadableUrls.forEachIndexed { index, url ->
+                try {
+                    val sanitizedUrl = url.replace("&amp;", "&")
+
+                    if (!isDownloadableImageUrl(sanitizedUrl)) {
+                        println("Skipping non-image URL: $sanitizedUrl")
+                        return@forEachIndexed
                     }
 
                     val extension = when {
@@ -127,13 +149,15 @@ class MainViewModel(
                         sanitizedUrl.contains(".png", ignoreCase = true) -> "png"
                         sanitizedUrl.contains(".jpg", ignoreCase = true) -> "jpg"
                         sanitizedUrl.contains(".jpeg", ignoreCase = true) -> "jpeg"
+                        sanitizedUrl.contains("format=pjpg") -> "jpg"
+                        sanitizedUrl.contains("format=png") -> "png"
                         else -> "jpg"
                     }
 
                     val file = File(saveDir, "image_${index + 1}.$extension")
 
                     if (file.exists()) {
-                        println("File already exists: ${file.path}")
+                        println("Image already exists: ${file.name}")
                         return@forEachIndexed
                     }
 
@@ -141,21 +165,24 @@ class MainViewModel(
 
                     val request = Request.Builder()
                         .url(sanitizedUrl)
-                        .header("User-Agent", "script:MyRed:1.0 (by u/username)")
+                        .header("User-Agent", "script:MyRed:1.0 (by u/zikzikkh)")
                         .build()
 
                     httpClient.newCall(request).execute().use { response ->
                         if (response.isSuccessful) {
-                            file.outputStream().use { out ->
-                                response.body?.byteStream()?.copyTo(out)
+                            val contentType = response.header("Content-Type") ?: ""
+                            if (contentType.startsWith("image/")) {
+                                file.outputStream().use { out ->
+                                    response.body?.byteStream()?.copyTo(out)
+                                }
+                                println("Saved image to ${file.path}")
+                            } else {
+                                println("URL didn't return an image (Content-Type: $contentType): $sanitizedUrl")
                             }
-                            println("Saved image to ${file.path}")
                         } else {
-                            println("Failed to download $sanitizedUrl (${response.code})")
+                            println("Failed to download $sanitizedUrl (${response.code}): ${response.message}")
                         }
                     }
-                } catch (e: java.net.SocketTimeoutException) {
-                    println("Timeout downloading image from $url - skipping")
                 } catch (e: Exception) {
                     println("Error downloading image from $url: ${e.message}")
                 }

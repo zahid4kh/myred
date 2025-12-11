@@ -79,14 +79,12 @@ data class ChildrenData(
 fun ChildrenData.allImageUrls(): List<String> {
     val result = mutableListOf<String>()
 
-    if (urlOverridenByDest.isNotEmpty() && isImageUrl(urlOverridenByDest)) {
+    if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("i.redd.it")) {
         result.add(urlOverridenByDest)
-        return result.distinct()
     }
 
-    if (url.isNotEmpty() && isImageUrl(url)) {
+    if (url.isNotEmpty() && url.contains("i.redd.it")) {
         result.add(url)
-        return result.distinct()
     }
 
     if (galleryData != null && mediaMetadata != null) {
@@ -94,18 +92,11 @@ fun ChildrenData.allImageUrls(): List<String> {
             mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
         }
         result.addAll(galleryUrls)
-        if (result.isNotEmpty()) {
-            return result.distinct()
-        }
     }
 
     preview?.images?.forEach { img ->
-        img.variants?.gif?.source?.url?.let { url ->
+        img.source?.url?.let { url ->
             result.add(url.replace("&amp;", "&"))
-        } ?: run {
-            img.source?.url?.let { url ->
-                result.add(url.replace("&amp;", "&"))
-            }
         }
     }
 
@@ -113,15 +104,18 @@ fun ChildrenData.allImageUrls(): List<String> {
 }
 
 private fun isImageUrl(url: String): Boolean {
-    return url.contains(Regex("\\.(jpg|jpeg|png|gif|webp)($|\\?)", RegexOption.IGNORE_CASE))
+    if (url.contains(Regex("\\.(jpg|jpeg|png|gif|webp)($|\\?)", RegexOption.IGNORE_CASE))) {
+        return true
+    }
+    if (url.contains("i.redd.it") || url.contains("i.imgur.com")) {
+        return true
+    }
+    return false
 }
 
 fun ChildrenData.getLinkUrl(): String? {
-    return when {
-        urlOverridenByDest.isNotEmpty() && !isImageUrl(urlOverridenByDest) -> urlOverridenByDest
-        url.isNotEmpty() && !isImageUrl(url) -> url
-        else -> null
-    }
+    val hasImages = allImageUrls().isNotEmpty()
+    return if (!hasImages) url.takeIf { it.isNotEmpty() } else null
 }
 
 @Serializable
