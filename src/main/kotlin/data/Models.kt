@@ -81,10 +81,12 @@ fun ChildrenData.allImageUrls(): List<String> {
 
     if (urlOverridenByDest.isNotEmpty() && isImageUrl(urlOverridenByDest)) {
         result.add(urlOverridenByDest)
+        return result.distinct()
     }
 
     if (url.isNotEmpty() && isImageUrl(url)) {
         result.add(url)
+        return result.distinct()
     }
 
     if (galleryData != null && mediaMetadata != null) {
@@ -92,6 +94,9 @@ fun ChildrenData.allImageUrls(): List<String> {
             mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
         }
         result.addAll(galleryUrls)
+        if (result.isNotEmpty()) {
+            return result.distinct()
+        }
     }
 
     preview?.images?.forEach { img ->

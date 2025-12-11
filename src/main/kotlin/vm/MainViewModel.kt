@@ -10,6 +10,7 @@ import com.github.panpf.sketch.fetch.OkHttpHttpUriFetcher
 import data.Auth
 import data.RedditResponse
 import data.allImageUrls
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,7 +36,11 @@ class MainViewModel(
         encodeDefaults = true
     }
 
-    private val httpClient = OkHttpClient()
+    private val httpClient = OkHttpClient.Builder()
+        .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+        .readTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+        .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+        .build()
 
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
@@ -62,11 +67,11 @@ class MainViewModel(
     }
 
     fun getHotPosts() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "gifs"
+                subreddit = "boxingcirclejerk"
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -103,7 +108,7 @@ class MainViewModel(
     }
 
     private fun downloadImagesForPost(subreddit: String, postId: String, urls: List<String>) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val saveDir = File("$appDir/$subreddit/images/$postId")
             if (!saveDir.exists()) saveDir.mkdirs()
 
@@ -127,6 +132,11 @@ class MainViewModel(
 
                     val file = File(saveDir, "image_${index + 1}.$extension")
 
+                    if (file.exists()) {
+                        println("File already exists: ${file.path}")
+                        return@forEachIndexed
+                    }
+
                     println("Downloading: $sanitizedUrl")
 
                     val request = Request.Builder()
@@ -144,8 +154,10 @@ class MainViewModel(
                             println("Failed to download $sanitizedUrl (${response.code})")
                         }
                     }
+                } catch (e: java.net.SocketTimeoutException) {
+                    println("Timeout downloading image from $url - skipping")
                 } catch (e: Exception) {
-                    println("Error downloading image: ${e.message}")
+                    println("Error downloading image from $url: ${e.message}")
                 }
             }
         }
