@@ -49,15 +49,12 @@ fun FetchedSubredditsDialog(
             )
         },
         text = {
-            LazyColumn(
-
-            ) {
-                items(items = uiState.fetchedSubreddits) { subredditFolder ->
+            LazyColumn {
+                items(items = uiState.fetchedSubreddits) { fetchedSubreddit ->
                     Column {
                         TextButton(
                             onClick = {
-                                viewModel.toggleShowPostBatches()
-                                viewModel.onSelectSubredditFolder(subredditFolder)
+                                viewModel.toggleSubredditExtended(fetchedSubreddit)
                             },
                             colors = ButtonDefaults.textButtonColors(
                                 containerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -67,12 +64,12 @@ fun FetchedSubredditsDialog(
                             modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
                         ){
                             Text(
-                                text = subredditFolder.name,
+                                text = fetchedSubreddit.subredditFolder?.name ?: "noname",
                                 style = MaterialTheme.typography.bodyLarge
                             )
                         }
                         AnimatedVisibility(
-                            visible = uiState.showSubredditPostBatches,
+                            visible = fetchedSubreddit.isExtended,
                             modifier = Modifier
                                 .animateContentSize()
                         ){
@@ -81,7 +78,7 @@ fun FetchedSubredditsDialog(
                                     .fillMaxWidth()
                                     .clip(MaterialTheme.shapes.medium)
                                     .background(MaterialTheme.colorScheme.tertiaryContainer)
-                                    .heightIn(min = 100.dp, max = 200.dp)
+                                    .height(100.dp)
                                     .animateContentSize()
                             ){
                                 items(items = uiState.fetchedPostBatches){ file ->

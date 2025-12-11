@@ -32,6 +32,9 @@ class MainViewModel(
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
+    private val _fetchedSubreddit = MutableStateFlow(FetchedSubreddit())
+    val fetchedSubreddit = _fetchedSubreddit.asStateFlow()
+
     private val userHome = System.getProperty("user.home")
     private val appDir = File(userHome, ".myred")
 
@@ -55,7 +58,7 @@ class MainViewModel(
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "food"
+                subreddit = "ollama"
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -65,7 +68,7 @@ class MainViewModel(
 
             saveFetchedPosts(
                 subreddit = subreddit,
-                text = redditResponse
+                text = encodeDecoded
             )
         }
     }
@@ -81,20 +84,8 @@ class MainViewModel(
         file.writeText(text)
     }
 
-    fun onSelectSubredditFolder(folder: File){
-        viewModelScope.launch {
-            _uiState.update {
-                it.copy(
-                    selectedSubredditFolder = folder
-                )
-            }
-
-            listBatches()
-        }
-    }
-
     private fun listBatches(){
-        val batches = _uiState.value.selectedSubredditFolder?.listFiles()?.toList()
+        val batches = _uiState.value.selectedSubreddit?.subredditFolder?.listFiles()?.toList()
         println("Found ${batches?.size} batches")
         val sorted = batches?.sortedByDescending { file ->
             Files.readAttributes(file.toPath(), BasicFileAttributes::class.java)
@@ -127,29 +118,48 @@ class MainViewModel(
         val decodedContent = json.decodeFromString<RedditResponse>(fileContent)
         _uiState.update {
             it.copy(
-                selectedSubredditBatch = mapOf(batch to decodedContent),
-                availableSubredditsDialogShown = false
+                selectedSubredditBatch = mapOf(batch to decodedContent)
             )
         }
     }
 
-    fun toggleShowPostBatches(){
-        _uiState.update {
-            it.copy(showSubredditPostBatches = !it.showSubredditPostBatches)
-        }
-    }
-
-    fun updateFetchedSubreddits(){
+    private fun updateFetchedSubreddits(){
         val files = appDir.listFiles()
+        val list = mutableListOf<FetchedSubreddit>()
         files.forEach { file->
             if(file.isDirectory){
-                val list = mutableListOf<File>()
-                list.add(file)
+                val sub = _fetchedSubreddit.value.copy(
+                    subredditFolder = file,
+                    isExtended = false
+                )
+
+                list.add(sub)
                 _uiState.update {
                     it.copy(fetchedSubreddits = list)
                 }
             }
         }
+    }
+
+    fun toggleSubredditExtended(sub: FetchedSubreddit) {
+        _uiState.update {
+            it.copy(
+                selectedSubreddit = sub
+            )
+        }
+
+        _uiState.update { currentState ->
+            val updatedList = currentState.fetchedSubreddits.map { fetchedSub ->
+                if (fetchedSub.subredditFolder?.absolutePath == sub.subredditFolder?.absolutePath) {
+                    fetchedSub.copy(isExtended = !fetchedSub.isExtended)
+                } else {
+                    fetchedSub.copy(isExtended = false)
+                }
+            }
+            currentState.copy(fetchedSubreddits = updatedList)
+        }
+
+        listBatches()
     }
 
     fun showAvailableSubredditsDialog(){
@@ -190,11 +200,16 @@ class MainViewModel(
     data class UiState(
         val darkMode: Boolean = true,
         val loadedSubreddit: String = "",
-        val selectedSubredditFolder: File? = null,
+        val selectedSubreddit: FetchedSubreddit? = null,
         val selectedSubredditBatch: Map<File, RedditResponse>? = null,
-        val fetchedSubreddits: List<File> = mutableListOf(),
+        val fetchedSubreddits: List<FetchedSubreddit> = mutableListOf(),
         val fetchedPostBatches: List<File> = mutableListOf(),
         val availableSubredditsDialogShown: Boolean = false,
         val showSubredditPostBatches: Boolean = false
+    )
+
+    data class FetchedSubreddit(
+        val subredditFolder: File? = null,
+        val isExtended: Boolean = false
     )
 }

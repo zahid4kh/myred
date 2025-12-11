@@ -29,7 +29,7 @@ fun App(viewModel: MainViewModel) {
                     title = {},
                     actions = {
                         Button(
-                            onClick = {  }
+                            onClick = { viewModel.getHotPosts() }
                         ){
                             Text(
                                 text = "Fetch posts"
@@ -54,7 +54,7 @@ fun App(viewModel: MainViewModel) {
                     .padding(innerPadding)
                     .background(MaterialTheme.colorScheme.surfaceVariant)
             ){
-                TestBatch(viewModel, uiState)
+                //TestBatch(viewModel, uiState)
             }
 
 
