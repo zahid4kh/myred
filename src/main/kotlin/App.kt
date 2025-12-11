@@ -54,7 +54,7 @@ fun App(viewModel: MainViewModel) {
                     .padding(innerPadding)
                     .background(MaterialTheme.colorScheme.surfaceVariant)
             ){
-                //TestBatch(viewModel, uiState)
+                TestBatch(viewModel, uiState)
             }
 
 
