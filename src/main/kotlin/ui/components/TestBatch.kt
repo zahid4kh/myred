@@ -8,25 +8,30 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.github.panpf.sketch.AsyncImage
+import com.github.panpf.sketch.LocalPlatformContext
+import com.github.panpf.sketch.request.ImageRequest
+import com.github.panpf.sketch.request.disallowAnimatedImage
+import com.github.panpf.sketch.request.repeatCount
+import data.allImageUrls
+import data.getLinkUrl
 import vm.MainViewModel
+import java.io.File
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollbarAdapter
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import java.io.File
 
 @Composable
 fun TestBatch(
@@ -112,8 +117,12 @@ fun TestBatch(
                                     state = lazyRowState
                                 ) {
                                     items(files) { imgFile ->
+                                        val platformContext = LocalPlatformContext.current
                                         AsyncImage(
-                                            uri = imgFile.absolutePath,
+                                            request = ImageRequest(platformContext, imgFile.absolutePath) {
+                                                disallowAnimatedImage(false)
+                                                repeatCount(-1)
+                                            },
                                             contentDescription = "photo",
                                             contentScale = ContentScale.Crop,
                                             modifier = Modifier
@@ -152,6 +161,36 @@ fun TestBatch(
                                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                                     )
                                 }
+                            }
+                        }
+                    }
+
+
+                    val linkUrl = post.data.getLinkUrl()
+                    if (linkUrl != null) {
+                        OutlinedCard(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp),
+                            colors = CardDefaults.outlinedCardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            )
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(12.dp)
+                            ) {
+                                Text(
+                                    text = "🔗 External Link",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                                Text(
+                                    text = linkUrl,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis
+                                )
                             }
                         }
                     }
