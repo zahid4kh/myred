@@ -54,6 +54,7 @@ dependencies {
     implementation("io.github.panpf.sketch4:sketch-compose:4.4.0-alpha01")
     implementation("io.github.panpf.sketch4:sketch-http-okhttp:4.4.0-alpha01")
     implementation("io.github.panpf.sketch4:sketch-animated-gif:4.4.0-alpha01")
+    implementation("io.github.panpf.sketch4:sketch-animated-core:4.4.0-alpha01")
 
     implementation("uk.co.caprica:vlcj:4.8.2")
 
