@@ -4,6 +4,9 @@ import data.Database
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import api.RedditApi
+import com.github.panpf.sketch.Sketch
+import com.github.panpf.sketch.fetch.Fetcher
+import com.github.panpf.sketch.fetch.OkHttpHttpUriFetcher
 import data.Auth
 import data.RedditResponse
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,6 +15,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.attribute.BasicFileAttributes
@@ -28,6 +33,8 @@ class MainViewModel(
         ignoreUnknownKeys = true
         encodeDefaults = true
     }
+
+    private val httpClient = OkHttpClient()
 
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
@@ -58,7 +65,7 @@ class MainViewModel(
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "ollama"
+                subreddit = "IKEA"
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -80,8 +87,60 @@ class MainViewModel(
         if(!saveDir.exists()) saveDir.mkdirs()
 
         val file = File("$saveDir/$formattedSaveTime.json")
-
         file.writeText(text)
+
+        val decoded = json.decodeFromString<RedditResponse>(text)
+
+        decoded.data.children.forEach { child ->
+            val urls = child.data.allImageUrls()
+
+            if (urls.isNotEmpty()) {
+                val postId = child.data.id
+                downloadImagesForPost(subreddit, postId, urls)
+            }
+        }
+    }
+
+    private fun downloadImagesForPost(subreddit: String, postId: String, urls: List<String>) {
+        viewModelScope.launch {
+            val saveDir = File("$appDir/$subreddit/images/$postId")
+            if (!saveDir.exists()) saveDir.mkdirs()
+
+            urls.forEachIndexed { index, url ->
+                try {
+                    val sanitizedUrl = url.replace("&amp;", "&")
+
+                    val extension = when {
+                        sanitizedUrl.contains(".jpg", ignoreCase = true) -> "jpg"
+                        sanitizedUrl.contains(".png", ignoreCase = true) -> "png"
+                        sanitizedUrl.contains(".jpeg", ignoreCase = true) -> "jpeg"
+                        sanitizedUrl.contains(".gif", ignoreCase = true) -> "gif"
+                        sanitizedUrl.contains(".webp", ignoreCase = true) -> "webp"
+                        else -> "jpg"
+                    }
+
+                    val file = File(saveDir, "image_${index + 1}.$extension")
+
+                    val request = Request.Builder()
+                        .url(sanitizedUrl)
+                        .header("User-Agent", "script:MyRed:1.0 (by u/username)")
+                        .build()
+
+                    httpClient.newCall(request).execute().use { response ->
+                        if (response.isSuccessful) {
+                            file.outputStream().use { out ->
+                                response.body?.byteStream()?.copyTo(out)
+                            }
+                            println("Saved image to ${file.path}")
+                        } else {
+                            println("Failed to download $sanitizedUrl (${response.code})")
+                        }
+                    }
+                } catch (e: Exception) {
+                    println("Error downloading image: ${e.message}")
+                }
+            }
+        }
     }
 
     private fun listBatches(){

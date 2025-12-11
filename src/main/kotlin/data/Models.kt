@@ -42,6 +42,7 @@ data class Children(
 
 @Serializable
 data class ChildrenData(
+    val id: String = "",
     val subreddit: String = "",
     val selftext: String = "",
     @SerialName("author_fullname")
@@ -73,15 +74,36 @@ data class ChildrenData(
     val galleryData: GalleryData? = null,
     @SerialName("media_metadata")
     val mediaMetadata: Map<String, MediaMeta>? = null
-)
+){
+    fun galleryImageUrls(): List<String> {
+        if (galleryData == null || mediaMetadata == null) return emptyList()
 
-fun ChildrenData.galleryImageUrls(): List<String> {
-    if (galleryData == null || mediaMetadata == null) return emptyList()
+        return galleryData.items.mapNotNull { item ->
+            mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
+        }
+    }
 
-    return galleryData.items.mapNotNull { item ->
-        mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
+    fun allImageUrls(): List<String> {
+        val result = mutableListOf<String>()
+
+        if (galleryData != null && mediaMetadata != null) {
+            val galleryUrls = galleryData.items.mapNotNull { item ->
+                mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
+            }
+            result.addAll(galleryUrls)
+        }
+
+        preview?.images?.forEach { img ->
+            img.source?.url?.let { url ->
+                result.add(url.replace("&amp;", "&"))
+            }
+        }
+        return result
     }
 }
+
+
+
 
 
 
