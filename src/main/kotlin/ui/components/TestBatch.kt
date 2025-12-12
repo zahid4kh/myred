@@ -3,6 +3,7 @@ package ui.components
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.HorizontalScrollbar
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -14,9 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.size.Precision
@@ -26,10 +31,13 @@ import com.github.panpf.sketch.request.ImageRequest
 import com.github.panpf.sketch.request.disallowAnimatedImage
 import com.github.panpf.sketch.request.repeatCount
 import com.github.panpf.sketch.util.Size
+import com.github.panpf.sketch.util.toUri
 import data.allImageUrls
 import data.getLinkUrl
 import vm.MainViewModel
+import java.awt.Desktop
 import java.io.File
+import java.net.URI
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -170,6 +178,7 @@ fun TestBatch(
 
 
                     val linkUrl = post.data.getLinkUrl()
+                    val desktop = Desktop.getDesktop()
                     if (linkUrl != null) {
                         OutlinedCard(
                             modifier = Modifier
@@ -190,9 +199,13 @@ fun TestBatch(
                                 Text(
                                     text = linkUrl,
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.primary,
+                                    color = Color.Blue.copy(alpha = 0.7f),
                                     maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis
+                                    overflow = TextOverflow.Ellipsis,
+                                    textDecoration = TextDecoration.Underline,
+                                    modifier = Modifier.clickable{
+                                        desktop.browse(URI(linkUrl))
+                                    }.pointerHoverIcon(PointerIcon.Hand)
                                 )
                             }
                         }
