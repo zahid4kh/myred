@@ -79,28 +79,50 @@ data class ChildrenData(
 fun ChildrenData.allImageUrls(): List<String> {
     val result = mutableListOf<String>()
 
-    if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("i.redd.it")) {
-        result.add(urlOverridenByDest)
+    fun getImageFilename(url: String): String {
+        return url.substringAfterLast("/").substringBefore("?")
     }
 
-    if (url.isNotEmpty() && url.contains("i.redd.it")) {
-        result.add(url)
+    val seenFilenames = mutableSetOf<String>()
+
+    if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("i.redd.it")) {
+        result.add(urlOverridenByDest)
+        seenFilenames.add(getImageFilename(urlOverridenByDest))
+    }
+
+    if (url.isNotEmpty() && url.contains("i.redd.it") && url != urlOverridenByDest) {
+        val filename = getImageFilename(url)
+        if (!seenFilenames.contains(filename)) {
+            result.add(url)
+            seenFilenames.add(filename)
+        }
     }
 
     if (galleryData != null && mediaMetadata != null) {
         val galleryUrls = galleryData.items.mapNotNull { item ->
             mediaMetadata[item.mediaId]?.s?.url?.replace("&amp;", "&")
         }
-        result.addAll(galleryUrls)
-    }
-
-    preview?.images?.forEach { img ->
-        img.source?.url?.let { url ->
-            result.add(url.replace("&amp;", "&"))
+        galleryUrls.forEach { galleryUrl ->
+            val filename = getImageFilename(galleryUrl)
+            if (!seenFilenames.contains(filename)) {
+                result.add(galleryUrl)
+                seenFilenames.add(filename)
+            }
         }
     }
 
-    return result.distinct()
+    preview?.images?.forEach { img ->
+        img.source?.url?.let { previewUrl ->
+            val cleanUrl = previewUrl.replace("&amp;", "&")
+            val filename = getImageFilename(cleanUrl)
+            if (!seenFilenames.contains(filename)) {
+                result.add(cleanUrl)
+                seenFilenames.add(filename)
+            }
+        }
+    }
+
+    return result
 }
 
 private fun isImageUrl(url: String): Boolean {
