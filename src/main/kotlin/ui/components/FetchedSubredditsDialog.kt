@@ -51,8 +51,8 @@ fun FetchedSubredditsDialog(
                             viewModel.toggleSubredditExtended(fetchedSubreddit)
                         },
                         colors = ButtonDefaults.textButtonColors(
-                            containerColor = if(fetchedSubreddit.isExtended) Color.LightGray else MaterialTheme.colorScheme.secondaryContainer,
-                            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                            containerColor = if(fetchedSubreddit.isExtended) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondaryContainer,
+                            contentColor = if(fetchedSubreddit.isExtended) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer
                         ),
                         shape = MaterialTheme.shapes.medium,
                         modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)

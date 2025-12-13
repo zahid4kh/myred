@@ -1,5 +1,6 @@
 package ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,8 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
@@ -36,7 +41,9 @@ fun EmptyScreen(
     onNavigateToSelectedBatch: () -> Unit
 ){
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surface),
         contentAlignment = Alignment.Center
     ){
         Column(
@@ -70,6 +77,21 @@ fun EmptyScreen(
                     style = MaterialTheme.typography.headlineMedium,
                     modifier = Modifier.padding(10.dp)
                 )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Row {
+                IconButton(
+                    onClick = { viewModel.toggleDarkMode() },
+                    modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
+                ){
+                    Icon(
+                        imageVector = Icons.Default.LightMode,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
         }
     }

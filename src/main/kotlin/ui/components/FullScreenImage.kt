@@ -65,6 +65,7 @@ fun FullScreenImage(
 
         AlertDialog(
             onDismissRequest = { viewModel.exitFullScreenImage() },
+            containerColor = MaterialTheme.colorScheme.surface,
             confirmButton = {
                 OutlinedButton(
                     onClick = { viewModel.exitFullScreenImage() },
