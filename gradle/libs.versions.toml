@@ -8,25 +8,28 @@ precompose = "1.6.2"
 hotReload = "1.1.0-alpha02"
 slf4j = "2.0.12"
 deskit = "1.4.1"
+sketch = "4.4.0-alpha01"
+vlcj = "4.8.2"
+androidxLifecycle = "2.9.6"
+okhttp = "5.2.0"
 
 [libraries]
-# Kotlinx
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinxCoroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-
-# Koin
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
-
-# PreCompose
 precompose = { group = "moe.tlaster", name = "precompose", version.ref = "precompose" }
-
-# SLF4J Logging (for hot reload)
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
-
-# Deskit
 deskit = { group = "com.github.zahid4kh", name = "deskit", version.ref = "deskit" }
+sketch-compose = { group = "io.github.panpf.sketch4", name = "sketch-compose", version.ref = "sketch" }
+sketch-http-okhttp = { group = "io.github.panpf.sketch4", name = "sketch-http-okhttp", version.ref = "sketch" }
+sketch-animated-gif = { group = "io.github.panpf.sketch4", name = "sketch-animated-gif", version.ref = "sketch" }
+sketch-animated-core = { group = "io.github.panpf.sketch4", name = "sketch-animated-core", version.ref = "sketch" }
+vlcj = { group = "uk.co.caprica", name = "vlcj", version.ref = "vlcj" }
+androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -37,3 +40,4 @@ hotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "hotReload"
 
 [bundles]
 slf4j = ["slf4j-api", "slf4j-simple"]
+sketch = ["sketch-compose", "sketch-http-okhttp", "sketch-animated-gif", "sketch-animated-core"]

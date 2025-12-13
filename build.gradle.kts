@@ -28,36 +28,19 @@ dependencies {
     implementation(compose.material3)
     implementation(compose.components.resources)
     implementation(compose.materialIconsExtended)
-
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.swing)
-
-    // Koin for dependency injection
     implementation(libs.koin.core)
-    
-    // Precompose (Navigation)
     api(libs.precompose)
     api(compose.foundation)
     api(compose.animation)
-
-    // SLF4J Logging (for hot reload)
     implementation(libs.bundles.slf4j)
-
-    // Deskit - for Material3 file chooser and information dialogs
     implementation(libs.deskit)
-
-    implementation("io.github.panpf.sketch4:sketch-compose:4.4.0-alpha01")
-    implementation("io.github.panpf.sketch4:sketch-http-okhttp:4.4.0-alpha01")
-    implementation("io.github.panpf.sketch4:sketch-animated-gif:4.4.0-alpha01")
-    implementation("io.github.panpf.sketch4:sketch-animated-core:4.4.0-alpha01")
-
-    implementation("uk.co.caprica:vlcj:4.8.2")
-
-    implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.9.6")
-
-    // OkHttp3 for api calls
-    implementation("com.squareup.okhttp3:okhttp:5.2.0")
+    implementation(libs.bundles.sketch)
+    implementation(libs.vlcj)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.okhttp)
 }
 
 
