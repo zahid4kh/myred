@@ -125,16 +125,6 @@ fun ChildrenData.allImageUrls(): List<String> {
     return result
 }
 
-private fun isImageUrl(url: String): Boolean {
-    if (url.contains(Regex("\\.(jpg|jpeg|png|gif|webp)($|\\?)", RegexOption.IGNORE_CASE))) {
-        return true
-    }
-    if (url.contains("i.redd.it") || url.contains("i.imgur.com")) {
-        return true
-    }
-    return false
-}
-
 fun ChildrenData.getLinkUrl(): String? {
     val hasImages = allImageUrls().isNotEmpty()
     return if (!hasImages) url.takeIf { it.isNotEmpty() } else null

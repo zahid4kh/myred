@@ -26,10 +26,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.github.panpf.sketch.AsyncImage
 import com.github.panpf.sketch.LocalPlatformContext
+import com.github.panpf.sketch.cache.CachePolicy
 import com.github.panpf.sketch.request.ImageRequest
 import com.github.panpf.sketch.request.disallowAnimatedImage
 import com.github.panpf.sketch.request.repeatCount
 import com.github.panpf.sketch.resize.Precision
+import com.github.panpf.sketch.util.Size
 import data.allImageUrls
 import data.getLinkUrl
 import vm.MainViewModel
@@ -124,7 +126,26 @@ fun TestBatch(
                                             request = ImageRequest(platformContext, imgFile.absolutePath) {
                                                 disallowAnimatedImage(false)
                                                 repeatCount(-1)
-                                                precision(Precision.SMALLER_SIZE)
+                                                val fileSizeMB = imgFile.length() / (1024 * 1024)
+
+                                                when {
+                                                    imgFile.extension.lowercase() == "gif" && fileSizeMB > 10 -> {
+                                                        disallowAnimatedImage(true)
+                                                        precision(Precision.SMALLER_SIZE)
+                                                        memoryCachePolicy(CachePolicy.DISABLED)
+                                                        resultCachePolicy(CachePolicy.DISABLED)
+                                                    }
+                                                    imgFile.extension.lowercase() == "gif" -> {
+                                                        size(Size.Origin)
+                                                        precision(Precision.EXACTLY)
+                                                        memoryCachePolicy(CachePolicy.DISABLED)
+                                                        resultCachePolicy(CachePolicy.DISABLED)
+                                                        downloadCachePolicy(CachePolicy.READ_ONLY)
+                                                    }
+                                                    else -> {
+                                                        precision(Precision.SMALLER_SIZE)
+                                                    }
+                                                }
                                             },
                                             contentDescription = "photo",
                                             contentScale = ContentScale.Crop,

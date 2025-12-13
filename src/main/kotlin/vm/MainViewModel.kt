@@ -19,12 +19,16 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import java.awt.Image
+import java.awt.image.BufferedImage
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.attribute.BasicFileAttributes
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import javax.imageio.IIOImage
+import javax.imageio.ImageIO
 
 class MainViewModel(
     private val database: Database,
@@ -125,6 +129,65 @@ class MainViewModel(
         }
     }
 
+    fun createResizedGif(originalFile: File, maxSizeMB: Int = 20): File? {
+        try {
+            val fileSizeMB = originalFile.length() / (1024 * 1024)
+            if (fileSizeMB <= maxSizeMB) return originalFile
+
+            val resizedFile = File(originalFile.parent, "${originalFile.nameWithoutExtension}_resized.gif")
+            if (resizedFile.exists()) return resizedFile
+
+            val readers = ImageIO.getImageReadersByFormatName("gif")
+            if (!readers.hasNext()) return null
+
+            val reader = readers.next()
+            val input = ImageIO.createImageInputStream(originalFile)
+            reader.input = input
+
+            val writers = ImageIO.getImageWritersByFormatName("gif")
+            if (!writers.hasNext()) return null
+
+            val writer = writers.next()
+            val output = ImageIO.createImageOutputStream(resizedFile)
+            writer.output = output
+
+            val numFrames = reader.getNumImages(true)
+            val originalWidth = reader.getWidth(0)
+            val originalHeight = reader.getHeight(0)
+
+            val scaleFactor = if (fileSizeMB > 50) 0.3 else 0.5
+            val newWidth = (originalWidth * scaleFactor).toInt()
+            val newHeight = (originalHeight * scaleFactor).toInt()
+
+            writer.prepareWriteSequence(null)
+
+            for (i in 0 until numFrames) {
+                val frame = reader.read(i)
+                val metadata = reader.getImageMetadata(i)
+
+                val resizedFrame = BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB)
+                val g = resizedFrame.createGraphics()
+                g.drawImage(frame.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null)
+                g.dispose()
+
+                writer.writeToSequence(IIOImage(resizedFrame, null, metadata), null)
+            }
+
+            writer.endWriteSequence()
+            writer.dispose()
+            reader.dispose()
+            input.close()
+            output.close()
+
+            println("Resized GIF: ${originalFile.name} (${fileSizeMB}MB) -> ${resizedFile.name} (${resizedFile.length() / (1024 * 1024)}MB)")
+            return resizedFile
+
+        } catch (e: Exception) {
+            println("Failed to resize GIF: ${e.message}")
+            return null
+        }
+    }
+
     private fun downloadImagesForPost(subreddit: String, postId: String, urls: List<String>) {
         viewModelScope.launch(Dispatchers.IO) {
             val saveDir = File("$appDir/$subreddit/images/$postId")
@@ -176,11 +239,16 @@ class MainViewModel(
                                     response.body?.byteStream()?.copyTo(out)
                                 }
                                 println("Saved image to ${file.path}")
-                            } else {
-                                println("URL didn't return an image (Content-Type: $contentType): $sanitizedUrl")
+
+                                if (extension == "gif") {
+                                    val resizedGif = createResizedGif(file)
+                                    if (resizedGif != null && resizedGif != file) {
+                                        file.delete()
+                                        resizedGif.renameTo(file)
+                                        println("Replaced with resized version: ${file.name}")
+                                    }
+                                }
                             }
-                        } else {
-                            println("Failed to download $sanitizedUrl (${response.code}): ${response.message}")
                         }
                     }
                 } catch (e: Exception) {
