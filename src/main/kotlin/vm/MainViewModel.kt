@@ -481,6 +481,14 @@ class MainViewModel(
         }
     }
 
+    fun resetSelectedSubredditBatch(){
+        _uiState.update {
+            it.copy(
+                selectedSubredditBatch = null
+            )
+        }
+    }
+
     data class UiState(
         val darkMode: Boolean = true,
         val loadedSubreddit: String = "",

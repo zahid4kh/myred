@@ -26,14 +26,22 @@ fun App(viewModel: MainViewModel) {
                 initialRoute = "/empty"
             ){
                 scene("/empty"){
-                    EmptyScreen()
+                    EmptyScreen(
+                        viewModel = viewModel,
+                        uiState = uiState,
+                        onNavigateToSelectedBatch = { navigator.navigate("/reddit") }
+                    )
                 }
 
                 scene("/reddit"){
                     RedditScreen(
                         uiState = uiState,
                         viewModel = viewModel,
-                        context = context
+                        context = context,
+                        onGoBackToEntry = {
+                            navigator.goBack()
+                            viewModel.resetSelectedSubredditBatch()
+                        }
                     )
                 }
             }
