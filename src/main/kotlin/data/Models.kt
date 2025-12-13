@@ -76,6 +76,29 @@ data class ChildrenData(
     val mediaMetadata: Map<String, MediaMeta>? = null
 )
 
+fun ChildrenData.allVideoUrls(): List<String> {
+    val result = mutableListOf<String>()
+
+    if (!isVideo) return result
+
+    if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("v.redd.it")) {
+        result.add(urlOverridenByDest)
+    }
+
+    if (url.isNotEmpty() && url != urlOverridenByDest && url.contains("v.redd.it")) {
+        result.add(url)
+    }
+
+    preview?.images?.forEach { img ->
+        img.variants?.mp4?.source?.url?.let { mp4Url ->
+            val cleanUrl = mp4Url.replace("&amp;", "&")
+            result.add(cleanUrl)
+        }
+    }
+
+    return result.distinct()
+}
+
 fun ChildrenData.allImageUrls(): List<String> {
     val result = mutableListOf<String>()
 
