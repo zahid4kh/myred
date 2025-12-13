@@ -6,6 +6,7 @@ import androidx.compose.foundation.HorizontalScrollbar
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -34,9 +35,14 @@ import com.github.panpf.sketch.request.disallowAnimatedImage
 import com.github.panpf.sketch.request.repeatCount
 import com.github.panpf.sketch.resize.Precision
 import com.github.panpf.sketch.util.Size
+import com.mikepenz.markdown.m3.Markdown
+import com.mikepenz.markdown.m3.markdownTypography
+import com.mikepenz.markdown.model.MarkdownTypography
+import data.Children
 import data.allImageUrls
 import data.allVideoUrls
 import data.getLinkUrl
+import theme.getJetbrainsMonoFamily
 import vm.MainViewModel
 import java.awt.Desktop
 import java.io.File
@@ -49,13 +55,10 @@ import java.util.*
 @Composable
 fun TestBatch(
     viewModel: MainViewModel,
-    uiState: MainViewModel.UiState
+    listState: LazyListState,
+    lazyRowState: LazyListState,
+    children: List<Children>
 ){
-    val response = uiState.selectedSubredditBatch?.values?.first()
-    val children = response?.data?.children ?: emptyList()
-    val listState = rememberLazyListState()
-    val lazyRowState = rememberLazyListState()
-
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
@@ -101,10 +104,14 @@ fun TestBatch(
                         style = MaterialTheme.typography.titleLarge
                     )
 
-                    Text(
-                        text = post.data.selftext,
-                        style = MaterialTheme.typography.bodySmall,
-                        overflow = TextOverflow.Ellipsis,
+                    Markdown(
+                        content = post.data.selftext,
+                        typography = markdownTypography(
+                            code = MaterialTheme.typography.bodyMedium.copy(
+                                fontFamily = getJetbrainsMonoFamily()
+                            ),
+                            text = MaterialTheme.typography.bodySmall
+                        ),
                         modifier = Modifier.animateContentSize(animationSpec = spring())
                     )
 

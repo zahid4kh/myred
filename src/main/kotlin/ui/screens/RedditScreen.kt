@@ -2,6 +2,7 @@ package ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -25,6 +26,11 @@ fun RedditScreen(
     context: PlatformContext,
     onGoBackToEntry: () -> Unit
 ){
+    val response = uiState.selectedSubredditBatch?.values?.first()
+    val children = response?.data?.children ?: emptyList()
+    val listState = rememberLazyListState()
+    val lazyRowState = rememberLazyListState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -60,7 +66,7 @@ fun RedditScreen(
                 }
 
             }
-            TestBatch(viewModel, uiState)
+            TestBatch(viewModel, listState, lazyRowState, children)
         }
     }
 

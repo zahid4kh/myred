@@ -41,6 +41,8 @@ dependencies {
     implementation(libs.vlcj)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.okhttp)
+    implementation("com.mikepenz:multiplatform-markdown-renderer:0.38.1")
+    implementation("com.mikepenz:multiplatform-markdown-renderer-m3:0.38.1")
 }
 
 
