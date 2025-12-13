@@ -47,10 +47,6 @@ dependencies {
     // Deskit - for Material3 file chooser and information dialogs
     implementation(libs.deskit)
 
-    // COIL for image loading
-    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
-    implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.4")
-
     implementation("io.github.panpf.sketch4:sketch-compose:4.4.0-alpha01")
     implementation("io.github.panpf.sketch4:sketch-http-okhttp:4.4.0-alpha01")
     implementation("io.github.panpf.sketch4:sketch-animated-gif:4.4.0-alpha01")
