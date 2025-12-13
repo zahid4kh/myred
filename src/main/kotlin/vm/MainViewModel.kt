@@ -367,7 +367,7 @@ class MainViewModel(
         sorted?.let { list ->
             _uiState.update {
                 it.copy(
-                    fetchedPostBatches = list
+                    fetchedPostBatches = list.filter { item -> item.isFile }
                 )
             }
         }
