@@ -37,6 +37,7 @@ import com.github.panpf.sketch.resize.Precision
 import com.github.panpf.sketch.sketch
 import com.github.panpf.sketch.state.PainterStateImage
 import com.github.panpf.sketch.util.Size
+import moe.tlaster.precompose.PreComposeApp
 import myred.resources.Res
 import myred.resources.appIcon
 import myred.resources.error
@@ -54,168 +55,171 @@ import vm.MainViewModel
 fun App(viewModel: MainViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalPlatformContext.current
-    AppTheme(darkTheme = uiState.darkMode) {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {},
-                    actions = {
-                        Button(
-                            onClick = { viewModel.getHotPosts() }
-                        ){
-                            Text(
-                                text = "Fetch posts"
-                            )
-                        }
+    PreComposeApp {
+        AppTheme(darkTheme = uiState.darkMode) {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = {},
+                        actions = {
+                            Button(
+                                onClick = { viewModel.getHotPosts() }
+                            ){
+                                Text(
+                                    text = "Fetch posts"
+                                )
+                            }
 
-                        Button(
-                            onClick = { viewModel.showAvailableSubredditsDialog() }
-                        ){
-                            Text(
-                                text = "Show fetched subreddits"
-                            )
-                        }
+                            Button(
+                                onClick = { viewModel.showAvailableSubredditsDialog() }
+                            ){
+                                Text(
+                                    text = "Show fetched subreddits"
+                                )
+                            }
 
-                    }
-                )
-            }
-        ){innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-                    .background(MaterialTheme.colorScheme.surfaceVariant)
-            ){
-                TestBatch(viewModel, uiState)
-            }
-
-            uiState.clickedImage?.let { mediaFile ->
-                LaunchedEffect(mediaFile) {
-                    if (mediaFile.extension.lowercase() == "gif") {
-                        val preloadRequest = ImageRequest(context, mediaFile.absolutePath) {
-                            disallowAnimatedImage(false)
-                            size(Size.Origin)
-                            precision(Precision.EXACTLY)
-                            cacheDecodeTimeoutFrame(true)
                         }
-                        context.sketch.execute(preloadRequest)
-                    }
+                    )
+                }
+            ){innerPadding ->
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                ){
+                    TestBatch(viewModel, uiState)
                 }
 
-                AlertDialog(
-                    onDismissRequest = { viewModel.exitFullScreenImage() },
-                    confirmButton = {
-                        OutlinedButton(
-                            onClick = { viewModel.exitFullScreenImage() },
-                            shape = MaterialTheme.shapes.medium
-                        ){
-                            Text(
-                                text = "Close",
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                        }
-                    },
-                    shape = MaterialTheme.shapes.medium,
-                    text = {
-                        if(mediaFile.extension.lowercase() in listOf("mp4", "webm")){
-                            var playerManager by remember { mutableStateOf<PlayerManager?>(null) }
-                            var isPlaying by remember { mutableStateOf(false) }
-
-                            Column{
-                                VlcVideoPlayer(
-                                    url = mediaFile.absolutePath,
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .aspectRatio(
-                                            ratio = 16f / 9f,
-                                            matchHeightConstraintsFirst = true
-                                        )
-                                        .weight(1f),
-                                    onPlayerManagerReady = { manager ->
-                                        playerManager = manager
-                                    }
-                                )
-
-                                Spacer(modifier = Modifier.height(16.dp))
-
-                                Row(
-                                    horizontalArrangement = Arrangement.Center,
-                                    modifier = Modifier.fillMaxWidth()
-                                ) {
-                                    OutlinedButton(
-                                        onClick = {
-                                            playerManager?.restart()
-                                            isPlaying = true
-                                        },
-                                        modifier = Modifier.pointerHoverIcon(PointerIcon.Hand),
-                                        shape = MaterialTheme.shapes.medium
-                                    ) {
-                                        Text(
-                                            text = "Restart",
-                                            style = MaterialTheme.typography.bodyMedium
-                                        )
-                                    }
-
-                                    Spacer(modifier = Modifier.width(16.dp))
-
-                                    OutlinedButton(
-                                        onClick = {
-                                            playerManager?.let { manager ->
-                                                if (isPlaying) {
-                                                    manager.pause()
-                                                    isPlaying = false
-                                                } else {
-                                                    manager.play()
-                                                    isPlaying = true
-                                                }
-                                            }
-                                        },
-                                        modifier = Modifier.pointerHoverIcon(PointerIcon.Hand),
-                                        shape = MaterialTheme.shapes.medium
-                                    ) {
-                                        Text(
-                                            text = if (isPlaying) "Pause" else "Play",
-                                            style = MaterialTheme.typography.bodyMedium
-                                        )
-                                    }
-                                }
+                uiState.clickedImage?.let { mediaFile ->
+                    LaunchedEffect(mediaFile) {
+                        if (mediaFile.extension.lowercase() == "gif") {
+                            val preloadRequest = ImageRequest(context, mediaFile.absolutePath) {
+                                disallowAnimatedImage(false)
+                                size(Size.Origin)
+                                precision(Precision.EXACTLY)
+                                cacheDecodeTimeoutFrame(true)
                             }
-                        }else{
-                            val placehodler = painterResource(Res.drawable.appIcon)
-                            val error = painterResource(Res.drawable.error)
-
-                            AsyncImage(
-                                request = ImageRequest(
-                                    context = context,
-                                    uri = mediaFile.absolutePath
-                                ) {
-                                    disallowAnimatedImage(false)
-                                    repeatCount(-1)
-                                    size(Size.Origin)
-                                    precision(Precision.EXACTLY)
-
-                                    memoryCachePolicy(CachePolicy.ENABLED)
-                                    resultCachePolicy(CachePolicy.ENABLED)
-
-                                    placeholder(PainterStateImage(EquitablePainter(placehodler, placehodler)))
-                                    error(PainterStateImage(EquitablePainter(error,error)))
-                                },
-                                contentDescription = "photo",
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier
-                                    .clip(MaterialTheme.shapes.medium)
-                            )
+                            context.sketch.execute(preloadRequest)
                         }
                     }
-                )
-            }
 
-            if(uiState.availableSubredditsDialogShown){
-                FetchedSubredditsDialog(
-                    viewModel = viewModel,
-                    uiState = uiState
-                )
+                    AlertDialog(
+                        onDismissRequest = { viewModel.exitFullScreenImage() },
+                        confirmButton = {
+                            OutlinedButton(
+                                onClick = { viewModel.exitFullScreenImage() },
+                                shape = MaterialTheme.shapes.medium
+                            ){
+                                Text(
+                                    text = "Close",
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
+                        },
+                        shape = MaterialTheme.shapes.medium,
+                        text = {
+                            if(mediaFile.extension.lowercase() in listOf("mp4", "webm")){
+                                var playerManager by remember { mutableStateOf<PlayerManager?>(null) }
+                                var isPlaying by remember { mutableStateOf(false) }
+
+                                Column{
+                                    VlcVideoPlayer(
+                                        url = mediaFile.absolutePath,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .aspectRatio(
+                                                ratio = 16f / 9f,
+                                                matchHeightConstraintsFirst = true
+                                            )
+                                            .weight(1f),
+                                        onPlayerManagerReady = { manager ->
+                                            playerManager = manager
+                                        }
+                                    )
+
+                                    Spacer(modifier = Modifier.height(16.dp))
+
+                                    Row(
+                                        horizontalArrangement = Arrangement.Center,
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        OutlinedButton(
+                                            onClick = {
+                                                playerManager?.restart()
+                                                isPlaying = true
+                                            },
+                                            modifier = Modifier.pointerHoverIcon(PointerIcon.Hand),
+                                            shape = MaterialTheme.shapes.medium
+                                        ) {
+                                            Text(
+                                                text = "Restart",
+                                                style = MaterialTheme.typography.bodyMedium
+                                            )
+                                        }
+
+                                        Spacer(modifier = Modifier.width(16.dp))
+
+                                        OutlinedButton(
+                                            onClick = {
+                                                playerManager?.let { manager ->
+                                                    if (isPlaying) {
+                                                        manager.pause()
+                                                        isPlaying = false
+                                                    } else {
+                                                        manager.play()
+                                                        isPlaying = true
+                                                    }
+                                                }
+                                            },
+                                            modifier = Modifier.pointerHoverIcon(PointerIcon.Hand),
+                                            shape = MaterialTheme.shapes.medium
+                                        ) {
+                                            Text(
+                                                text = if (isPlaying) "Pause" else "Play",
+                                                style = MaterialTheme.typography.bodyMedium
+                                            )
+                                        }
+                                    }
+                                }
+                            }else{
+                                val placehodler = painterResource(Res.drawable.appIcon)
+                                val error = painterResource(Res.drawable.error)
+
+                                AsyncImage(
+                                    request = ImageRequest(
+                                        context = context,
+                                        uri = mediaFile.absolutePath
+                                    ) {
+                                        disallowAnimatedImage(false)
+                                        repeatCount(-1)
+                                        size(Size.Origin)
+                                        precision(Precision.EXACTLY)
+
+                                        memoryCachePolicy(CachePolicy.ENABLED)
+                                        resultCachePolicy(CachePolicy.ENABLED)
+
+                                        placeholder(PainterStateImage(EquitablePainter(placehodler, placehodler)))
+                                        error(PainterStateImage(EquitablePainter(error,error)))
+                                    },
+                                    contentDescription = "photo",
+                                    contentScale = ContentScale.Fit,
+                                    modifier = Modifier
+                                        .clip(MaterialTheme.shapes.medium)
+                                )
+                            }
+                        }
+                    )
+                }
+
+                if(uiState.availableSubredditsDialogShown){
+                    FetchedSubredditsDialog(
+                        viewModel = viewModel,
+                        uiState = uiState
+                    )
+                }
             }
         }
     }
+
 }
