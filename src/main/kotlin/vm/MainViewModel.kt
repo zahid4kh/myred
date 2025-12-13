@@ -292,6 +292,18 @@ class MainViewModel(
         return formatter.format(Instant.ofEpochMilli(ms))
     }
 
+    fun showImageFullScreen(img: File){
+        _uiState.update {
+            it.copy(
+                clickedImage = img
+            )
+        }
+        println("SELECTED IMAGE FOR FULL SCREEN:\n${img.absolutePath}")
+    }
+
+    fun exitFullScreenImage(){
+        _uiState.update { it.copy(clickedImage = null) }
+    }
 
     fun toggleDarkMode() {
         val newDarkMode = !_uiState.value.darkMode
@@ -311,7 +323,8 @@ class MainViewModel(
         val fetchedSubreddits: List<FetchedSubreddit> = mutableListOf(),
         val fetchedPostBatches: List<File> = mutableListOf(),
         val availableSubredditsDialogShown: Boolean = false,
-        val showSubredditPostBatches: Boolean = false
+        val showSubredditPostBatches: Boolean = false,
+        val clickedImage: File? = null
     )
 
     data class FetchedSubreddit(

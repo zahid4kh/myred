@@ -139,6 +139,10 @@ fun TestBatch(
                                             modifier = Modifier
                                                 .size(200.dp)
                                                 .clip(MaterialTheme.shapes.medium)
+                                                .clickable(
+                                                    onClick = { viewModel.showImageFullScreen(imgFile) }
+                                                )
+                                                .pointerHoverIcon(PointerIcon.Hand)
                                         )
                                     }
                                 }
