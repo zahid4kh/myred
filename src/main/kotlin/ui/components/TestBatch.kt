@@ -24,14 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil3.size.Precision
 import com.github.panpf.sketch.AsyncImage
 import com.github.panpf.sketch.LocalPlatformContext
 import com.github.panpf.sketch.request.ImageRequest
 import com.github.panpf.sketch.request.disallowAnimatedImage
 import com.github.panpf.sketch.request.repeatCount
-import com.github.panpf.sketch.util.Size
-import com.github.panpf.sketch.util.toUri
+import com.github.panpf.sketch.resize.Precision
 import data.allImageUrls
 import data.getLinkUrl
 import vm.MainViewModel
@@ -48,12 +46,6 @@ fun TestBatch(
     viewModel: MainViewModel,
     uiState: MainViewModel.UiState
 ){
-//    LaunchedEffect(Unit){
-//        while(isActive){
-//            //viewModel.loadTestBatch()
-//            delay(3000)
-//        }
-//    }
     val response = uiState.selectedSubredditBatch?.values?.first()
     val children = response?.data?.children ?: emptyList()
     val listState = rememberLazyListState()
@@ -132,7 +124,7 @@ fun TestBatch(
                                             request = ImageRequest(platformContext, imgFile.absolutePath) {
                                                 disallowAnimatedImage(false)
                                                 repeatCount(-1)
-                                                precision(com.github.panpf.sketch.resize.Precision.SMALLER_SIZE)
+                                                precision(Precision.SMALLER_SIZE)
                                             },
                                             contentDescription = "photo",
                                             contentScale = ContentScale.Crop,
