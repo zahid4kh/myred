@@ -12,6 +12,7 @@ sketch = "4.4.0-alpha01"
 vlcj = "4.8.2"
 androidxLifecycle = "2.9.6"
 okhttp = "5.2.0"
+markdownRenderer = "0.38.1"
 
 [libraries]
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
@@ -29,6 +30,8 @@ sketch-animated-core = { group = "io.github.panpf.sketch4", name = "sketch-anima
 vlcj = { group = "uk.co.caprica", name = "vlcj", version.ref = "vlcj" }
 androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+markdown-renderer = { group = "com.mikepenz", name = "multiplatform-markdown-renderer", version.ref = "markdownRenderer" }
+markdown-renderer-m3 = { group = "com.mikepenz", name = "multiplatform-markdown-renderer-m3", version.ref = "markdownRenderer" }
 
 
 [plugins]
@@ -41,3 +44,4 @@ hotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "hotReload"
 [bundles]
 slf4j = ["slf4j-api", "slf4j-simple"]
 sketch = ["sketch-compose", "sketch-http-okhttp", "sketch-animated-gif", "sketch-animated-core"]
+markdown = ["markdown-renderer", "markdown-renderer-m3"]
