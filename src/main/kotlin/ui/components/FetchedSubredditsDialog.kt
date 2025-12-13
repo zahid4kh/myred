@@ -38,6 +38,7 @@ fun FetchedSubredditsDialog(
     InfoDialog(
         onClose = { viewModel.closeAvailableSubredditsDialog() },
         title ="Fetched Subreddits",
+        height = 420.dp,
         resizable = true
     ){
         LazyColumn(
