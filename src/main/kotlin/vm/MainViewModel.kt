@@ -1,16 +1,9 @@
 package vm
 
-import data.Database
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import api.RedditApi
-import com.github.panpf.sketch.Sketch
-import com.github.panpf.sketch.fetch.Fetcher
-import com.github.panpf.sketch.fetch.OkHttpHttpUriFetcher
-import data.Auth
-import data.RedditResponse
-import data.allImageUrls
-import data.allVideoUrls
+import data.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,6 +42,9 @@ class MainViewModel(
 
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+
+    private val _fetchSettingsDialogState = MutableStateFlow(FetchSettingsDialogParams())
+    val fetchSettingsDialogState = _fetchSettingsDialogState.asStateFlow()
 
     private val _fetchedSubreddit = MutableStateFlow(FetchedSubreddit())
     val fetchedSubreddit = _fetchedSubreddit.asStateFlow()
@@ -94,7 +90,29 @@ class MainViewModel(
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "VideoPorn"
+                subreddit = _fetchSettingsDialogState.value.subreddit,
+                limit = _fetchSettingsDialogState.value.limit
+            )
+            val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
+            println("Fetched ${decodedRedditResponse.data.children.size} posts")
+
+            val encodeDecoded = json.encodeToString<RedditResponse>(decodedRedditResponse)
+            val subreddit = decodedRedditResponse.data.children.first().data.subreddit
+
+            saveFetchedPosts(
+                subreddit = subreddit,
+                text = encodeDecoded
+            )
+        }
+    }
+
+    fun getNewPosts() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val token = getAccessToken()
+            val redditResponse = api.fetchNewPosts(
+                accessToken = token,
+                subreddit = _fetchSettingsDialogState.value.subreddit,
+                limit = _fetchSettingsDialogState.value.limit
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -489,6 +507,35 @@ class MainViewModel(
         }
     }
 
+    fun showFetchSettingsDialog(){
+        _uiState.update { it.copy(showFetchSettingsDialog = true) }
+    }
+
+    fun closeFetchSettingsDialog(){
+        _uiState.update { it.copy(showFetchSettingsDialog = false) }
+    }
+
+    fun onSetSubredditToFetch(text: String){
+        _fetchSettingsDialogState.update {
+            it.copy(subreddit = text)
+        }
+        println("Subreddit to fetch: ${_fetchSettingsDialogState.value.subreddit}")
+    }
+
+    fun onSetPostLimitToFetch(text: String){
+        _fetchSettingsDialogState.update {
+            it.copy(limit = text)
+        }
+        println("Post limit to fetch: ${_fetchSettingsDialogState.value.limit}")
+    }
+
+    fun onSetFetchType(type: FetchType){
+        _fetchSettingsDialogState.update {
+            it.copy(fetchType = type)
+        }
+        println("Post fetch type: ${_fetchSettingsDialogState.value.fetchType}")
+    }
+
     data class UiState(
         val darkMode: Boolean = true,
         val loadedSubreddit: String = "",
@@ -498,11 +545,22 @@ class MainViewModel(
         val fetchedPostBatches: List<File> = mutableListOf(),
         val availableSubredditsDialogShown: Boolean = false,
         val showSubredditPostBatches: Boolean = false,
-        val clickedImage: File? = null
+        val clickedImage: File? = null,
+        val showFetchSettingsDialog: Boolean = false
     )
 
     data class FetchedSubreddit(
         val subredditFolder: File? = null,
         val isExtended: Boolean = false
     )
+
+    data class FetchSettingsDialogParams(
+        val subreddit: String = "",
+        val limit: String = "",
+        val fetchType: FetchType = FetchType.HOT
+    )
+
+    enum class FetchType {
+        HOT, NEW
+    }
 }

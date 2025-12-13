@@ -2,27 +2,10 @@ package ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LightMode
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
+import ui.components.FetchSettingsDialog
 import ui.components.FetchedSubredditsDialog
 import vm.MainViewModel
 
@@ -38,6 +22,7 @@ import vm.MainViewModel
 fun EmptyScreen(
     viewModel: MainViewModel,
     uiState: MainViewModel.UiState,
+    fetchParams: MainViewModel.FetchSettingsDialogParams,
     onNavigateToSelectedBatch: () -> Unit
 ){
     Box(
@@ -54,7 +39,7 @@ fun EmptyScreen(
             OutlinedCard(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.medium)
-                    .clickable{}
+                    .clickable{ viewModel.showFetchSettingsDialog() }
                     .pointerHoverIcon(PointerIcon.Hand)
             ) {
                 Text(
@@ -94,6 +79,13 @@ fun EmptyScreen(
                 }
             }
         }
+    }
+
+    if(uiState.showFetchSettingsDialog){
+        FetchSettingsDialog(
+            viewModel = viewModel,
+            fetchParams = fetchParams
+        )
     }
 
     if(uiState.availableSubredditsDialogShown){

@@ -65,7 +65,7 @@ class RedditApi {
 
         val response = client.newCall(request).execute()
         val body = response.body.string()
-        println("Hot kotlin posts response:\n$body")
+        println("New $subreddit posts response:\n$body")
 
         return body
     }
@@ -82,7 +82,7 @@ class RedditApi {
 
         val response = client.newCall(request).execute()
         val body = response.body.string()
-        println("Hot kotlin posts response:\n$body")
+        println("Hot $subreddit posts response:\n$body")
 
         return body
     }

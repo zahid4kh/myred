@@ -17,6 +17,8 @@ import vm.MainViewModel
 @Preview
 fun App(viewModel: MainViewModel) {
     val uiState by viewModel.uiState.collectAsState()
+    val fetchParams by viewModel.fetchSettingsDialogState.collectAsState()
+
     val context = LocalPlatformContext.current
     PreComposeApp {
         val navigator = rememberNavigator()
@@ -29,7 +31,8 @@ fun App(viewModel: MainViewModel) {
                     EmptyScreen(
                         viewModel = viewModel,
                         uiState = uiState,
-                        onNavigateToSelectedBatch = { navigator.navigate("/reddit") }
+                        onNavigateToSelectedBatch = { navigator.navigate("/reddit") },
+                        fetchParams = fetchParams
                     )
                 }
 
