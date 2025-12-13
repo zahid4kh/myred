@@ -1,0 +1,158 @@
+package ui.components
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogWindow
+import androidx.compose.ui.window.WindowPosition
+import androidx.compose.ui.window.rememberDialogState
+import theme.getJetbrainsMonoFamily
+import vm.MainViewModel
+import java.awt.Dimension
+
+@Composable
+fun FetchSettingsDialog(
+    viewModel: MainViewModel,
+    fetchParams: MainViewModel.FetchSettingsDialogParams
+) {
+    val dialogState = rememberDialogState(
+        size = DpSize(450.dp, 360.dp),
+        position = WindowPosition(Alignment.Center)
+    )
+
+    DialogWindow(
+        title = "Fetch Settings",
+        state = dialogState,
+        onCloseRequest = { viewModel.closeFetchSettingsDialog() },
+        resizable = false,
+        alwaysOnTop = true
+    ){
+        window.minimumSize = Dimension(450, 360)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(vertical = 20.dp),
+            contentAlignment = Alignment.Center
+        ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                OutlinedTextField(
+                    value = fetchParams.subreddit,
+                    onValueChange = { viewModel.onSetSubredditToFetch(it) },
+                    supportingText = {
+                        Text(
+                            text = "Enter a subreddit to fetch",
+                            fontFamily = getJetbrainsMonoFamily(),
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    },
+                    textStyle = MaterialTheme.typography.bodyMedium.copy(fontFamily = getJetbrainsMonoFamily()),
+                    shape = MaterialTheme.shapes.medium,
+                    singleLine = true
+                )
+
+                OutlinedTextField(
+                    value = fetchParams.limit,
+                    onValueChange = { viewModel.onSetPostLimitToFetch(it) },
+                    supportingText = {
+                        Text(
+                            text = "How many posts to fetch?",
+                            fontFamily = getJetbrainsMonoFamily(),
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    },
+                    textStyle = MaterialTheme.typography.bodyMedium.copy(fontFamily = getJetbrainsMonoFamily()),
+                    shape = MaterialTheme.shapes.medium,
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+
+                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .clip(MaterialTheme.shapes.medium)
+                            .background(MaterialTheme.colorScheme.tertiaryContainer)
+                            .padding(horizontal = 10.dp)
+                    ) {
+                        Text(
+                            text = "Hot",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontFamily = getJetbrainsMonoFamily(),
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
+                        RadioButton(
+                            selected = fetchParams.fetchType == MainViewModel.FetchType.HOT,
+                            onClick = { viewModel.onSetFetchType(MainViewModel.FetchType.HOT) },
+                            modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
+                        )
+                    }
+
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .clip(MaterialTheme.shapes.medium)
+                            .background(MaterialTheme.colorScheme.tertiaryContainer)
+                            .padding(horizontal = 10.dp)
+                    ) {
+                        Text(
+                            text = "New",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontFamily = getJetbrainsMonoFamily(),
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
+                        RadioButton(
+                            selected = fetchParams.fetchType == MainViewModel.FetchType.NEW,
+                            onClick = { viewModel.onSetFetchType(MainViewModel.FetchType.NEW) },
+                            modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
+                        )
+                    }
+                }
+
+                val enabled = fetchParams.subreddit.isNotEmpty() && fetchParams.limit.isNotEmpty()
+                OutlinedButton(
+                    onClick = {
+                        when(fetchParams.fetchType){
+                            MainViewModel.FetchType.HOT -> { viewModel.getHotPosts() ; viewModel.closeFetchSettingsDialog() }
+                            MainViewModel.FetchType.NEW -> { viewModel.getNewPosts() ; viewModel.closeFetchSettingsDialog() }
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .pointerHoverIcon(PointerIcon.Hand),
+                    shape = MaterialTheme.shapes.medium,
+                    enabled = enabled
+                ){
+                    Text(
+                        text = "Fetch",
+                        fontFamily = getJetbrainsMonoFamily(),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if(!enabled){
+                            Color.Gray.copy(alpha = 0.5f)
+                        }else{
+                            MaterialTheme.colorScheme.onTertiaryContainer
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
