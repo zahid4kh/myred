@@ -10,6 +10,7 @@ import com.github.panpf.sketch.fetch.OkHttpHttpUriFetcher
 import data.Auth
 import data.RedditResponse
 import data.allImageUrls
+import data.allVideoUrls
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -93,7 +94,7 @@ class MainViewModel(
             val token = getAccessToken()
             val redditResponse = api.fetchHotPosts(
                 accessToken = token,
-                subreddit = "food"
+                subreddit = "VideoPorn"
             )
             val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
             println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -120,11 +121,13 @@ class MainViewModel(
         val decoded = json.decodeFromString<RedditResponse>(text)
 
         decoded.data.children.forEach { child ->
-            val urls = child.data.allImageUrls()
+            val imageUrls = child.data.allImageUrls()
+            val videoUrls = child.data.allVideoUrls()
+            val allUrls = imageUrls + videoUrls
 
-            if (urls.isNotEmpty()) {
+            if (allUrls.isNotEmpty()) {
                 val postId = child.data.id
-                downloadImagesForPost(subreddit, postId, urls)
+                downloadImagesForPost(subreddit, postId, allUrls)
             }
         }
     }
@@ -194,53 +197,76 @@ class MainViewModel(
             if (!saveDir.exists()) saveDir.mkdirs()
 
             val downloadableUrls = urls.filter { url ->
-                isDownloadableImageUrl(url)
+                isDownloadableImageUrl(url) || isDownloadableVideoUrl(url)
             }
 
             downloadableUrls.forEachIndexed { index, url ->
                 try {
-                    val sanitizedUrl = url.replace("&amp;", "&")
+                    var actualUrl = url.replace("&amp;", "&")
+                    var extension = "jpg"
+                    var isVideo = false
 
-                    if (!isDownloadableImageUrl(sanitizedUrl)) {
-                        println("Skipping non-image URL: $sanitizedUrl")
+                    if (isRedditVideoUrl(actualUrl)) {
+                        val videoUrl = getRedditVideoUrl(actualUrl)
+                        if (videoUrl != null) {
+                            actualUrl = videoUrl
+                            extension = "mp4"
+                            isVideo = true
+                        } else {
+                            println("Failed to get video URL for: $actualUrl")
+                            return@forEachIndexed
+                        }
+                    } else {
+                        extension = when {
+                            actualUrl.contains(".mp4", ignoreCase = true) -> {
+                                isVideo = true
+                                "mp4"
+                            }
+                            actualUrl.contains(".webm", ignoreCase = true) -> {
+                                isVideo = true
+                                "webm"
+                            }
+                            actualUrl.contains(".gif", ignoreCase = true) -> "gif"
+                            actualUrl.contains(".webp", ignoreCase = true) -> "webp"
+                            actualUrl.contains(".png", ignoreCase = true) -> "png"
+                            actualUrl.contains(".jpg", ignoreCase = true) -> "jpg"
+                            actualUrl.contains(".jpeg", ignoreCase = true) -> "jpeg"
+                            actualUrl.contains("format=pjpg") -> "jpg"
+                            actualUrl.contains("format=png") -> "png"
+                            else -> "jpg"
+                        }
+                    }
+
+                    if (!isDownloadableImageUrl(actualUrl) && !isDownloadableVideoUrl(actualUrl) && !isRedditVideoUrl(url)) {
+                        println("Skipping non-downloadable URL: $actualUrl")
                         return@forEachIndexed
                     }
 
-                    val extension = when {
-                        sanitizedUrl.contains(".gif", ignoreCase = true) -> "gif"
-                        sanitizedUrl.contains(".webp", ignoreCase = true) -> "webp"
-                        sanitizedUrl.contains(".png", ignoreCase = true) -> "png"
-                        sanitizedUrl.contains(".jpg", ignoreCase = true) -> "jpg"
-                        sanitizedUrl.contains(".jpeg", ignoreCase = true) -> "jpeg"
-                        sanitizedUrl.contains("format=pjpg") -> "jpg"
-                        sanitizedUrl.contains("format=png") -> "png"
-                        else -> "jpg"
-                    }
-
-                    val file = File(saveDir, "image_${index + 1}.$extension")
+                    val prefix = if (isVideo) "video" else "image"
+                    val file = File(saveDir, "${prefix}_${index + 1}.$extension")
 
                     if (file.exists()) {
-                        println("Image already exists: ${file.name}")
+                        println("File already exists: ${file.name}")
                         return@forEachIndexed
                     }
 
-                    println("Downloading: $sanitizedUrl")
+                    println("Downloading ${if (isVideo) "video" else "image"}: $actualUrl")
 
                     val request = Request.Builder()
-                        .url(sanitizedUrl)
+                        .url(actualUrl)
                         .header("User-Agent", "script:MyRed:1.0 (by u/zikzikkh)")
                         .build()
 
                     httpClient.newCall(request).execute().use { response ->
                         if (response.isSuccessful) {
                             val contentType = response.header("Content-Type") ?: ""
-                            if (contentType.startsWith("image/")) {
+                            if (contentType.startsWith("image/") || contentType.startsWith("video/") || isVideo) {
                                 file.outputStream().use { out ->
                                     response.body?.byteStream()?.copyTo(out)
                                 }
-                                println("Saved image to ${file.path}")
+                                println("Saved ${if (isVideo) "video" else "image"} to ${file.path}")
 
-                                if (extension == "gif") {
+                                if (extension == "gif" && !isVideo) {
                                     val resizedGif = createResizedGif(file)
                                     if (resizedGif != null && resizedGif != file) {
                                         file.delete()
@@ -248,14 +274,86 @@ class MainViewModel(
                                         println("Replaced with resized version: ${file.name}")
                                     }
                                 }
+                            } else {
+                                println("URL didn't return expected content type (Content-Type: $contentType): $actualUrl")
                             }
+                        } else {
+                            println("Failed to download $actualUrl (${response.code}): ${response.message}")
                         }
                     }
                 } catch (e: Exception) {
-                    println("Error downloading image from $url: ${e.message}")
+                    println("Error downloading from $url: ${e.message}")
                 }
             }
         }
+    }
+
+    private suspend fun getRedditVideoUrl(vRedditUrl: String): String? {
+        return try {
+            val videoId = vRedditUrl.substringAfterLast("/")
+
+            val possibleUrls = listOf(
+                "https://v.redd.it/$videoId/DASH_1080.mp4",
+                "https://v.redd.it/$videoId/DASH_720.mp4",
+                "https://v.redd.it/$videoId/DASH_480.mp4",
+                "https://v.redd.it/$videoId/DASH_360.mp4",
+                "https://v.redd.it/$videoId/DASH_240.mp4"
+            )
+
+            for (testUrl in possibleUrls) {
+                val testRequest = Request.Builder()
+                    .url(testUrl)
+                    .head()
+                    .header("User-Agent", "script:MyRed:1.0 (by u/zikzikkh)")
+                    .build()
+
+                httpClient.newCall(testRequest).execute().use { testResponse ->
+                    if (testResponse.isSuccessful) {
+                        val contentLength = testResponse.header("Content-Length")?.toLongOrNull() ?: 0
+                        if (contentLength > 10000) {
+                            println("Found Reddit video URL: $testUrl")
+                            return testUrl
+                        }
+                    }
+                }
+            }
+
+            val apiUrl = "https://www.reddit.com/video/$videoId.json"
+            val apiRequest = Request.Builder()
+                .url(apiUrl)
+                .header("User-Agent", "script:MyRed:1.0 (by u/zikzikkh)")
+                .build()
+
+            httpClient.newCall(apiRequest).execute().use { response ->
+                if (response.isSuccessful) {
+                    val responseBody = response.body?.string()
+                    if (responseBody != null) {
+                        val videoUrlRegex = Regex("\"fallback_url\"\\s*:\\s*\"([^\"]+)\"")
+                        val matchResult = videoUrlRegex.find(responseBody)
+                        val fallbackUrl = matchResult?.groupValues?.get(1)?.replace("\\", "")
+
+                        if (fallbackUrl != null) {
+                            println("Found Reddit fallback video URL: $fallbackUrl")
+                            return fallbackUrl
+                        }
+                    }
+                }
+            }
+
+            null
+        } catch (e: Exception) {
+            println("Error getting Reddit video URL: ${e.message}")
+            null
+        }
+    }
+
+    private fun isRedditVideoUrl(url: String): Boolean {
+        return url.contains("v.redd.it")
+    }
+
+    private fun isDownloadableVideoUrl(url: String): Boolean {
+        return url.contains("v.redd.it") ||
+                url.contains(Regex("\\.(mp4|webm|avi|mov)($|\\?)", RegexOption.IGNORE_CASE))
     }
 
     private fun listBatches(){

@@ -10,6 +10,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollbarAdapter
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +35,7 @@ import com.github.panpf.sketch.request.repeatCount
 import com.github.panpf.sketch.resize.Precision
 import com.github.panpf.sketch.util.Size
 import data.allImageUrls
+import data.allVideoUrls
 import data.getLinkUrl
 import vm.MainViewModel
 import java.awt.Desktop
@@ -111,7 +114,7 @@ fun TestBatch(
 
                     if (folder.exists()) {
                         val files = folder.listFiles()?.filter {
-                            it.extension.lowercase() in listOf("jpg", "jpeg", "png", "gif", "webp")
+                            it.extension.lowercase() in listOf("jpg", "jpeg", "png", "gif", "webp", "mp4", "webm")
                         }?.sortedBy { it.name }
 
                         if (!files.isNullOrEmpty()) {
@@ -120,43 +123,78 @@ fun TestBatch(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                                     state = lazyRowState
                                 ) {
-                                    items(files) { imgFile ->
-                                        val platformContext = LocalPlatformContext.current
-                                        AsyncImage(
-                                            request = ImageRequest(platformContext, imgFile.absolutePath) {
-                                                disallowAnimatedImage(false)
-                                                repeatCount(-1)
-                                                val fileSizeMB = imgFile.length() / (1024 * 1024)
-
-                                                when {
-                                                    imgFile.extension.lowercase() == "gif" && fileSizeMB > 10 -> {
-                                                        disallowAnimatedImage(true)
-                                                        precision(Precision.SMALLER_SIZE)
-                                                        memoryCachePolicy(CachePolicy.DISABLED)
-                                                        resultCachePolicy(CachePolicy.DISABLED)
-                                                    }
-                                                    imgFile.extension.lowercase() == "gif" -> {
-                                                        size(Size.Origin)
-                                                        precision(Precision.EXACTLY)
-                                                        memoryCachePolicy(CachePolicy.DISABLED)
-                                                        resultCachePolicy(CachePolicy.DISABLED)
-                                                        downloadCachePolicy(CachePolicy.READ_ONLY)
-                                                    }
-                                                    else -> {
-                                                        precision(Precision.SMALLER_SIZE)
-                                                    }
-                                                }
-                                            },
-                                            contentDescription = "photo",
-                                            contentScale = ContentScale.Crop,
-                                            modifier = Modifier
-                                                .size(200.dp)
-                                                .clip(MaterialTheme.shapes.medium)
-                                                .clickable(
-                                                    onClick = { viewModel.showImageFullScreen(imgFile) }
+                                    items(files) { mediaFile ->
+                                        if(mediaFile.extension.lowercase() in listOf("mp4", "webm")){
+                                            Card(
+                                                modifier = Modifier
+                                                    .size(200.dp)
+                                                    .clickable { viewModel.showImageFullScreen(mediaFile) }
+                                                    .pointerHoverIcon(PointerIcon.Hand),
+                                                colors = CardDefaults.cardColors(
+                                                    containerColor = MaterialTheme.colorScheme.surface
                                                 )
-                                                .pointerHoverIcon(PointerIcon.Hand)
-                                        )
+                                            ) {
+                                                Column(
+                                                    modifier = Modifier.fillMaxSize(),
+                                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                                    verticalArrangement = Arrangement.Center
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.PlayArrow,
+                                                        contentDescription = "Video",
+                                                        modifier = Modifier.size(48.dp),
+                                                        tint = MaterialTheme.colorScheme.primary
+                                                    )
+                                                    Text(
+                                                        text = "Video",
+                                                        style = MaterialTheme.typography.bodyMedium
+                                                    )
+                                                    Text(
+                                                        text = "${mediaFile.length() / (1024 * 1024)}MB",
+                                                        style = MaterialTheme.typography.bodySmall,
+                                                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                                                    )
+                                                }
+                                            }
+                                        }else{
+                                            val platformContext = LocalPlatformContext.current
+                                            AsyncImage(
+                                                request = ImageRequest(platformContext, mediaFile.absolutePath) {
+                                                    disallowAnimatedImage(false)
+                                                    repeatCount(-1)
+                                                    val fileSizeMB = mediaFile.length() / (1024 * 1024)
+
+                                                    when {
+                                                        mediaFile.extension.lowercase() == "gif" && fileSizeMB > 10 -> {
+                                                            disallowAnimatedImage(true)
+                                                            precision(Precision.SMALLER_SIZE)
+                                                            memoryCachePolicy(CachePolicy.DISABLED)
+                                                            resultCachePolicy(CachePolicy.DISABLED)
+                                                        }
+                                                        mediaFile.extension.lowercase() == "gif" -> {
+                                                            size(Size.Origin)
+                                                            precision(Precision.EXACTLY)
+                                                            memoryCachePolicy(CachePolicy.DISABLED)
+                                                            resultCachePolicy(CachePolicy.DISABLED)
+                                                            downloadCachePolicy(CachePolicy.READ_ONLY)
+                                                        }
+                                                        else -> {
+                                                            precision(Precision.SMALLER_SIZE)
+                                                        }
+                                                    }
+                                                },
+                                                contentDescription = "photo",
+                                                contentScale = ContentScale.Crop,
+                                                modifier = Modifier
+                                                    .size(200.dp)
+                                                    .clip(MaterialTheme.shapes.medium)
+                                                    .clickable(
+                                                        onClick = { viewModel.showImageFullScreen(mediaFile) }
+                                                    )
+                                                    .pointerHoverIcon(PointerIcon.Hand)
+                                            )
+                                        }
+
                                     }
                                 }
 
@@ -170,12 +208,13 @@ fun TestBatch(
 
                         }
                     } else {
-                        val allUrls = post.data.allImageUrls()
-                        if (allUrls.isNotEmpty()) {
+                        val allImageUrls = post.data.allImageUrls()
+                        val allVideoUrls = post.data.allVideoUrls()
+                        val totalUrls = allImageUrls.size + allVideoUrls.size
+
+                        if (totalUrls > 0) {
                             Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(150.dp),
+                                modifier = Modifier.fillMaxWidth().height(150.dp),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Column(
@@ -184,7 +223,7 @@ fun TestBatch(
                                 ) {
                                     CircularProgressIndicator(modifier = Modifier.size(24.dp))
                                     Text(
-                                        text = "Downloading ${allUrls.size} image${if (allUrls.size != 1) "s" else ""}...",
+                                        text = "Downloading $totalUrls file${if (totalUrls != 1) "s" else ""}...",
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                                     )
