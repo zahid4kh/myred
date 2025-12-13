@@ -21,84 +21,79 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
+import deskit.dialogs.info.InfoDialog
 import vm.MainViewModel
 import java.awt.SystemColor.text
 
 @Composable
 fun FetchedSubredditsDialog(
     viewModel: MainViewModel,
-    uiState: MainViewModel.UiState
+    uiState: MainViewModel.UiState,
+    onNavigateToSelectedBatch: () -> Unit
 ){
-    AlertDialog(
-        onDismissRequest = { viewModel.closeAvailableSubredditsDialog() },
-        confirmButton = {
-            Button(
-                onClick = { viewModel.closeAvailableSubredditsDialog() },
-                shape = MaterialTheme.shapes.medium
-            ){
-                Text("Close")
-            }
-        },
-        title = {
-            Text(
-                text = "Fetched Subreddits",
-                style = MaterialTheme.typography.titleLarge
-            )
-        },
-        text = {
-            LazyColumn {
-                items(items = uiState.fetchedSubreddits) { fetchedSubreddit ->
-                    Column {
-                        TextButton(
-                            onClick = {
-                                viewModel.toggleSubredditExtended(fetchedSubreddit)
-                            },
-                            colors = ButtonDefaults.textButtonColors(
-                                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-                            ),
-                            shape = MaterialTheme.shapes.medium,
-                            modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
-                        ){
-                            Text(
-                                text = fetchedSubreddit.subredditFolder?.name ?: "noname",
-                                style = MaterialTheme.typography.bodyLarge
-                            )
-                        }
-                        AnimatedVisibility(
-                            visible = fetchedSubreddit.isExtended,
+    InfoDialog(
+        onClose = { viewModel.closeAvailableSubredditsDialog() },
+        title ="Fetched Subreddits",
+        resizable = true
+    ){
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(items = uiState.fetchedSubreddits) { fetchedSubreddit ->
+                Column {
+                    TextButton(
+                        onClick = {
+                            viewModel.toggleSubredditExtended(fetchedSubreddit)
+                        },
+                        colors = ButtonDefaults.textButtonColors(
+                            containerColor = if(fetchedSubreddit.isExtended) Color.LightGray else MaterialTheme.colorScheme.secondaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                        ),
+                        shape = MaterialTheme.shapes.medium,
+                        modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
+                    ){
+                        Text(
+                            text = fetchedSubreddit.subredditFolder?.name ?: "noname",
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    }
+
+                    AnimatedVisibility(
+                        visible = fetchedSubreddit.isExtended,
+                        modifier = Modifier
+                            .animateContentSize()
+                    ){
+                        LazyColumn(
                             modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(MaterialTheme.shapes.medium)
+                                .background(MaterialTheme.colorScheme.tertiaryContainer)
+                                .height(100.dp)
                                 .animateContentSize()
                         ){
-                            LazyColumn(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clip(MaterialTheme.shapes.medium)
-                                    .background(MaterialTheme.colorScheme.tertiaryContainer)
-                                    .height(100.dp)
-                                    .animateContentSize()
-                            ){
-                                items(items = uiState.fetchedPostBatches){ file ->
-                                    Text(
-                                        text = file.nameWithoutExtension,
-                                        modifier = Modifier
-                                            .padding(5.dp)
-                                            .clip(MaterialTheme.shapes.medium)
-                                            .clickable(onClick = { viewModel.loadSelectedBatch(batch = file) })
-                                            .padding(5.dp)
-                                            .pointerHoverIcon(PointerIcon.Hand)
-                                    )
-                                }
+                            items(items = uiState.fetchedPostBatches){ file ->
+                                Text(
+                                    text = file.nameWithoutExtension,
+                                    modifier = Modifier
+                                        .padding(5.dp)
+                                        .clip(MaterialTheme.shapes.medium)
+                                        .clickable(onClick = {
+                                            viewModel.loadSelectedBatch(batch = file)
+                                            onNavigateToSelectedBatch()
+                                        })
+                                        .padding(5.dp)
+                                        .pointerHoverIcon(PointerIcon.Hand)
+                                )
                             }
                         }
                     }
-
                 }
+
             }
-        },
-        shape = MaterialTheme.shapes.medium
-    )
+        }
+    }
 }
