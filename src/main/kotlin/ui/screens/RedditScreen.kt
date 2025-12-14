@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.github.panpf.sketch.PlatformContext
 import theme.getJetbrainsMonoFamily
 import ui.components.FullScreenImage
+import ui.components.RedditScreenTopBar
 import vm.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,38 +40,10 @@ fun RedditScreen(
             .background(MaterialTheme.colorScheme.surfaceVariant)
     ){
         Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp))
-                    .background(MaterialTheme.colorScheme.tertiary)
-                    .padding(2.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                IconButton(
-                    onClick = { onGoBackToEntry() },
-                    modifier = Modifier
-                ){
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onTertiary
-                    )
-                }
-
-                uiState.selectedSubredditBatch?.values?.first()?.data?.children?.first()?.data?.subredditNamePrefixed?.let {
-                    Text(
-                        text = it,
-                        modifier = Modifier.padding(horizontal = 10.dp),
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            fontFamily = getJetbrainsMonoFamily()
-                        ),
-                        color = MaterialTheme.colorScheme.onTertiary
-                    )
-                }
-
-            }
+            RedditScreenTopBar(
+                uiState = uiState,
+                onGoBackToEntry = { onGoBackToEntry() }
+            )
             TestBatch(viewModel, listState, lazyRowState, children)
         }
     }
