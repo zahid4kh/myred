@@ -49,6 +49,9 @@ class MainViewModel(
     private val _fetchedSubreddit = MutableStateFlow(FetchedSubreddit())
     val fetchedSubreddit = _fetchedSubreddit.asStateFlow()
 
+    private val _nextBatchDialogState = MutableStateFlow(NextBatchDialogParams())
+    val nextBatchDialogState = _nextBatchDialogState.asStateFlow()
+
     private val userHome = System.getProperty("user.home")
     private val appDir = File(userHome, ".myred")
 
@@ -127,9 +130,14 @@ class MainViewModel(
         }
     }
 
-    private fun saveFetchedPosts(subreddit: String, text: String){
+    private fun saveFetchedPosts(subreddit: String, text: String, isNextBatch: Boolean = false){
         val saveTime = System.currentTimeMillis()
-        val formattedSaveTime = formatMillis(saveTime)
+        val formattedSaveTime = if (isNextBatch) {
+            "next_" + formatMillis(saveTime)
+        } else {
+            formatMillis(saveTime)
+        }
+
         val saveDir = File("$appDir/$subreddit")
         if(!saveDir.exists()) saveDir.mkdirs()
 
@@ -536,6 +544,122 @@ class MainViewModel(
         println("Post fetch type: ${_fetchSettingsDialogState.value.fetchType}")
     }
 
+    fun showNextBatchDialog() {
+        val currentBatch = _uiState.value.selectedSubredditBatch?.values?.first()
+        val after = currentBatch?.data?.after ?: ""
+        val subreddit = currentBatch?.data?.children?.firstOrNull()?.data?.subreddit ?: ""
+
+        val currentFetchType = _fetchSettingsDialogState.value.fetchType
+
+        _nextBatchDialogState.update {
+            it.copy(
+                isShown = true,
+                currentAfter = after,
+                currentSubreddit = subreddit,
+                currentFetchType = currentFetchType,
+                limit = "25"
+            )
+        }
+    }
+
+    fun closeNextBatchDialog() {
+        _nextBatchDialogState.update { it.copy(isShown = false) }
+    }
+
+    fun onSetNextBatchLimit(limit: String) {
+        val numericLimit = limit.toIntOrNull()
+        if (numericLimit != null && numericLimit in 1..100) {
+            _nextBatchDialogState.update { it.copy(limit = limit) }
+            _uiState.update { it.copy(errorMessage = null) }
+        } else if (limit.isEmpty()) {
+            _nextBatchDialogState.update { it.copy(limit = limit) }
+            _uiState.update { it.copy(errorMessage = null) }
+        } else {
+            _uiState.update { it.copy(errorMessage = "Limit must be between 1 and 100") }
+        }
+    }
+
+    fun fetchNextBatch() {
+        val params = _nextBatchDialogState.value
+
+        if (params.currentAfter.isEmpty()) {
+            _uiState.update { it.copy(errorMessage = "No more posts available") }
+            return
+        }
+
+        val limit = params.limit.toIntOrNull()
+        if (limit == null || limit !in 1..100) {
+            _uiState.update { it.copy(errorMessage = "Please enter a valid limit (1-100)") }
+            return
+        }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _uiState.update { it.copy(isLoading = true, errorMessage = null) }
+
+                val token = getAccessToken()
+                val redditResponse = when (params.currentFetchType) {
+                    FetchType.HOT -> api.fetchHotPosts(
+                        accessToken = token,
+                        subreddit = params.currentSubreddit,
+                        limit = params.limit,
+                        after = params.currentAfter
+                    )
+                    FetchType.NEW -> api.fetchNewPosts(
+                        accessToken = token,
+                        subreddit = params.currentSubreddit,
+                        limit = params.limit,
+                        after = params.currentAfter
+                    )
+                }
+
+                val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
+                println("Fetched next batch: ${decodedRedditResponse.data.children.size} posts")
+
+                if (decodedRedditResponse.data.children.isEmpty()) {
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            errorMessage = "No more posts available in this subreddit"
+                        )
+                    }
+                    return@launch
+                }
+
+                val encodeDecoded = json.encodeToString<RedditResponse>(decodedRedditResponse)
+                val subreddit = decodedRedditResponse.data.children.first().data.subreddit
+
+                saveFetchedPosts(
+                    subreddit = subreddit,
+                    text = encodeDecoded,
+                    isNextBatch = true
+                )
+
+                val saveTime = System.currentTimeMillis()
+                val formattedSaveTime = formatMillis(saveTime)
+                val batchFile = File("$appDir/$subreddit/$formattedSaveTime.json")
+
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        selectedSubredditBatch = mapOf(batchFile to decodedRedditResponse),
+                        isLoading = false
+                    )
+                }
+
+                closeNextBatchDialog()
+
+            } catch (e: Exception) {
+                println("Error fetching next batch: ${e.message}")
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = "Failed to fetch next batch: ${e.message}"
+                    )
+                }
+            }
+        }
+    }
+
     data class UiState(
         val darkMode: Boolean = true,
         val loadedSubreddit: String = "",
@@ -546,7 +670,9 @@ class MainViewModel(
         val availableSubredditsDialogShown: Boolean = false,
         val showSubredditPostBatches: Boolean = false,
         val clickedImage: File? = null,
-        val showFetchSettingsDialog: Boolean = false
+        val showFetchSettingsDialog: Boolean = false,
+        val isLoading: Boolean = false,
+        val errorMessage: String? = null
     )
 
     data class FetchedSubreddit(
@@ -558,6 +684,14 @@ class MainViewModel(
         val subreddit: String = "",
         val limit: String = "",
         val fetchType: FetchType = FetchType.HOT
+    )
+
+    data class NextBatchDialogParams(
+        val isShown: Boolean = false,
+        val limit: String = "25",
+        val currentAfter: String = "",
+        val currentSubreddit: String = "",
+        val currentFetchType: FetchType = FetchType.HOT
     )
 
     enum class FetchType {
