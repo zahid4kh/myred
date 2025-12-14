@@ -6,7 +6,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppSettings(
-    val darkMode: Boolean = false
+    val darkMode: Boolean = false,
+    val lastTokenRefresh: Long = 0L
 )
 
 @Serializable

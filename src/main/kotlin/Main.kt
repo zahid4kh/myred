@@ -38,7 +38,6 @@ fun main() {
             }.build()
         )
 
-        val api = RedditApi()
         val viewModel = getKoin().get<MainViewModel>()
 
         Window(

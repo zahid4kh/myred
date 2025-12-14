@@ -8,5 +8,5 @@ import vm.MainViewModel
 val appModule = module {
     single { Database() }
     single { MainViewModel(get(), get()) }
-    single { RedditApi() }
+    single { RedditApi(get()) }
 }
