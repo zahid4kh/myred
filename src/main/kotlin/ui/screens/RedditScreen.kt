@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,6 +16,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.github.panpf.sketch.PlatformContext
+import theme.getJetbrainsMonoFamily
 import ui.components.FullScreenImage
 import vm.MainViewModel
 
@@ -61,7 +63,10 @@ fun RedditScreen(
                     Text(
                         text = it,
                         modifier = Modifier.padding(horizontal = 10.dp),
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontFamily = getJetbrainsMonoFamily()
+                        ),
+                        color = MaterialTheme.colorScheme.onTertiary
                     )
                 }
 

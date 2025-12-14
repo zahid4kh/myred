@@ -37,7 +37,9 @@ import com.github.panpf.sketch.resize.Precision
 import com.github.panpf.sketch.util.Size
 import com.mikepenz.markdown.m3.Markdown
 import com.mikepenz.markdown.m3.markdownTypography
+import com.mikepenz.markdown.model.MarkdownAnimations
 import com.mikepenz.markdown.model.MarkdownTypography
+import com.mikepenz.markdown.model.markdownAnimations
 import data.Children
 import data.allImageUrls
 import data.allVideoUrls
@@ -107,12 +109,26 @@ fun TestBatch(
                     Markdown(
                         content = post.data.selftext,
                         typography = markdownTypography(
+                            h1 = MaterialTheme.typography.titleLarge,
+                            h2 = MaterialTheme.typography.titleMedium,
+                            h3 = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                            h4 = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+                            h5 = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+                            h6 = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+                            text = MaterialTheme.typography.bodyMedium,
+                            paragraph = MaterialTheme.typography.bodyMedium,
                             code = MaterialTheme.typography.bodyMedium.copy(
                                 fontFamily = getJetbrainsMonoFamily()
                             ),
-                            text = MaterialTheme.typography.bodySmall
+                            inlineCode = MaterialTheme.typography.bodyMedium.copy(
+                                fontFamily = getJetbrainsMonoFamily()
+                            ),
+                            quote = MaterialTheme.typography.bodyMedium,
+                            ordered = MaterialTheme.typography.bodyMedium,
+                            bullet = MaterialTheme.typography.bodyMedium,
+                            list = MaterialTheme.typography.bodyMedium
                         ),
-                        modifier = Modifier.animateContentSize(animationSpec = spring())
+                        animations = markdownAnimations()
                     )
 
                     val postId = post.data.id
