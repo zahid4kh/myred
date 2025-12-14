@@ -1,23 +1,17 @@
 package ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.github.panpf.sketch.PlatformContext
-import theme.getJetbrainsMonoFamily
 import ui.components.FullScreenImage
+import ui.components.NextBatchDialog
 import ui.components.RedditScreenTopBar
 import vm.MainViewModel
 
@@ -27,6 +21,7 @@ fun RedditScreen(
     uiState: MainViewModel.UiState,
     viewModel: MainViewModel,
     context: PlatformContext,
+    nextBatchParams: MainViewModel.NextBatchDialogParams,
     onGoBackToEntry: () -> Unit
 ){
     val response = uiState.selectedSubredditBatch?.values?.first()
@@ -43,7 +38,7 @@ fun RedditScreen(
             RedditScreenTopBar(
                 uiState = uiState,
                 onGoBackToEntry = { onGoBackToEntry() },
-                onLoadNextBatch = {  }
+                onLoadNextBatch = { viewModel.showNextBatchDialog() }
             )
             TestBatch(viewModel, listState, lazyRowState, children)
         }
@@ -54,4 +49,12 @@ fun RedditScreen(
         viewModel = viewModel,
         context = context
     )
+
+    if (nextBatchParams.isShown) {
+        NextBatchDialog(
+            viewModel = viewModel,
+            params = nextBatchParams,
+            uiState = uiState
+        )
+    }
 }

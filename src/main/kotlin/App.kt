@@ -37,10 +37,12 @@ fun App(viewModel: MainViewModel) {
                 }
 
                 scene("/reddit"){
+                    val nextBatchParams by viewModel.nextBatchDialogState.collectAsState()
                     RedditScreen(
                         uiState = uiState,
                         viewModel = viewModel,
                         context = context,
+                        nextBatchParams = nextBatchParams,
                         onGoBackToEntry = {
                             navigator.goBack()
                             viewModel.resetSelectedSubredditBatch()

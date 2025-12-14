@@ -5,14 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +22,7 @@ import org.jetbrains.compose.resources.painterResource
 import theme.getJetbrainsMonoFamily
 import vm.MainViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RedditScreenTopBar(
     uiState: MainViewModel.UiState,
@@ -52,26 +49,38 @@ fun RedditScreenTopBar(
             )
         }
 
-        IconButton(
-            onClick = { onLoadNextBatch() },
-            modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
-        ){
-            Icon(
-                painter = painterResource(Res.drawable.next_batch),
-                contentDescription = null
-            )
+        Row(verticalAlignment = Alignment.CenterVertically){
+            TooltipBox(
+                positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Left),
+                tooltip = {
+                    PlainTooltip { Text("Load next batch", style = MaterialTheme.typography.bodySmall) }
+                },
+                state = rememberTooltipState()
+            ){
+                IconButton(
+                    onClick = { onLoadNextBatch() },
+                    modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
+                ){
+                    Icon(
+                        painter = painterResource(Res.drawable.next_batch),
+                        contentDescription = null
+                    )
+                }
+            }
+
+
+            uiState.selectedSubredditBatch?.values?.first()?.data?.children?.first()?.data?.subredditNamePrefixed?.let {
+                Text(
+                    text = it,
+                    modifier = Modifier.padding(horizontal = 10.dp),
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontFamily = getJetbrainsMonoFamily()
+                    ),
+                    color = MaterialTheme.colorScheme.onTertiary
+                )
+            }
         }
 
-        uiState.selectedSubredditBatch?.values?.first()?.data?.children?.first()?.data?.subredditNamePrefixed?.let {
-            Text(
-                text = it,
-                modifier = Modifier.padding(horizontal = 10.dp),
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontFamily = getJetbrainsMonoFamily()
-                ),
-                color = MaterialTheme.colorScheme.onTertiary
-            )
-        }
 
     }
 }
