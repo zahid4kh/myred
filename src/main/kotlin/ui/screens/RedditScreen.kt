@@ -42,7 +42,8 @@ fun RedditScreen(
         Column {
             RedditScreenTopBar(
                 uiState = uiState,
-                onGoBackToEntry = { onGoBackToEntry() }
+                onGoBackToEntry = { onGoBackToEntry() },
+                onLoadNextBatch = {  }
             )
             TestBatch(viewModel, listState, lazyRowState, children)
         }
