@@ -1,15 +1,21 @@
 # MyRed
 
-A desktop application built with Kotlin and Compose for Desktop.
+A Reddit desktop client built with Kotlin and Compose for Desktop.
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-blue.svg?logo=kotlin)](https://kotlinlang.org) [![Compose](https://img.shields.io/badge/Compose-1.9.3-blue.svg?logo=jetpack-compose)](https://www.jetbrains.com/lp/compose-multiplatform/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.21-blue.svg?logo=kotlin)](https://kotlinlang.org) [![Compose](https://img.shields.io/badge/Compose-1.9.3-blue.svg?logo=jetpack-compose)](https://www.jetbrains.com/lp/compose-multiplatform/)
 
 ## Features
 
-- Modern UI with Material 3 design
-- Dark mode support
+- Browse Reddit posts from any subreddit
+- View images, videos, galleries, and text posts
+- Fetch hot and new posts with configurable limits
+- Material 3 design with dark mode support
+- Markdown rendering for post content
 - Cross-platform (Windows, macOS, Linux)
-- Hot reload support for faster development
+
+## Work in Progress
+
+This application is currently under active development. Features and functionality are subject to change.
 
 ## Development Setup
 
@@ -18,6 +24,17 @@ A desktop application built with Kotlin and Compose for Desktop.
 - JDK 17 or later
 - Kotlin 2.2.21 or later
 - IntelliJ IDEA (recommended) or Android Studio
+- Reddit API credentials (CLIENT_ID and CLIENT_SECRET)
+
+### Reddit API Setup
+
+1. Create a Reddit app at https://www.reddit.com/prefs/apps
+2. Select "script" as the app type
+3. Set the following environment variables:
+   ```bash
+   export CLIENT_ID="your_client_id"
+   export CLIENT_SECRET="your_client_secret"
+   ```
 
 ### Make Gradle Wrapper Executable (Linux/macOS only)
 
@@ -56,14 +73,22 @@ This will create a platform-specific installer in the `build/compose/binaries/ma
 ### Available Gradle Tasks
 
 - `./gradlew run` - Run the application
-- `./gradlew :runHot --mainClass MyRed --auto` - Run with hot reload
+- `./gradlew :hotRun --mainClass MyRed --auto` - Run with hot reload
 - `./gradlew packageDistributionForCurrentOS` - Build native distribution for current OS
 - `./gradlew packageDmg` - Build macOS DMG (macOS only)
 - `./gradlew packageMsi` - Build Windows MSI (Windows only)
 - `./gradlew packageExe` - Build Windows EXE (Windows only)
 - `./gradlew packageDeb` - Build Linux DEB (Linux only)
+- `./gradlew packageDebWithWMClass` - Build Linux DEB with proper desktop integration (JRE bundled)
 
+## Tech Stack
 
-## Generated with Compose for Desktop Wizard
-
-This project was generated using the [Desktop Client of Compose for Desktop Wizard](https://github.com/zahid4kh/compose-for-desktop/tree/desktop).
+- Kotlin 2.2.21
+- Compose Multiplatform 1.9.3
+- Material 3
+- Koin (Dependency Injection)
+- OkHttp (HTTP client)
+- Kotlinx Serialization
+- Sketch (Image loading)
+- VLCj (Video playback)
+- Mikepenz Markdown Renderer
