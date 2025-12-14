@@ -79,14 +79,26 @@ data class ChildrenData(
 fun ChildrenData.allVideoUrls(): List<String> {
     val result = mutableListOf<String>()
 
-    if (!isVideo) return result
-
     if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("v.redd.it")) {
         result.add(urlOverridenByDest)
     }
 
     if (url.isNotEmpty() && url != urlOverridenByDest && url.contains("v.redd.it")) {
         result.add(url)
+    }
+
+    if (isVideo) {
+        if (urlOverridenByDest.isNotEmpty() &&
+            !urlOverridenByDest.contains("v.redd.it") &&
+            urlOverridenByDest.contains(Regex("\\.(mp4|webm|avi|mov)($|\\?)", RegexOption.IGNORE_CASE))) {
+            result.add(urlOverridenByDest)
+        }
+
+        if (url.isNotEmpty() && url != urlOverridenByDest &&
+            !url.contains("v.redd.it") &&
+            url.contains(Regex("\\.(mp4|webm|avi|mov)($|\\?)", RegexOption.IGNORE_CASE))) {
+            result.add(url)
+        }
     }
 
     preview?.images?.forEach { img ->
@@ -108,12 +120,14 @@ fun ChildrenData.allImageUrls(): List<String> {
 
     val seenFilenames = mutableSetOf<String>()
 
-    if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("i.redd.it")) {
+    if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("i.redd.it") &&
+        !urlOverridenByDest.contains("v.redd.it")) {
         result.add(urlOverridenByDest)
         seenFilenames.add(getImageFilename(urlOverridenByDest))
     }
 
-    if (url.isNotEmpty() && url.contains("i.redd.it") && url != urlOverridenByDest) {
+    if (url.isNotEmpty() && url.contains("i.redd.it") && !url.contains("v.redd.it") &&
+        url != urlOverridenByDest) {
         val filename = getImageFilename(url)
         if (!seenFilenames.contains(filename)) {
             result.add(url)
@@ -137,10 +151,12 @@ fun ChildrenData.allImageUrls(): List<String> {
     preview?.images?.forEach { img ->
         img.source?.url?.let { previewUrl ->
             val cleanUrl = previewUrl.replace("&amp;", "&")
-            val filename = getImageFilename(cleanUrl)
-            if (!seenFilenames.contains(filename)) {
-                result.add(cleanUrl)
-                seenFilenames.add(filename)
+            if (!cleanUrl.contains("v.redd.it")) {
+                val filename = getImageFilename(cleanUrl)
+                if (!seenFilenames.contains(filename)) {
+                    result.add(cleanUrl)
+                    seenFilenames.add(filename)
+                }
             }
         }
     }
