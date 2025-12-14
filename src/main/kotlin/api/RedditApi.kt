@@ -53,11 +53,16 @@ class RedditApi {
         println("wrote access token to a file")
     }
 
-    fun fetchNewPosts(accessToken: String, subreddit: String, limit: String = "10") : String {
+    fun fetchHotPosts(accessToken: String, subreddit: String, limit: String = "10", after: String? = null): String {
         val userAgent = "script:MyRed:1.0 (by u/zikzikkh)"
 
+        var url = "https://oauth.reddit.com/r/$subreddit/hot?limit=$limit"
+        if (!after.isNullOrEmpty()) {
+            url += "&after=$after"
+        }
+
         val request = Request.Builder()
-            .url("https://oauth.reddit.com/r/$subreddit/new?limit=$limit")
+            .url(url)
             .header("Authorization", "Bearer $accessToken")
             .header("User-Agent", userAgent)
             .get()
@@ -65,16 +70,21 @@ class RedditApi {
 
         val response = client.newCall(request).execute()
         val body = response.body.string()
-        println("New $subreddit posts response:\n$body")
+        println("Hot $subreddit posts response (after: $after):\n$body")
 
         return body
     }
 
-    fun fetchHotPosts(accessToken: String, subreddit: String, limit: String = "10") : String {
+    fun fetchNewPosts(accessToken: String, subreddit: String, limit: String = "10", after: String? = null): String {
         val userAgent = "script:MyRed:1.0 (by u/zikzikkh)"
 
+        var url = "https://oauth.reddit.com/r/$subreddit/new?limit=$limit"
+        if (!after.isNullOrEmpty()) {
+            url += "&after=$after"
+        }
+
         val request = Request.Builder()
-            .url("https://oauth.reddit.com/r/$subreddit/hot?limit=$limit")
+            .url(url)
             .header("Authorization", "Bearer $accessToken")
             .header("User-Agent", userAgent)
             .get()
@@ -82,7 +92,7 @@ class RedditApi {
 
         val response = client.newCall(request).execute()
         val body = response.body.string()
-        println("Hot $subreddit posts response:\n$body")
+        println("New $subreddit posts response (after: $after):\n$body")
 
         return body
     }
