@@ -13,6 +13,20 @@ A Reddit desktop client built with Kotlin and Compose for Desktop.
 - Markdown rendering for post content
 - Cross-platform (Windows, macOS, Linux)
 
+## Screenshots
+
+### Entry Screen
+![Entry Screen](screenshots/entryScreen.png)
+
+### Posts View
+![Loaded Posts Screen](screenshots/loadedPostsScreen.png)
+
+### Fetch Settings
+![Fetch Settings Dialog](screenshots/fetchSettingsDialog.png)
+
+### Image Viewer
+![Expanded Image](screenshots/expandedImage.png)
+
 ## Work in Progress
 
 This application is currently under active development. Features and functionality are subject to change.
