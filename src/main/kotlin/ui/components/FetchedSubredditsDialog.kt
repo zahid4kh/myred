@@ -2,32 +2,28 @@ package ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.onClick
-import androidx.compose.material.AlertDialog
-import androidx.compose.material3.*
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
 import deskit.dialogs.info.InfoDialog
 import vm.MainViewModel
-import java.awt.SystemColor.text
 
 @Composable
 fun FetchedSubredditsDialog(
@@ -35,27 +31,35 @@ fun FetchedSubredditsDialog(
     uiState: MainViewModel.UiState,
     onNavigateToSelectedBatch: () -> Unit
 ){
+    val gridState = rememberLazyStaggeredGridState()
     InfoDialog(
         onClose = { viewModel.closeAvailableSubredditsDialog() },
         title ="Fetched Subreddits",
         height = 420.dp,
         resizable = true
     ){
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
+        LazyVerticalStaggeredGrid(
+            modifier = Modifier.fillMaxSize(),
+            columns = StaggeredGridCells.Adaptive(250.dp),
+            state = gridState,
+            horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             items(items = uiState.fetchedSubreddits) { fetchedSubreddit ->
-                Column {
+                Column(
+                    modifier = Modifier.animateItem(placementSpec = tween())
+                ) {
                     TextButton(
                         onClick = {
                             viewModel.toggleSubredditExtended(fetchedSubreddit)
                         },
                         colors = ButtonDefaults.textButtonColors(
-                            containerColor = if(fetchedSubreddit.isExtended) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondaryContainer,
-                            contentColor = if(fetchedSubreddit.isExtended) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer
+                            containerColor = if(fetchedSubreddit.isExtended) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondary,
+                            contentColor = if(fetchedSubreddit.isExtended) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondary
                         ),
                         shape = MaterialTheme.shapes.medium,
-                        modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
+                        modifier = Modifier
+                            .pointerHoverIcon(PointerIcon.Hand)
+                            .fillMaxWidth()
                     ){
                         Text(
                             text = fetchedSubreddit.subredditFolder?.name ?: "noname",
