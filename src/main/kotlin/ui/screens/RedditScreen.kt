@@ -38,7 +38,8 @@ fun RedditScreen(
             RedditScreenTopBar(
                 uiState = uiState,
                 onGoBackToEntry = { onGoBackToEntry() },
-                onLoadNextBatch = { viewModel.showNextBatchDialog() }
+                onLoadNextBatch = { viewModel.showNextBatchDialog() },
+                onRefreshBatch = { viewModel.refreshCurrentBatch() }
             )
             TestBatch(viewModel, listState, lazyRowState, children)
         }

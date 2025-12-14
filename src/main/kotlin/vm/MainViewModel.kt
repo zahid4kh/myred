@@ -88,45 +88,171 @@ class MainViewModel(
         return token
     }
 
-    fun getHotPosts() {
+    fun getHotPosts(onNavigateToFetchedBatch: () -> Unit = {}) {
+        val params = _fetchSettingsDialogState.value
+
+        val limit = params.limit.toIntOrNull()
+        if (limit == null || limit !in 1..100) {
+            _uiState.update { it.copy(errorMessage = "Please enter a valid limit (1-100)") }
+            return
+        }
+
+        if (params.subreddit.isEmpty()) {
+            _uiState.update { it.copy(errorMessage = "Please enter a subreddit name") }
+            return
+        }
+
         viewModelScope.launch(Dispatchers.IO) {
-            val token = getAccessToken()
-            val redditResponse = api.fetchHotPosts(
-                accessToken = token,
-                subreddit = _fetchSettingsDialogState.value.subreddit,
-                limit = _fetchSettingsDialogState.value.limit
-            )
-            val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
-            println("Fetched ${decodedRedditResponse.data.children.size} posts")
+            try {
+                _uiState.update { it.copy(isLoading = true, errorMessage = null) }
 
-            val encodeDecoded = json.encodeToString<RedditResponse>(decodedRedditResponse)
-            val subreddit = decodedRedditResponse.data.children.first().data.subreddit
+                val token = getAccessToken()
+                val redditResponse = api.fetchHotPosts(
+                    accessToken = token,
+                    subreddit = params.subreddit,
+                    limit = params.limit
+                )
+                val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
+                println("Fetched ${decodedRedditResponse.data.children.size} posts")
 
-            saveFetchedPosts(
-                subreddit = subreddit,
-                text = encodeDecoded
-            )
+                if (decodedRedditResponse.data.children.isEmpty()) {
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            errorMessage = "No posts found in r/${params.subreddit}"
+                        )
+                    }
+                    return@launch
+                }
+
+                val encodeDecoded = json.encodeToString<RedditResponse>(decodedRedditResponse)
+                val subreddit = decodedRedditResponse.data.children.first().data.subreddit
+
+                saveFetchedPosts(
+                    subreddit = subreddit,
+                    text = encodeDecoded
+                )
+
+                val saveTime = System.currentTimeMillis()
+                val formattedSaveTime = formatMillis(saveTime)
+                val batchFile = File("$appDir/$subreddit/$formattedSaveTime.json")
+
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        selectedSubredditBatch = mapOf(batchFile to decodedRedditResponse),
+                        isLoading = false
+                    )
+                }
+
+                closeFetchSettingsDialog()
+                onNavigateToFetchedBatch()
+
+            } catch (e: Exception) {
+                println("Error fetching hot posts: ${e.message}")
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = "Failed to fetch posts: ${e.message}"
+                    )
+                }
+            }
         }
     }
 
-    fun getNewPosts() {
+    fun getNewPosts(onNavigateToFetchedBatch: () -> Unit = {}) {
+        val params = _fetchSettingsDialogState.value
+
+        val limit = params.limit.toIntOrNull()
+        if (limit == null || limit !in 1..100) {
+            _uiState.update { it.copy(errorMessage = "Please enter a valid limit (1-100)") }
+            return
+        }
+
+        if (params.subreddit.isEmpty()) {
+            _uiState.update { it.copy(errorMessage = "Please enter a subreddit name") }
+            return
+        }
+
         viewModelScope.launch(Dispatchers.IO) {
-            val token = getAccessToken()
-            val redditResponse = api.fetchNewPosts(
-                accessToken = token,
-                subreddit = _fetchSettingsDialogState.value.subreddit,
-                limit = _fetchSettingsDialogState.value.limit
-            )
-            val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
-            println("Fetched ${decodedRedditResponse.data.children.size} posts")
+            try {
+                _uiState.update { it.copy(isLoading = true, errorMessage = null) }
 
-            val encodeDecoded = json.encodeToString<RedditResponse>(decodedRedditResponse)
-            val subreddit = decodedRedditResponse.data.children.first().data.subreddit
+                val token = getAccessToken()
+                val redditResponse = api.fetchNewPosts(
+                    accessToken = token,
+                    subreddit = params.subreddit,
+                    limit = params.limit
+                )
+                val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
+                println("Fetched ${decodedRedditResponse.data.children.size} posts")
 
-            saveFetchedPosts(
-                subreddit = subreddit,
-                text = encodeDecoded
-            )
+                if (decodedRedditResponse.data.children.isEmpty()) {
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            errorMessage = "No posts found in r/${params.subreddit}"
+                        )
+                    }
+                    return@launch
+                }
+
+                val encodeDecoded = json.encodeToString<RedditResponse>(decodedRedditResponse)
+                val subreddit = decodedRedditResponse.data.children.first().data.subreddit
+
+                saveFetchedPosts(
+                    subreddit = subreddit,
+                    text = encodeDecoded
+                )
+
+                val saveTime = System.currentTimeMillis()
+                val formattedSaveTime = formatMillis(saveTime)
+                val batchFile = File("$appDir/$subreddit/$formattedSaveTime.json")
+
+                _uiState.update { currentState ->
+                    currentState.copy(
+                        selectedSubredditBatch = mapOf(batchFile to decodedRedditResponse),
+                        isLoading = false
+                    )
+                }
+
+                closeFetchSettingsDialog()
+                onNavigateToFetchedBatch()
+
+            } catch (e: Exception) {
+                println("Error fetching new posts: ${e.message}")
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = "Failed to fetch posts: ${e.message}"
+                    )
+                }
+            }
+        }
+    }
+
+    fun refreshCurrentBatch() {
+        val currentBatch = _uiState.value.selectedSubredditBatch?.keys?.first()
+        if (currentBatch != null && currentBatch.exists()) {
+            try {
+                val fileContent = currentBatch.readText()
+                val decodedContent = json.decodeFromString<RedditResponse>(fileContent)
+
+                decodedContent.data.children.forEach { child ->
+                    val imageUrls = child.data.allImageUrls()
+                    val videoUrls = child.data.allVideoUrls()
+                    val allUrls = imageUrls + videoUrls
+
+                    if (allUrls.isNotEmpty()) {
+                        val postId = child.data.id
+                        val subreddit = child.data.subreddit
+                        downloadImagesForPost(subreddit, postId, allUrls)
+                    }
+                }
+
+                println("Refreshed current batch: ${currentBatch.name}")
+            } catch (e: Exception) {
+                println("Error refreshing batch: ${e.message}")
+            }
         }
     }
 
@@ -410,17 +536,6 @@ class MainViewModel(
         }
     }
 
-    fun loadTestBatch(){
-        val batch = File("test.json")
-        val fileContent = batch.readText()
-        val decodedContent = json.decodeFromString<RedditResponse>(fileContent)
-        _uiState.update {
-            it.copy(
-                selectedSubredditBatch = mapOf(batch to decodedContent)
-            )
-        }
-    }
-
     private fun updateFetchedSubreddits(){
         val files = appDir.listFiles()
         val list = mutableListOf<FetchedSubreddit>()
@@ -530,11 +645,17 @@ class MainViewModel(
         println("Subreddit to fetch: ${_fetchSettingsDialogState.value.subreddit}")
     }
 
-    fun onSetPostLimitToFetch(text: String){
-        _fetchSettingsDialogState.update {
-            it.copy(limit = text)
+    fun onSetPostLimitToFetch(limit: String) {
+        val numericLimit = limit.toIntOrNull()
+        if (numericLimit != null && numericLimit in 1..100) {
+            _fetchSettingsDialogState.update { it.copy(limit = limit) }
+            _uiState.update { it.copy(errorMessage = null) }
+        } else if (limit.isEmpty()) {
+            _fetchSettingsDialogState.update { it.copy(limit = limit) }
+            _uiState.update { it.copy(errorMessage = null) }
+        } else {
+            _uiState.update { it.copy(errorMessage = "Post limit must be between 1 and 100") }
         }
-        println("Post limit to fetch: ${_fetchSettingsDialogState.value.limit}")
     }
 
     fun onSetFetchType(type: FetchType){

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,7 +28,8 @@ import vm.MainViewModel
 fun RedditScreenTopBar(
     uiState: MainViewModel.UiState,
     onGoBackToEntry: () -> Unit,
-    onLoadNextBatch: () -> Unit
+    onLoadNextBatch: () -> Unit,
+    onRefreshBatch: () -> Unit
 ){
     Row(
         modifier = Modifier
@@ -66,6 +68,17 @@ fun RedditScreenTopBar(
                         contentDescription = null
                     )
                 }
+            }
+
+            IconButton(
+                onClick = { onRefreshBatch() },
+                modifier = Modifier.pointerHoverIcon(PointerIcon.Hand)
+            ){
+                Icon(
+                    imageVector = Icons.Default.Refresh,
+                    contentDescription = "Refresh Current Batch",
+                    tint = MaterialTheme.colorScheme.onTertiary
+                )
             }
 
 

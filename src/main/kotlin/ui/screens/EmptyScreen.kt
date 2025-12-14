@@ -84,7 +84,9 @@ fun EmptyScreen(
     if(uiState.showFetchSettingsDialog){
         FetchSettingsDialog(
             viewModel = viewModel,
-            fetchParams = fetchParams
+            fetchParams = fetchParams,
+            uiState = uiState,
+            onNavigateToFetchedBatch = { onNavigateToSelectedBatch() }
         )
     }
 
