@@ -55,7 +55,7 @@ fun FetchSettingsDialog(
             ) {
                 OutlinedTextField(
                     value = fetchParams.subreddit,
-                    onValueChange = { viewModel.onSetSubredditToFetch(it) },
+                    onValueChange = { viewModel.onSetSubredditToFetch(it.trim()) },
                     supportingText = {
                         Text(
                             text = "Enter a subreddit to fetch",
@@ -71,7 +71,7 @@ fun FetchSettingsDialog(
 
                 OutlinedTextField(
                     value = fetchParams.limit,
-                    onValueChange = { viewModel.onSetPostLimitToFetch(it) },
+                    onValueChange = { viewModel.onSetPostLimitToFetch(it.trim()) },
                     supportingText = {
                         Text(
                             text = "How many posts to fetch? (max: 100)",
