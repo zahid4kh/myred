@@ -56,20 +56,15 @@
 -keepclassmembers class * extends com.sun.jna.Structure {
     public *;
 }
--keep class com.sun.jna.internal.** { *; }
+
+# Keep all JNA internal classes and their synthetic accessors
+-keep,allowobfuscation class com.sun.jna.internal.** { *; }
 -keepclassmembers class com.sun.jna.internal.** {
-    <fields>;
-    <methods>;
+    *;
 }
 
-# Ignore JNA synthetic accessor methods (generated at runtime)
--dontwarn com.sun.jna.internal.Cleaner
--keepclassmembers class com.sun.jna.internal.Cleaner {
-    *;
-}
--keepclassmembers class com.sun.jna.internal.Cleaner$* {
-    *;
-}
+# JNA Cleaner synthetic accessors
+-dontwarn com.sun.jna.internal.Cleaner$CleanerThread
 
 # OkHttp optional dependencies
 -dontwarn org.conscrypt.**
@@ -78,6 +73,23 @@
 -dontwarn org.graalvm.**
 -dontwarn com.oracle.svm.**
 
+# OkHttp3
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-keep class okhttp3.** { *; }
+-keep class okio.** { *; }
+-keepclassmembers class okhttp3.** { *; }
+-keepclassmembers class okio.** { *; }
+
+# OkHttp3 platform implementations
+-keep class okhttp3.internal.platform.** { *; }
+-keep interface okhttp3.** { *; }
+
+# Okio
+-keep class okio.** { *; }
+-keepnames class okio.** { *; }
+
+# VLCj
 -keep class uk.co.caprica.vlcj.** { *; }
 -dontwarn com.sun.awt.AWTUtilities
 
@@ -98,6 +110,3 @@
 
 # Suppress all notes about duplicate classes
 -dontnote **
-
-# Ignore warnings about missing synthetic accessor methods
--dontwarn **$access$**
