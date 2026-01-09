@@ -1,6 +1,6 @@
 # Kotlinx Serialization
 -dontwarn kotlinx.serialization.**
--keepattributes *Annotation*, InnerClasses
+-keepattributes *Annotation*, InnerClasses, Signature
 -dontnote kotlinx.serialization.AnnotationsKt
 
 # Keep all serializable classes with their @Serializable annotation
@@ -42,11 +42,29 @@
 -dontwarn org.slf4j.**
 -dontnote org.slf4j.**
 
-# Keep META-INF services
+# Java ServiceLoader
+-keep class * implements com.github.panpf.sketch.** { *; }
+-keep class com.github.panpf.sketch.** { *; }
+-keepclassmembers class com.github.panpf.sketch.** { *; }
+
+# Keep all Sketch service provider implementations
+-keep class * implements com.github.panpf.sketch.util.FetcherProvider { *; }
+-keep class * implements com.github.panpf.sketch.util.DecoderProvider { *; }
+-keep class * implements com.github.panpf.sketch.util.RequestInterceptorProvider { *; }
+-keep class * implements com.github.panpf.sketch.util.DecodeInterceptorProvider { *; }
+
+# Preserve ServiceLoader service provider configurations
+-adaptresourcefilenames META-INF/services/**
+-adaptresourcefilecontents META-INF/services/**
 -keepdirectories META-INF/services/
 -keep class META-INF.services.** { *; }
 
-# JNA
+# Keep methods required for ServiceLoader instantiation
+-keepclassmembers class * {
+    *** newInstance(...);
+}
+
+# JNA (Java Native Access)
 -dontwarn java.awt.*
 -dontwarn sun.font.**
 -dontwarn sun.swing.**
