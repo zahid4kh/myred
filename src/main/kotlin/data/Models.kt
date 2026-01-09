@@ -80,6 +80,14 @@ data class ChildrenData(
 fun ChildrenData.allVideoUrls(): List<String> {
     val result = mutableListOf<String>()
 
+    if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("redgifs.com/watch/", ignoreCase = true)) {
+        result.add(urlOverridenByDest)
+    }
+
+    if (url.isNotEmpty() && url != urlOverridenByDest && url.contains("redgifs.com/watch/", ignoreCase = true)) {
+        result.add(url)
+    }
+
     if (urlOverridenByDest.isNotEmpty() && urlOverridenByDest.contains("v.redd.it")) {
         result.add(urlOverridenByDest)
     }
@@ -91,12 +99,14 @@ fun ChildrenData.allVideoUrls(): List<String> {
     if (isVideo) {
         if (urlOverridenByDest.isNotEmpty() &&
             !urlOverridenByDest.contains("v.redd.it") &&
+            !urlOverridenByDest.contains("redgifs.com/watch/", ignoreCase = true) &&
             urlOverridenByDest.contains(Regex("\\.(mp4|webm|avi|mov)($|\\?)", RegexOption.IGNORE_CASE))) {
             result.add(urlOverridenByDest)
         }
 
         if (url.isNotEmpty() && url != urlOverridenByDest &&
             !url.contains("v.redd.it") &&
+            !url.contains("redgifs.com/watch/", ignoreCase = true) &&
             url.contains(Regex("\\.(mp4|webm|avi|mov)($|\\?)", RegexOption.IGNORE_CASE))) {
             result.add(url)
         }
@@ -152,7 +162,9 @@ fun ChildrenData.allImageUrls(): List<String> {
     preview?.images?.forEach { img ->
         img.source?.url?.let { previewUrl ->
             val cleanUrl = previewUrl.replace("&amp;", "&")
-            if (!cleanUrl.contains("v.redd.it")) {
+            val hasRedGifs = url.contains("redgifs.com/watch/", ignoreCase = true) ||
+                    urlOverridenByDest.contains("redgifs.com/watch/", ignoreCase = true)
+            if (!cleanUrl.contains("v.redd.it") && !hasRedGifs) {
                 val filename = getImageFilename(cleanUrl)
                 if (!seenFilenames.contains(filename)) {
                     result.add(cleanUrl)

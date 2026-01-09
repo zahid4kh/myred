@@ -368,7 +368,17 @@ class MainViewModel(
                             println("Failed to get video URL for: $actualUrl")
                             return@forEachIndexed
                         }
-                    } else {
+                    } else if(isRedGifsUrl(actualUrl)){
+                        val videoUrl = getRedGifsVideoUrl(actualUrl)
+                        if (videoUrl != null) {
+                            actualUrl = videoUrl
+                            extension = "mp4"
+                            isVideo = true
+                        } else {
+                            println("Failed to get RedGifs video URL for: $actualUrl")
+                            return@forEachIndexed
+                        }
+                    } else{
                         extension = when {
                             actualUrl.contains(".mp4", ignoreCase = true) -> {
                                 isVideo = true
@@ -499,12 +509,69 @@ class MainViewModel(
         }
     }
 
+    private fun isRedGifsUrl(url: String): Boolean {
+        return url.contains("redgifs.com/watch/", ignoreCase = true)
+    }
+
+    private suspend fun getRedGifsGuestToken(): String? {
+        return try {
+            val authUrl = "https://api.redgifs.com/v2/auth/temporary"
+            val request = Request.Builder().url(authUrl).build()
+
+            httpClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) return null
+                val responseBody = response.body?.string() ?: return null
+                val tokenRegex = Regex("\"token\"\\s*:\\s*\"([^\"]+)\"")
+                val matchResult = tokenRegex.find(responseBody)
+                matchResult?.groupValues?.get(1)
+            }
+        } catch (e: Exception) {
+            println("Error getting RedGifs token: ${e.message}")
+            null
+        }
+    }
+
+    private suspend fun getRedGifsVideoUrl(redgifsUrl: String): String? {
+        return try {
+            val videoId = redgifsUrl.substringAfterLast("/").lowercase()
+            val token = getRedGifsGuestToken() ?: return null
+
+            val apiUrl = "https://api.redgifs.com/v2/gifs/$videoId"
+            val request = Request.Builder()
+                .url(apiUrl)
+                .header("Authorization", "Bearer $token")
+                .build()
+
+            httpClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    println("RedGifs API request failed: ${response.code}")
+                    return null
+                }
+
+                val responseBody = response.body?.string() ?: return null
+                val hdUrlRegex = Regex("\"hd\"\\s*:\\s*\"([^\"]+)\"")
+                val matchResult = hdUrlRegex.find(responseBody)
+                val hdUrl = matchResult?.groupValues?.get(1)?.replace("\\", "")
+
+                if (hdUrl != null) {
+                    println("Found RedGifs HD video URL: $hdUrl")
+                    return hdUrl
+                }
+                null
+            }
+        } catch (e: Exception) {
+            println("Error getting RedGifs video URL: ${e.message}")
+            null
+        }
+    }
+
     private fun isRedditVideoUrl(url: String): Boolean {
         return url.contains("v.redd.it")
     }
 
     private fun isDownloadableVideoUrl(url: String): Boolean {
         return url.contains("v.redd.it") ||
+                url.contains("redgifs.com/watch/", ignoreCase = true) ||
                 url.contains(Regex("\\.(mp4|webm|avi|mov)($|\\?)", RegexOption.IGNORE_CASE))
     }
 
