@@ -2,6 +2,7 @@ package ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -55,7 +56,7 @@ fun FetchSettingsDialog(
             ) {
                 OutlinedTextField(
                     value = fetchParams.subreddit,
-                    onValueChange = { viewModel.onSetSubredditToFetch(it.trim()) },
+                    onValueChange = { viewModel.onSetSubredditToFetch(it) },
                     supportingText = {
                         Text(
                             text = "Enter a subreddit to fetch",
@@ -71,7 +72,7 @@ fun FetchSettingsDialog(
 
                 OutlinedTextField(
                     value = fetchParams.limit,
-                    onValueChange = { viewModel.onSetPostLimitToFetch(it.trim()) },
+                    onValueChange = { viewModel.onSetPostLimitToFetch(it) },
                     supportingText = {
                         Text(
                             text = "How many posts to fetch? (max: 100)",
@@ -166,9 +167,9 @@ fun FetchSettingsDialog(
                     }
                 }
 
-                val isValidLimit = fetchParams.limit.toIntOrNull() in 1..100
-                val enabled = fetchParams.subreddit.isNotEmpty() &&
-                        fetchParams.limit.isNotEmpty() &&
+                val isValidLimit = fetchParams.limit.text.toIntOrNull() in 1..100
+                val enabled = fetchParams.subreddit.text.isNotEmpty() &&
+                        fetchParams.limit.text.isNotEmpty() &&
                         isValidLimit &&
                         !uiState.isLoading
 

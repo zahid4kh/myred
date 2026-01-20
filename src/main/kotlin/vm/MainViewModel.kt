@@ -1,5 +1,6 @@
 package vm
 
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import api.RedditApi
@@ -91,13 +92,13 @@ class MainViewModel(
     fun getHotPosts(onNavigateToFetchedBatch: () -> Unit = {}) {
         val params = _fetchSettingsDialogState.value
 
-        val limit = params.limit.toIntOrNull()
+        val limit = params.limit.text.toIntOrNull()
         if (limit == null || limit !in 1..100) {
             _uiState.update { it.copy(errorMessage = "Please enter a valid limit (1-100)") }
             return
         }
 
-        if (params.subreddit.isEmpty()) {
+        if (params.subreddit.text.isEmpty()) {
             _uiState.update { it.copy(errorMessage = "Please enter a subreddit name") }
             return
         }
@@ -109,8 +110,8 @@ class MainViewModel(
                 val token = getAccessToken()
                 val redditResponse = api.fetchHotPosts(
                     accessToken = token,
-                    subreddit = params.subreddit,
-                    limit = params.limit
+                    subreddit = params.subreddit.text,
+                    limit = params.limit.text
                 )
                 val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
                 println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -162,13 +163,13 @@ class MainViewModel(
     fun getNewPosts(onNavigateToFetchedBatch: () -> Unit = {}) {
         val params = _fetchSettingsDialogState.value
 
-        val limit = params.limit.toIntOrNull()
+        val limit = params.limit.text.toIntOrNull()
         if (limit == null || limit !in 1..100) {
             _uiState.update { it.copy(errorMessage = "Please enter a valid limit (1-100)") }
             return
         }
 
-        if (params.subreddit.isEmpty()) {
+        if (params.subreddit.text.isEmpty()) {
             _uiState.update { it.copy(errorMessage = "Please enter a subreddit name") }
             return
         }
@@ -180,8 +181,8 @@ class MainViewModel(
                 val token = getAccessToken()
                 val redditResponse = api.fetchNewPosts(
                     accessToken = token,
-                    subreddit = params.subreddit,
-                    limit = params.limit
+                    subreddit = params.subreddit.text,
+                    limit = params.limit.text
                 )
                 val decodedRedditResponse = json.decodeFromString<RedditResponse>(redditResponse)
                 println("Fetched ${decodedRedditResponse.data.children.size} posts")
@@ -705,19 +706,19 @@ class MainViewModel(
         _uiState.update { it.copy(showFetchSettingsDialog = false) }
     }
 
-    fun onSetSubredditToFetch(text: String){
+    fun onSetSubredditToFetch(text: TextFieldValue){
         _fetchSettingsDialogState.update {
             it.copy(subreddit = text)
         }
         println("Subreddit to fetch: ${_fetchSettingsDialogState.value.subreddit}")
     }
 
-    fun onSetPostLimitToFetch(limit: String) {
-        val numericLimit = limit.toIntOrNull()
+    fun onSetPostLimitToFetch(limit: TextFieldValue) {
+        val numericLimit = limit.text.toIntOrNull()
         if (numericLimit != null && numericLimit in 1..100) {
             _fetchSettingsDialogState.update { it.copy(limit = limit) }
             _uiState.update { it.copy(errorMessage = null) }
-        } else if (limit.isEmpty()) {
+        } else if (limit.text.isEmpty()) {
             _fetchSettingsDialogState.update { it.copy(limit = limit) }
             _uiState.update { it.copy(errorMessage = null) }
         } else {
@@ -869,8 +870,8 @@ class MainViewModel(
     )
 
     data class FetchSettingsDialogParams(
-        val subreddit: String = "",
-        val limit: String = "",
+        val subreddit: TextFieldValue = TextFieldValue(""),
+        val limit: TextFieldValue = TextFieldValue(""),
         val fetchType: FetchType = FetchType.HOT
     )
 
