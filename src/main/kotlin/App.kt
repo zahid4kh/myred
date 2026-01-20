@@ -1,5 +1,4 @@
-import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -14,7 +13,6 @@ import vm.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Preview
 fun App(viewModel: MainViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val fetchParams by viewModel.fetchSettingsDialogState.collectAsState()

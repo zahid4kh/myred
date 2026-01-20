@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.plugin.compose)
     alias(libs.plugins.kotlin.plugin.serialization)
-    alias(libs.plugins.hotReload)
 }
 
 val appPackageVersion = "1.0.0"
@@ -25,16 +24,16 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation(compose.material3)
-    implementation(compose.components.resources)
-    implementation(compose.materialIconsExtended)
+    implementation("org.jetbrains.compose.material3:material3:1.10.0-alpha05")
+    implementation("org.jetbrains.compose.components:components-resources:1.10.0")
+    implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.swing)
     implementation(libs.koin.core)
     api(libs.precompose)
-    api(compose.foundation)
-    api(compose.animation)
+    api("org.jetbrains.compose.foundation:foundation:1.10.0")
+    api("org.jetbrains.compose.animation:animation:1.10.0")
     implementation(libs.bundles.slf4j)
     implementation(libs.deskit)
     implementation(libs.bundles.sketch)
@@ -90,12 +89,7 @@ compose.desktop {
         }
     }
 }
-    
-//https://github.com/JetBrains/compose-hot-reload
-//composeCompiler {
-//    featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
-//}
-  
+
 tasks.register("generateUpgradeUuid") {
     group = "help"
     description = "Generates a unique UUID to be used for the Windows MSI upgradeUuid."
