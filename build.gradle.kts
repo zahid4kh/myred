@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.kotlin.plugin.serialization)
 }
 
-val appPackageVersion = "1.0.0"
+val appPackageVersion = "1.1.0"
 group = "myred"
 version = appPackageVersion
 
